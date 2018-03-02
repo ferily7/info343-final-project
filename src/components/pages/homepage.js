@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Auth from "./Auth.js";
 class Homepage extends Component {
   render() {
     return (
@@ -8,6 +8,7 @@ class Homepage extends Component {
         <p>
           This is the landing page.
         </p>
+        <Auth />
       </div>
     );
   }
