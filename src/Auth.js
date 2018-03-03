@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import { MuiThemeProvider } from 'material-ui';
 
 class Auth extends Component {
     constructor(props) {
@@ -75,13 +76,15 @@ class Auth extends Component {
                 }
 
                 <div className="form-group">
-                    <RaisedButton primary={true} onClick={() => this.handleSignUp(this.state.email, this.state.password, this.state.username)}>
-                        Sign Up
+                    <MuiThemeProvider>
+                        <RaisedButton primary={true} onClick={() => this.handleSignUp(this.state.email, this.state.password, this.state.username)}>
+                            Sign Up
                      </RaisedButton>
-                    {'  '}
-                    <RaisedButton primary={true} onClick={() => this.handleSignIn(this.state.email, this.state.password)}>
-                        Sign In
+                        {'  '}
+                        <RaisedButton primary={true} onClick={() => this.handleSignIn(this.state.email, this.state.password)}>
+                            Sign In
                     </RaisedButton>
+                    </MuiThemeProvider>
                 </div>
             </div>
         );
