@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route } from "react-router-dom";
+import firebase from 'firebase';
 import "./assets/index.css";
 
 import Header from "./components/header-component/header";
 import Homepage from "./components/pages/homepage";
 import Dashboard from "./components/pages/dashboard";
+import LandingPage from "./components/pages/LandingPage";
+import UserHome from "./components/pages/UserHome";
 
 class App extends Component {
     constructor(props) {
@@ -19,7 +22,7 @@ class App extends Component {
     // Keep track of authentication state, to see if user is logged in
     componentDidMount() {
         this.stopWatchingAuth = firebase.auth().onAuthStateChanged(firebaseUser => {
-            firebaseUser ? this.setState({ user: firebaseUser }) : this.setState({ user: null });
+            firebaseUser ? this.setState({ firebaseUser: firebaseUser }) : this.setState({ firebaseUser: null });
         });
     }
 
@@ -48,7 +51,7 @@ class App extends Component {
                     {/* William Kwok's temporary code edits start down here, uncomment the above and comment below if other things need to be tested.
                         Currently will cause compilation errors because of nonexistant objects*/}
                     <Route exact path="/" render={(routerProps) => (<LandingPage {...routerProps} firebaseUser={this.state.firebaseUser} />)} />
-                    <Route exact path="/" render={(routerProps) => (<UserHome firebaseUser={this.state.firebaseUser}
+                    <Route exact path="/userhome" render={(routerProps) => (<UserHome firebaseUser={this.state.firebaseUser}
                         selectedTrip={this.state.selectedTrip}
                         changeSelectedTrip={this.changeSelectedTrip} />)} />
 

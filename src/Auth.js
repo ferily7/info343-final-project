@@ -65,6 +65,7 @@ class Auth extends Component {
             <div className="container">
                 {['email', 'password', 'username'].map((d) => {
                     return <input
+                        key={d}
                         name={d}
                         className="validate"
                         placeholder={d}
@@ -77,13 +78,15 @@ class Auth extends Component {
 
                 <div className="form-group">
                     <MuiThemeProvider>
-                        <RaisedButton primary={true} onClick={() => this.handleSignUp(this.state.email, this.state.password, this.state.username)}>
-                            Sign Up
-                     </RaisedButton>
-                        {'  '}
-                        <RaisedButton primary={true} onClick={() => this.handleSignIn(this.state.email, this.state.password)}>
-                            Sign In
-                    </RaisedButton>
+                        <div>
+                            <RaisedButton primary={true} onClick={() => this.handleSignUp(this.state.email, this.state.password, this.state.username)}>
+                                Sign Up
+                        </RaisedButton>
+                            {'  '}
+                            <RaisedButton primary={true} onClick={() => this.handleSignIn(this.state.email, this.state.password)}>
+                                Sign In
+                        </RaisedButton>
+                        </div>
                     </MuiThemeProvider>
                 </div>
             </div>
