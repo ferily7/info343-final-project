@@ -51,7 +51,7 @@ class App extends Component {
                     {/* William Kwok's temporary code edits start down here, uncomment the above and comment below if other things need to be tested.
                         Currently will cause compilation errors because of nonexistant objects*/}
                     <Route exact path="/" render={(routerProps) => (<LandingPage {...routerProps} firebaseUser={this.state.firebaseUser} />)} />
-                    <Route exact path="/userhome" render={(routerProps) => (<UserHome firebaseUser={this.state.firebaseUser}
+                    <Route path="/userhome" render={(routerProps) => (<UserHome firebaseUser={this.state.firebaseUser}
                         selectedTrip={this.state.selectedTrip}
                         changeSelectedTrip={this.changeSelectedTrip} />)} />
 
