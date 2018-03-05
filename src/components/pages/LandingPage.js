@@ -9,7 +9,7 @@ class LandingPage extends Component {
                 {console.log("landingpage", this.props.firebaseUser)}
                 {
                     this.props.firebaseUser !== null &&
-                    <Redirect to="/userhome" />
+                    <Redirect to="/userhome/overview" />
                 }
                 <Auth />
             </div>
