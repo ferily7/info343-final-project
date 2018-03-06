@@ -6,7 +6,13 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+/* fix to prevent overflow */
+.contain {
+
+  background-color: #1c1c1c;
 }
 .appbar {
   background-color: #1c1c1c !important;
@@ -19,4 +25,99 @@ body {
   text-decoration: none;
   border-bottom: none;
   color: #ffffff;
+}
+.signed-in {
+  margin-top: .9rem;
+  margin-right: 20px;
+  color: #ffffff;
+  font-size: .9rem;
+}
+.contain-intro {
+  margin-top: 20px;
+  padding-left: 8px;
+}
+.contain-signup {
+  background-color: #ffffff;
+  margin-top: 30px;
+  padding: 46px 30px;
+  margin-bottom: 30px;
+}
+.landing-offset {
+  padding: 0 !important;
+}
+.auth-input {
+  height: 60px !important;
+}
+.auth-input label {
+  top: 26px !important;
+}
+.auth-button {
+  margin-top: 20px;
+  float: right;
+}
+#welcome-header {
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 0;
+  color: #ffffff;
+}
+#welcome-subheader {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: -1px;
+  color: #ffffff;
+}
+#welcome-blurb {
+  font-weight: 300;
+  font-size: .95rem;
+  color: #ffffff;
+}
+#signup-header {
+  font-size: 1.9rem;
+  font-weight: 500;
+  margin: 0;
+  color: #1c1c1c;
+}
+.error {
+  color: red;
+}
+@media (min-width: 480px) {
+  #welcome-subheader {
+    font-size: 1.3rem;
+  }
+  #signup-header {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .contain {
+    height: 100vh;
+  }
+  #welcome-subheader {
+    font-size: 1.1rem;
+  }
+  #signup-header {
+    font-size: 1.9rem;
+  }
+  .contain-intro {
+    padding-right: 12%;
+    margin-top: 70px;
+  }
+  .contain-signup {
+    padding: 46px 16px;
+  }
+}
+
+@media (min-width: 996px) {
+  #welcome-subheader {
+    font-size: 1.3rem;
+  }
+  #signup-header {
+    font-size: 2.5rem;
+  }
+  .contain-intro {
+    margin-top: 80px;
+  }
 }

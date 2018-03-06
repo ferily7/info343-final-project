@@ -14,7 +14,7 @@ import UserHome from "./components/pages/UserHome";
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: Colors.blueGrey400
+    // custom theme colors here
   }
 });
 
@@ -84,7 +84,10 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path="/login" component={Login} />
+            <Route
+            path="/login"
+            render={routerProps => <Login firebaseUser={this.state.firebaseUser} />}
+          />
           </div>
         </Router>
       </MuiThemeProvider>

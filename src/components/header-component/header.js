@@ -17,7 +17,7 @@ class Header extends Component {
     return (
       <AppBar
               className="appbar"
-              title={<Link className="nav-title" to="/">Title</Link>}
+              title={<Link className="nav-title" to="/">Trip Planner</Link>}
               showMenuIconButton={false}
               iconElementRight={
                 // determine which menu to display
@@ -48,7 +48,7 @@ class Logged extends Component {
   render() {
     const user = firebase.auth().currentUser.displayName;
     return (
-      <div>Welcome, {user}</div>
+      <div className="signed-in">Welcome, {user}.</div>
     );
   }
 }

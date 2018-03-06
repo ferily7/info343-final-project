@@ -23,10 +23,9 @@ class Auth extends Component {
       .createUserWithEmailAndPassword(email, password)
       .then(firebaseUser => {
         console.log("set username", username);
-        //include information (for app-level content)
         let profilePromise = firebaseUser.updateProfile({
           displayName: username
-        }); //return promise for chaining
+        });
 
         return profilePromise;
       })
@@ -45,9 +44,9 @@ class Auth extends Component {
   handleChange(event) {
     let value = event.target.value;
     let field = event.target.name;
-    let changes = {}; //object to hold changes
-    changes[field] = value; //change this field
-    this.setState(changes); //update state
+    let changes = {};
+    changes[field] = value;
+    this.setState(changes);
   }
 
   render() {
@@ -55,9 +54,12 @@ class Auth extends Component {
       <Grid fluid>
         <Row>
           <Col mdOffset={1} xs={12} md={10}>
+          <h1 id="signup-header"> Sign up. It's free.</h1>
+          <p className="error">{this.state.errorMessage}</p>
         {["email", "password", "username"].map(d => {
           return (
             <TextField
+            className="auth-input"
               name={d}
               hintText={d}
               floatingLabelText={d}
@@ -73,6 +75,7 @@ class Auth extends Component {
         <div className="form-group">
           <div>
             <RaisedButton
+            className="auth-button"
               primary={true}
               onClick={() =>
                 this.handleSignUp(
