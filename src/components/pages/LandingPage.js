@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import Auth from "../../Auth";
+import SignUp from "../../Auth";
 
 class LandingPage extends Component {
     render() {
@@ -11,7 +11,7 @@ class LandingPage extends Component {
                     this.props.firebaseUser !== null &&
                     <Redirect to="/userhome/overview" />
                 }
-                <Auth />
+                <SignUp />
             </div>
         )
     }
