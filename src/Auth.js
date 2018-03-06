@@ -16,7 +16,6 @@ class Auth extends Component {
         };
     }
     handleSignUp(email, password, username) {
-
         /* Create a new user and save their information */
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(firebaseUser => {
@@ -30,13 +29,15 @@ class Auth extends Component {
             })
             .then(firebaseUser => {
                 console.log('handle sign up', firebase.auth().currentUser, this)
-                this.setState({
-                    user: firebase.auth().currentUser
-                })
+                if (this.mounted) {
+                    this.setState({
+                        user: firebase.auth().currentUser
+                    })
+                }
             })
             .catch((err) => {
                 console.log(err);
-                this.setState({ errorMessage: err.message })
+                if (this.mounted) { this.setState({ errorMessage: err.message }) }
             })
     }
     handleSignIn(email, password) {
@@ -49,6 +50,14 @@ class Auth extends Component {
                 console.log(err)
                 this.setState({ errorMessage: err.message })
             });
+    }
+
+    componentDidMount() {
+        this.mounted = true;
+    }
+
+    componentWillUnmount() {
+        this.mounted = false;
     }
 
     handleChange(event) {
