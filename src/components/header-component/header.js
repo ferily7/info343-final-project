@@ -4,12 +4,7 @@ import firebase from "firebase";
 
 // material ui components
 import AppBar from "material-ui/AppBar";
-import IconButton from "material-ui/IconButton";
-import IconMenu from "material-ui/IconMenu";
-import MenuItem from "material-ui/MenuItem";
 import FlatButton from "material-ui/FlatButton";
-import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
-import Divider from "material-ui/Divider";
 
 // renders the navbar
 class Header extends Component {

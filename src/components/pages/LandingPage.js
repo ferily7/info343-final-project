@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { Grid, Row, Col } from "react-flexbox-grid";
 import SignUp from "../../Auth";
 import RaisedButton from "material-ui/RaisedButton";
@@ -9,7 +9,7 @@ class LandingPage extends Component {
     return (
       <div className="contain">
       <Grid fluid>
-        <Row>
+        <Row className="landing-content">
           <Col className="landing-offset" mdOffset={1} xs={12} md={5}>
             <div className="contain-intro">
               <h1 id="welcome-header">Welcome</h1>
@@ -39,8 +39,14 @@ class LandingPage extends Component {
               {this.props.firebaseUser !== null && (
                 <Redirect to="/userhome/overview" />
               )}
+              <div className="contain-signup-outer">
               <div className="contain-signup">
                 <SignUp />
+              </div>
+              Already have an account? {" "}
+              <Link to="/login">
+              <a id="signin-link" href="/">Sign in.</a>
+              </Link>
               </div>
             </div>
           </Col>

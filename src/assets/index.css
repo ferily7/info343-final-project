@@ -8,7 +8,9 @@ body {
   padding: 0;
   font-family: "Roboto", sans-serif;
 }
-
+a {
+  text-decoration: none;
+}
 /* fix to prevent overflow */
 .contain {
 
@@ -32,19 +34,26 @@ body {
   color: #ffffff;
   font-size: .9rem;
 }
+.landing-offset {
+  padding: 0 !important;
+}
 .contain-intro {
   margin-top: 20px;
   padding-left: 8px;
+}
+.contain-signup-outer {
+  margin-bottom: 30px;
+  color: #ffffff;
+  font-weight: 300;
 }
 .contain-signup {
   background-color: #ffffff;
   margin-top: 30px;
   padding: 46px 30px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
-.landing-offset {
-  padding: 0 !important;
-}
+
+
 .auth-input {
   height: 60px !important;
 }
@@ -63,10 +72,10 @@ body {
 }
 #welcome-subheader {
   font-size: 1.2rem;
-  font-weight: 500;
   margin: 0;
-  letter-spacing: -1px;
   color: #ffffff;
+  letter-spacing: -1px;
+  font-weight: 400;
 }
 #welcome-blurb {
   font-weight: 300;
@@ -78,6 +87,15 @@ body {
   font-weight: 500;
   margin: 0;
   color: #1c1c1c;
+  letter-spacing: -1px;
+}
+#signin-link {
+  color: #00BCD4;
+  font-weight: 500;
+  margin-left: 5px;
+}
+#signin-link:hover {
+  color: #7c7c7c !important;
 }
 .error {
   color: red;
@@ -94,12 +112,21 @@ body {
 @media (min-width: 768px) {
   .contain {
     height: 100vh;
+    margin-top: -70px;
+  }
+  .landing-content {
+    padding-top: 110px;
   }
   #welcome-subheader {
     font-size: 1.1rem;
+
+  }
+  #welcome-blurb {
+    font-size: .9rem;
   }
   #signup-header {
-    font-size: 1.9rem;
+    font-size: 1.7rem;
+
   }
   .contain-intro {
     padding-right: 12%;
@@ -111,11 +138,14 @@ body {
 }
 
 @media (min-width: 996px) {
+  #welcome-header {
+    font-size: 3.5rem;
+  }
   #welcome-subheader {
     font-size: 1.3rem;
   }
   #signup-header {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
   }
   .contain-intro {
     margin-top: 80px;

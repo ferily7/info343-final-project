@@ -8,13 +8,15 @@ import "./assets/index.css";
 
 import Header from "./components/header-component/header";
 import Login from "./components/pages/login";
-import Dashboard from "./components/pages/dashboard";
 import LandingPage from "./components/pages/LandingPage";
 import UserHome from "./components/pages/UserHome";
 
 const muiTheme = getMuiTheme({
   palette: {
     // custom theme colors here
+  },
+  appBar: {
+    height: 70
   }
 });
 
