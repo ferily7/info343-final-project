@@ -16,7 +16,7 @@ class Header extends Component {
   render() {
     return (
       <AppBar
-              
+              className="appbar"
               title={<Link className="nav-title" to="/">Title</Link>}
               showMenuIconButton={false}
               iconElementRight={

@@ -7,7 +7,6 @@ import getMuiTheme from "material-ui/styles/getMuiTheme";
 import "./assets/index.css";
 
 import Header from "./components/header-component/header";
-import Homepage from "./components/pages/homepage";
 import Login from "./components/pages/login";
 import Dashboard from "./components/pages/dashboard";
 import LandingPage from "./components/pages/LandingPage";
@@ -15,12 +14,10 @@ import UserHome from "./components/pages/UserHome";
 
 const muiTheme = getMuiTheme({
   palette: {
-    // Custom colors will go here
-  },
-  appBar: {
-    height: 50
+    primary1Color: Colors.blueGrey400
   }
 });
+
 
 class App extends Component {
   constructor(props) {
