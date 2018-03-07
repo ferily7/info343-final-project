@@ -46,7 +46,7 @@ class Sidebar extends Component {
                                 return <ListItem className="trip-list-item"
                                     key={d}
                                     primaryText={this.state.orgReference[d].tripName}
-                                    onClick={() => this.props.changeSelectedTrip(this.state.orgReference[d].tripName)} />
+                                    onClick={() => this.props.changeSelectedTrip(d)} />
                             })
                         }
                         {/* <ListItem className="trip-list-item" primaryText="Trip 1" />

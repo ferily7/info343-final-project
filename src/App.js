@@ -46,9 +46,7 @@ class App extends Component {
 
     // changeSelectedTrip will change the selected trip
     // To be used with the sidebar when clicking on a different trip
-    //      This means we pass it down to UserHome then to the Sidebar
-    // Prerequisite: trips must have unique names or IDs, it'd be way easier to have them have unique names than IDs, in personal experience
-    // @param   trip    trip is a type string, expected either name or ID depending on what we choose
+    // @param   trip    trip is a type string, expected ID of the trip (array key in firebase)
     changeSelectedTrip(trip) {
         this.setState({ selectedTrip: trip });
     }
