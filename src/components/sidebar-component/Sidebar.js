@@ -42,7 +42,7 @@ class Sidebar extends Component {
                     <List className="trip-list">
                         {
                             this.state.orgReference &&
-                            Object.keys(this.state.orgReference).map((d) => {
+                            Object.keys(this.state.orgReference).map((d, i) => {
                                 return <ListItem className="trip-list-item"
                                     key={d}
                                     primaryText={this.state.orgReference[d].tripName}
