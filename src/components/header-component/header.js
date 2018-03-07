@@ -11,14 +11,18 @@ class Header extends Component {
   render() {
     return (
       <AppBar
-              className="appbar"
-              title={<Link className="nav-title" to="/">Trip Planner</Link>}
-              showMenuIconButton={false}
-              iconElementRight={
-                // determine which menu to display
-                this.props.user ? <Logged /> : <SignIn />
-              }
-            />
+        className="appbar"
+        title={
+          <Link className="nav-title" to="/">
+            Trip Planner
+          </Link>
+        }
+        showMenuIconButton={false}
+        iconElementRight={
+          // determine which menu to display
+          this.props.user ? <Logged /> : <SignIn />
+        }
+      />
     );
   }
 }
@@ -30,7 +34,7 @@ class SignIn extends Component {
       <div>
         <Link to="/login">
           <FlatButton {...this.props} label="Sign In" />
-</Link>
+        </Link>
       </div>
     );
   }
@@ -39,11 +43,12 @@ class SignIn extends Component {
 // if the user is signed in, the navigation menu to different chat rooms and
 // the dashboard are displayed. The user can log out at any time.
 class Logged extends Component {
-
   render() {
     const user = firebase.auth().currentUser.displayName;
     return (
-      <div className="signed-in">Welcome, {user}.</div>
+      <div className="signed-in">
+        Welcome, <span className="highlight">{user}</span>.
+      </div>
     );
   }
 }

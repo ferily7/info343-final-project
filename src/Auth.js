@@ -55,7 +55,7 @@ class Auth extends Component {
         <Row>
           <Col mdOffset={1} xs={12} md={10}>
           <h1 id="signup-header"> Sign up. It's free.</h1>
-          <p className="error">{this.state.errorMessage}</p>
+          <p className="highlight">{this.state.errorMessage}</p>
         {["email", "password", "username"].map(d => {
           return (
             <TextField

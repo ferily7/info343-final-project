@@ -11,8 +11,9 @@ body {
 a {
   text-decoration: none;
 }
-.error {
-  color: red;
+.highlight {
+  color: #f75830;
+  font-weight: 400;
 }
 
 /**** APP BAR STYLES ****/
@@ -32,7 +33,8 @@ a {
   margin-top: 0.9rem;
   margin-right: 20px;
   color: #ffffff;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 300;
 }
 
 /**** LANDING PAGE STYLES ****/
@@ -102,31 +104,39 @@ a {
 }
 
 /**** TAB STYLES ****/
+.tabs-row {
+  background-color: #131830;
+}
 .nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  padding-left: 0;
-  margin-bottom: 0;
+  padding-left: 24px;
+  padding-right: 0;
+  margin: 0;
   list-style: none;
 }
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
+  font-weight: 400 !important;
 }
-.nav-link:hover, .nav-link:focus {
+.nav-link:hover,
+.nav-link:focus {
   text-decoration: none;
 }
 .nav-tabs {
-  margin-bottom: -1px;
-  border-bottom: 1px solid #7c7c7c;
+  float: left;
 }
 .nav-item {
-  padding-right: .5rem;
+  padding-right: 10px;
 }
-
+.nav-item a {
+  color: #ffffff;
+  font-weight: 300;
+}
 .nav-tabs .nav-link {
   margin-left: -1px;
   margin-bottom: -1px;
@@ -135,20 +145,21 @@ a {
   border-top-right-radius: 0.25rem;
 }
 
-.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
   border-color: #e9ecef #e9ecef #7c7c7c;
 }
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
-  background-color: #fff;
-  border-color: #7c7c7c #7c7c7c #fff;
+  background-color: #e3e3e3;
+  border-color: #e3e3e3 #e3e3e3 #e3e3e3;
 }
 
 /* SIDEBAR STYLES */
 .sidebar {
   border-right: 1px solid #7c7c7c;
-  height: 100vh;
+
   background-color: #e3e3e3;
 }
 .no-padding {
@@ -164,20 +175,19 @@ a {
   margin-bottom: 30px;
 }
 .trip-list {
-  border-top: 1px solid #7c7c7c !important;
   padding: 0px !important;
 }
 .trip-list-item {
   border-bottom: 1px solid #7c7c7c !important;
 }
 #new-trip {
-font-weight: 500 !important;
+  font-weight: 500 !important;
 }
 
 /* DASHBOARD CONTENT STYLES */
 .contain-dashboard-content {
   margin: 16px;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 @media (min-width: 480px) {
@@ -190,13 +200,32 @@ font-weight: 500 !important;
   }
 }
 
+@media (min-width: 576px) {
+  /* SIDEBAR STYLES */
+  .sidebar {
+    height: 100vh;
+  }
 
+  /* TABS STYLES */
+  .nav {
+    padding-left: 0;
+    padding-right: 18px;
+  }
+  .nav-tabs {
+    float: right;
+  }
+  .nav-tabs .nav-link.active,
+  .nav-tabs .nav-item.show .nav-link {
+    background-color: #ffffff;
+    border-color: #ffffff #ffffff #ffffff;
+  }
+}
 
 @media (min-width: 768px) {
   /**** LANDING PAGE STYLES ****/
   .contain {
     height: 100vh;
-    margin-top: -70px;
+    margin-top: -56px;
   }
   .landing-content {
     padding-top: 110px;

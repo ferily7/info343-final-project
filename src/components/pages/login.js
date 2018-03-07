@@ -47,7 +47,7 @@ class Login extends Component {
           <Row>
             <Col mdOffset={1} xs={12} md={10}>
               <h1>Log In</h1>
-              <p className="error">{this.state.errorMessage}</p>
+              <p className="highlight">{this.state.errorMessage}</p>
               {["email", "password"].map((d, i) => {
                 return (
                   <TextField
