@@ -65,7 +65,7 @@ class Login extends Component {
                   />
                 );
               })}
-              <div>
+              
                 <RaisedButton
                   className="auth-button"
                   primary={true}
@@ -74,7 +74,7 @@ class Login extends Component {
                   }
                   label="Sign In"
                 />
-              </div>
+              
             </Col>
           </Row>
         </Grid>

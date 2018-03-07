@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 
+
 class Reservations extends Component {
     render() {
         return (
-            <div>
-                Reservations content
-            </div>
+
+              <div>
+                  Reservations content
+              </div>
+
         )
     }
 }

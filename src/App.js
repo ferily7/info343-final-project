@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { HashRouter as Router, Route } from "react-router-dom";
 import firebase from "firebase";
-import * as Colors from "material-ui/styles/colors";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import "./assets/index.css";
@@ -13,7 +12,7 @@ import UserHome from "./components/pages/UserHome";
 
 const muiTheme = getMuiTheme({
   palette: {
-    // custom theme colors here
+    primary1Color: '#f75830',
   },
   appBar: {
     height: 70

@@ -11,13 +11,13 @@ body {
 a {
   text-decoration: none;
 }
-/* fix to prevent overflow */
-.contain {
-
-  background-color: #1c1c1c;
+.error {
+  color: red;
 }
+
+/**** APP BAR STYLES ****/
 .appbar {
-  background-color: #1c1c1c !important;
+  background-color: #131830 !important;
 }
 .nav-title {
   color: #ffffff;
@@ -29,10 +29,17 @@ a {
   color: #ffffff;
 }
 .signed-in {
-  margin-top: .9rem;
+  margin-top: 0.9rem;
   margin-right: 20px;
   color: #ffffff;
-  font-size: .9rem;
+  font-size: 0.9rem;
+}
+
+/**** LANDING PAGE STYLES ****/
+
+/* fix to prevent overflow */
+.contain {
+  background-color: #131830;
 }
 .landing-offset {
   padding: 0 !important;
@@ -52,13 +59,8 @@ a {
   padding: 46px 30px;
   margin-bottom: 10px;
 }
-
-
 .auth-input {
-  height: 60px !important;
-}
-.auth-input label {
-  top: 26px !important;
+  margin-top: -10px;
 }
 .auth-button {
   margin-top: 20px;
@@ -79,28 +81,107 @@ a {
 }
 #welcome-blurb {
   font-weight: 300;
-  font-size: .95rem;
+  font-size: 0.95rem;
   color: #ffffff;
 }
 #signup-header {
   font-size: 1.9rem;
   font-weight: 500;
-  margin: 0;
+  margin-top: 0;
+  margin-bottom: -10px;
   color: #1c1c1c;
   letter-spacing: -1px;
 }
 #signin-link {
-  color: #00BCD4;
+  color: #f75830;
   font-weight: 500;
   margin-left: 5px;
 }
 #signin-link:hover {
   color: #7c7c7c !important;
 }
-.error {
-  color: red;
+
+/**** TAB STYLES ****/
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
 }
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+.nav-link:hover, .nav-link:focus {
+  text-decoration: none;
+}
+.nav-tabs {
+  margin-bottom: -1px;
+  border-bottom: 1px solid #7c7c7c;
+}
+.nav-item {
+  padding-right: .5rem;
+}
+
+.nav-tabs .nav-link {
+  margin-left: -1px;
+  margin-bottom: -1px;
+  border: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+  border-color: #e9ecef #e9ecef #7c7c7c;
+}
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #495057;
+  background-color: #fff;
+  border-color: #7c7c7c #7c7c7c #fff;
+}
+
+/* SIDEBAR STYLES */
+.sidebar {
+  border-right: 1px solid #7c7c7c;
+  height: 100vh;
+  background-color: #e3e3e3;
+}
+.no-padding {
+  padding: 0 !important;
+}
+.no-margin {
+  margin: 0 !important;
+}
+.signout-button {
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.trip-list {
+  border-top: 1px solid #7c7c7c !important;
+  padding: 0px !important;
+}
+.trip-list-item {
+  border-bottom: 1px solid #7c7c7c !important;
+}
+#new-trip {
+font-weight: 500 !important;
+}
+
+/* DASHBOARD CONTENT STYLES */
+.contain-dashboard-content {
+  margin: 16px;
+  font-size: .9rem;
+}
+
 @media (min-width: 480px) {
+  /**** LANDING PAGE STYLES ****/
   #welcome-subheader {
     font-size: 1.3rem;
   }
@@ -109,7 +190,10 @@ a {
   }
 }
 
+
+
 @media (min-width: 768px) {
+  /**** LANDING PAGE STYLES ****/
   .contain {
     height: 100vh;
     margin-top: -70px;
@@ -119,14 +203,12 @@ a {
   }
   #welcome-subheader {
     font-size: 1.1rem;
-
   }
   #welcome-blurb {
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
   #signup-header {
     font-size: 1.7rem;
-
   }
   .contain-intro {
     padding-right: 12%;
@@ -138,6 +220,7 @@ a {
 }
 
 @media (min-width: 996px) {
+  /**** LANDING PAGE STYLES ****/
   #welcome-header {
     font-size: 3.5rem;
   }

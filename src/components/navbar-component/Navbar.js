@@ -3,6 +3,7 @@ import { Nav, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 
+
 class Navbar extends Component {
     constructor(props) {
         super(props);
@@ -10,7 +11,7 @@ class Navbar extends Component {
             activeTab: 0
         };
 
-        this.tabList = ['Overview', 'Itinerary', 'Reservations', 'Budget'];
+        this.tabList = ['Overview', 'Itinerary', 'Budget', 'Reservations'];
         this.toggle = this.toggle.bind(this);
     }
 
@@ -26,7 +27,7 @@ class Navbar extends Component {
 
     render() {
         return (
-            <div>
+            <div className="dashboard-tabs">
                 <Nav tabs>
                     {
                         /* This maps different tabs and sets the corresponding routes. Routes are the lower case version of what is the tab's name */
