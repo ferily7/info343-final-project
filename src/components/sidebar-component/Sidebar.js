@@ -60,7 +60,7 @@ class Sidebar extends Component {
         onClick={this.handleDialogClose}
       />,
       <RaisedButton
-        label="Create Trip"
+        label="Create"
         primary={true}
         onClick={this.handleDialogSubmit}
       />
@@ -101,6 +101,7 @@ class Sidebar extends Component {
           />
 
           <Dialog
+          title="Plan a New Trip"
             actions={dialogActions}
             modal={false}
             open={this.state.dialogOpen}
