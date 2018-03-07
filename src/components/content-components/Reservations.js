@@ -20,6 +20,9 @@ class Reservations extends Component {
             })
         }
     }
+    componentWillUnmount() {
+        this.mounted = false;
+    }
     render() {
         return (
 

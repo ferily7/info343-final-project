@@ -19,6 +19,9 @@ class Overview extends Component {
             })
         }
     }
+    componentWillUnmount() {
+        this.mounted = false;
+    }
     render() {
         return (
 
