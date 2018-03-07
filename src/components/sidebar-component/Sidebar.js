@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import firebase from "firebase";
 import { Redirect } from "react-router-dom";
-
+import { Grid, Row, Col } from "react-flexbox-grid";
 // material ui components
 import RaisedButton from "material-ui/RaisedButton";
 import { List, ListItem } from "material-ui/List";
@@ -60,7 +60,7 @@ class Sidebar extends Component {
         onClick={this.handleDialogClose}
       />,
       <RaisedButton
-        label="Submit"
+        label="Create Trip"
         primary={true}
         onClick={this.handleDialogSubmit}
       />
@@ -101,40 +101,60 @@ class Sidebar extends Component {
           />
 
           <Dialog
-            title="Dialog With Actions"
             actions={dialogActions}
             modal={false}
             open={this.state.dialogOpen}
             onRequestClose={this.handleDialogClose}
           >
-            <div>
-              <TextField
-                className="auth-input"
-                name="Trip name"
-                hintText="Name your trip..."
-                floatingLabelText="Trip Name"
-                type="text"
-                fullWidth={true}
-              />
-              <TextField
-                className="auth-input"
-                name="Destination"
-                hintText="Where are you going?"
-                floatingLabelText="Destination"
-                type="text"
-                fullWidth={true}
-              />
-              <DatePicker className="date-input" hintText="From" />
-              <DatePicker className="date-input" hintText="Until" />
-              <TextField
-                className="auth-input"
-                name="Number of travekers"
-                hintText="How many travelers?"
-                floatingLabelText="Travelers"
-                type="text"
-                fullWidth={true}
-              />
-            </div>
+            <Grid>
+              <Row>
+                <TextField
+                  className="auth-input"
+                  name="Trip name"
+                  hintText="Name your trip..."
+                  floatingLabelText="Trip Name"
+                  type="text"
+                  fullWidth={true}
+                />
+              </Row>
+              <Row>
+                <TextField
+                  className="auth-input"
+                  name="Destination"
+                  hintText="Where are you going?"
+                  floatingLabelText="Destination"
+                  type="text"
+                  fullWidth={true}
+                />
+              </Row>
+              <Row>
+                <Col className="no-padding" xs={12} sm={6}>
+                {/* See http://www.material-ui.com/#/components/date-picker set min/max date */}
+                  <DatePicker
+                    className="date-input"
+                    hintText="From"
+                    fullWidth={true}
+                  />
+                </Col>
+                <Col className="no-padding" xs={12} sm={6}>
+                  <DatePicker
+                    className="date-input"
+                    hintText="Until"
+                    fullWidth={true}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <TextField
+                  className="auth-input"
+                  name="Number of travelers"
+                  hintText="How many travelers?"
+                  floatingLabelText="Travelers"
+                  type="text"
+                  fullWidth={true}
+                />
+              </Row>
+            </Grid>
           </Dialog>
         </div>
       </div>
