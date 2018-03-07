@@ -8,16 +8,16 @@ class Overview extends Component {
             orgReference: null
         }
     }
+    componentWillReceiveProps(inProp) {
+        this.orgReference = firebase.database().ref(`${inProp.firebaseUser.uid}/trips/${inProp.selectedTrip}`);
+        this.orgReference.on('value', (snapshot) => {
+            if (this.mounted) {
+                this.setState({ orgReference: snapshot.val() });
+            }
+        })
+    }
     componentDidMount() {
         this.mounted = true;
-        if (this.props.firebaseUser && this.props.selectedTrip !== '') {
-            this.orgReference = firebase.database().ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
-            this.orgReference.on('value', (snapshot) => {
-                if (this.mounted) {
-                    this.setState({ orgReference: snapshot.val() });
-                }
-            })
-        }
     }
     componentWillUnmount() {
         this.mounted = false;
@@ -31,8 +31,8 @@ class Overview extends Component {
                         Select a trip to begin
                     </div>
                 }
-                {this.props.selectedTrip !== "" &&
-                    <div>Trip selected</div>
+                {this.props.selectedTrip !== "" && this.state.orgReference &&
+                    <div>{this.state.orgReference.tripName}{console.log(this.state.orgReference)}</div>
                 }
             </div>
 
