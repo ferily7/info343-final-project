@@ -51,7 +51,7 @@ class Login extends Component {
               {["email", "password"].map((d, i) => {
                 return (
                   <TextField
-                  className="auth-input"
+                    className="auth-input"
                     key={i}
                     name={d}
                     hintText={d}
@@ -61,28 +61,24 @@ class Login extends Component {
                       this.handleChange(event);
                     }}
                     fullWidth={true}
-                    
                   />
                 );
               })}
-
+              <RaisedButton
+                className="auth-button"
+                primary={true}
+                onClick={() =>
+                  this.handleSignIn(this.state.email, this.state.password)
+                }
+                label="Sign In"
+              />
               <Link className="nav-title" to="/">
                 <RaisedButton
                   className="back-button"
                   secondary={true}
                   label="Back"
                 />
-                </Link>
-                <RaisedButton
-                  className="auth-button"
-                  primary={true}
-                  onClick={() =>
-                    this.handleSignIn(this.state.email, this.state.password)
-                  }
-                  label="Sign In"
-                />
-                
-              
+              </Link>
             </Col>
           </Row>
         </Grid>

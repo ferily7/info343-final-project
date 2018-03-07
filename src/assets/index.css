@@ -117,7 +117,7 @@ a {
 .back-button {
   margin-top: 20px;
   float: right;
-  margin-left: 20px
+  margin-right: 8px;
 }
 
 /**** TAB STYLES ****/
@@ -197,6 +197,19 @@ a {
 #new-trip {
   font-weight: 500 !important;
 }
+.cancel-button {
+  padding-right: 8px;
+}
+.date-input {
+  margin-top: 14px;
+}
+h3 {
+  padding-bottom: 0px !important;
+  font-size: 1.9rem !important;
+  font-weight: 500 !important;
+  color: #1c1c1c;
+  letter-spacing: -1px;
+}
 
 /* DASHBOARD CONTENT STYLES */
 .contain-dashboard-content {
@@ -224,6 +237,9 @@ a {
   /* SIDEBAR STYLES */
   .sidebar {
     height: 100vh;
+  }
+  h3 {
+    font-size: 2.5rem !important;
   }
 
   /* TABS STYLES */
@@ -275,6 +291,7 @@ a {
     font-size: 3.5rem;
     margin-top: 30px;
   }
+
   /* TABS STYLES */
   .nav-item {
     padding-right: 16px;
