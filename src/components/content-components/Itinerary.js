@@ -11,7 +11,7 @@ class Itinerary extends Component {
             eventStart: 0,
             eventName: '',
             location: '',
-            reservation: null,
+            reservation: false,
             type: '',
             errorMessage: ''
         }
@@ -48,6 +48,22 @@ class Itinerary extends Component {
     // Load calendar based on existing events from state
     // Click events for updating calendar events
     // Add event to database based on inputs
+
+    // handleChange to change the event state based on a string, taken from class example
+    handleChange(event) {
+        let value = event.target.value;
+        let field = event.target.name;
+        let change = {};
+        change[field] = value;
+        this.setState(change);
+    }
+
+    // addEvent adds an event to the user's event list in the database, if
+    // requirements are met. Multiple events can have the same event name!
+    // prerequisites:
+    //      this.state.eventEnd and this.state.eventStart must be valid (not 0)
+    //      this.state.type cannot be an empty string
+    //      this.state.eventName cannot be a empty string
     addEvent() {
         if (this.state.eventEnd === 0 || this.state.eventStart === 0) {
             this.setState({ errorMessage: "Event dates unspecified" });
@@ -72,14 +88,24 @@ class Itinerary extends Component {
                 eventStart: 0,
                 eventName: '',
                 location: '',
-                reservation: null,
+                reservation: false,
                 type: '',
                 errorMessage: ''
             });
         }
     }
 
-
+    testSetState() {
+        this.setState({
+            cost: 19999,
+            eventEnd: 92183,
+            eventStart: 991723281,
+            eventName: 'Test!',
+            location: 'seattle',
+            reservation: true,
+            type: 'Dinner'
+        })
+    }
 
     render() {
         return (
@@ -90,8 +116,19 @@ class Itinerary extends Component {
                         Select a trip to begin
                     </div>
                 }
+                {this.state.errorMessage &&
+                    <div><p className="alert alert-danger">{this.state.errorMessage}</p></div>
+                }
                 {this.props.selectedTrip !== "" && this.state.dataRef &&
-                    <div>{this.state.dataRef.tripName}{console.log(this.state.dataRef)}</div>
+                    <div>
+                        {this.state.dataRef.tripName}{console.log(this.state.dataRef)}
+                        <button className="btn btn-success mr-2" onClick={() => this.testSetState()}>
+                            testSetState
+                        </button>
+                        <button className="btn btn-success mr-2" onClick={() => this.addEvent()}>
+                            add event
+                        </button>
+                    </div>
                 }
             </div>
 
