@@ -3,7 +3,7 @@ This component renders the log in form and handles firebase sign in.
 */
 
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import firebase from "firebase";
 import { Grid, Row, Col } from "react-flexbox-grid";
 // material ui components
@@ -45,8 +45,8 @@ class Login extends Component {
         )}
         <Grid fluid>
           <Row>
-            <Col mdOffset={1} xs={12} md={10}>
-              <h1>Log In</h1>
+            <Col xsOffset={1} mdOffset={2} lgOffset={3} xs={10} md={8} lg={6}>
+              <h1 className="login-header">Log In</h1>
               <p className="highlight">{this.state.errorMessage}</p>
               {["email", "password"].map((d, i) => {
                 return (
@@ -65,7 +65,14 @@ class Login extends Component {
                   />
                 );
               })}
-              
+
+              <Link className="nav-title" to="/">
+                <RaisedButton
+                  className="back-button"
+                  secondary={true}
+                  label="Back"
+                />
+                </Link>
                 <RaisedButton
                   className="auth-button"
                   primary={true}
@@ -74,6 +81,7 @@ class Login extends Component {
                   }
                   label="Sign In"
                 />
+                
               
             </Col>
           </Row>

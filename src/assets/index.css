@@ -38,8 +38,6 @@ a {
 }
 
 /**** LANDING PAGE STYLES ****/
-
-/* fix to prevent overflow */
 .contain {
   background-color: #131830;
 }
@@ -108,6 +106,19 @@ a {
 #signin-link:hover {
   color: #7c7c7c !important;
 }
+.login-header {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: -10px;
+  color: #1c1c1c;
+  letter-spacing: -1px;
+}
+.back-button {
+  margin-top: 20px;
+  float: right;
+  margin-left: 20px
+}
 
 /**** TAB STYLES ****/
 .tabs-row {
@@ -132,9 +143,6 @@ a {
 .nav-link:hover,
 .nav-link:focus {
   text-decoration: none;
-}
-.nav-tabs {
-  float: left;
 }
 .nav-item {
   padding-right: 10px;
@@ -207,6 +215,12 @@ a {
 }
 
 @media (min-width: 576px) {
+  /* LANDING PAGE STYLES */
+  .login-header {
+    font-size: 3rem;
+    margin-top: 20px;
+  }
+
   /* SIDEBAR STYLES */
   .sidebar {
     height: 100vh;
@@ -218,7 +232,7 @@ a {
     padding-right: 18px;
   }
   .nav-tabs {
-    float: right;
+    margin-left: 16px;
   }
   .nav-tabs .nav-link.active,
   .nav-tabs .nav-item.show .nav-link {
@@ -228,7 +242,7 @@ a {
 }
 
 @media (min-width: 768px) {
-  /**** LANDING PAGE STYLES ****/
+  /* LANDING PAGE STYLES */
   .contain {
     height: 100vh;
     margin-top: -56px;
@@ -257,10 +271,18 @@ a {
   .contain-signup {
     padding: 46px 16px;
   }
+  .login-header {
+    font-size: 3.5rem;
+    margin-top: 30px;
+  }
+  /* TABS STYLES */
+  .nav-item {
+    padding-right: 16px;
+  }
 }
 
 @media (min-width: 996px) {
-  /**** LANDING PAGE STYLES ****/
+  /* LANDING PAGE STYLES */
   #welcome-header {
     font-size: 3.5rem;
   }
@@ -272,5 +294,10 @@ a {
   }
   .contain-intro {
     margin-top: 75px;
+  }
+
+  /* TABS STYLES */
+  .signed-in {
+    font-size: 1rem;
   }
 }
