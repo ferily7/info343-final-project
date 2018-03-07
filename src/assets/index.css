@@ -117,7 +117,10 @@ a {
 .back-button {
   margin-top: 20px;
   float: right;
-  margin-left: 20px
+  margin-right: 8px
+}
+.date-input {
+  margin-top: 14px;
 }
 
 /**** TAB STYLES ****/
@@ -196,6 +199,9 @@ a {
 }
 #new-trip {
   font-weight: 500 !important;
+}
+.cancel-button {
+  padding-right: 8px;
 }
 
 /* DASHBOARD CONTENT STYLES */

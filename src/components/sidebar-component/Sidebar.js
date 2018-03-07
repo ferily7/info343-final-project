@@ -6,7 +6,8 @@ import { Redirect } from "react-router-dom";
 import RaisedButton from "material-ui/RaisedButton";
 import { List, ListItem } from "material-ui/List";
 import Dialog from "material-ui/Dialog";
-import FlatButton from "material-ui/FlatButton";
+import DatePicker from "material-ui/DatePicker";
+import TextField from "material-ui/TextField";
 
 class Sidebar extends Component {
   constructor(props) {
@@ -52,11 +53,15 @@ class Sidebar extends Component {
   }
   render() {
     const dialogActions = [
-      <FlatButton label="Cancel" primary={true} onClick={this.handleDialogClose} />,
-      <FlatButton
+      <RaisedButton
+        className="cancel-button"
+        label="Cancel"
+        secondary={true}
+        onClick={this.handleDialogClose}
+      />,
+      <RaisedButton
         label="Submit"
         primary={true}
-        keyboardFocused={true}
         onClick={this.handleDialogSubmit}
       />
     ];
@@ -102,15 +107,39 @@ class Sidebar extends Component {
             open={this.state.dialogOpen}
             onRequestClose={this.handleDialogClose}
           >
-            The actions in this window were passed in as an array of React
-            objects.
+            <div>
+              <TextField
+                className="auth-input"
+                name="Trip name"
+                hintText="Name your trip..."
+                floatingLabelText="Trip Name"
+                type="text"
+                fullWidth={true}
+              />
+              <TextField
+                className="auth-input"
+                name="Destination"
+                hintText="Where are you going?"
+                floatingLabelText="Destination"
+                type="text"
+                fullWidth={true}
+              />
+              <DatePicker className="date-input" hintText="From" />
+              <DatePicker className="date-input" hintText="Until" />
+              <TextField
+                className="auth-input"
+                name="Number of travekers"
+                hintText="How many travelers?"
+                floatingLabelText="Travelers"
+                type="text"
+                fullWidth={true}
+              />
+            </div>
           </Dialog>
         </div>
       </div>
     );
   }
 }
-
-
 
 export default Sidebar;
