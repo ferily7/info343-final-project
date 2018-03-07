@@ -27,7 +27,6 @@ class Sidebar extends Component {
         this.mounted = true;
         if (this.props.firebaseUser) {
             this.orgReference = firebase.database().ref(`${this.props.firebaseUser.uid}/trips`);
-            console.log(this.orgReference);
             this.orgReference.on('value', (snapshot) => {
                 if (this.mounted) {
                     this.setState({ orgReference: snapshot.val() });
