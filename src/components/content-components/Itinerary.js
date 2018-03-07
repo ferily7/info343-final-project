@@ -18,16 +18,25 @@ class Itinerary extends Component {
     }
     componentDidMount() {
         this.mounted = true;
+        if (this.props.firebaseUser) {
         this.orgReference = firebase.database().ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
-        this.orgReference.on('value', (snapshot) => {
-            if (this.mounted) {
-                this.setState({ orgReference: snapshot.val() });
-            }
-        })
+            this.orgReference.on('value', (snapshot) => {
+                if (this.mounted) {
+                    this.setState({ orgReference: snapshot.val() });
+                }
+            })
+        }
     }
     componentWillUnmount() {
         this.mounted = false;
     }
+
+    // Load calendar based on existing events from state
+    // Click events for updating calendar events
+    // Add event to database based on inputs
+
+
+
     render() {
         return (
 

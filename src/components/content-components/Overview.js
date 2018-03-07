@@ -18,12 +18,14 @@ class Overview extends Component {
     }
     componentDidMount() {
         this.mounted = true;
-        this.orgReference = firebase.database().ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
-        this.orgReference.on('value', (snapshot) => {
-            if (this.mounted) {
-                this.setState({ orgReference: snapshot.val() });
-            }
-        })
+        if (this.props.firebaseUser) {
+            this.orgReference = firebase.database().ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
+            this.orgReference.on('value', (snapshot) => {
+                if (this.mounted) {
+                    this.setState({ orgReference: snapshot.val() });
+                }
+            })
+        }
     }
     componentWillUnmount() {
         this.mounted = false;
