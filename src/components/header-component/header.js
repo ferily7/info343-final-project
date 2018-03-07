@@ -32,9 +32,11 @@ class SignIn extends Component {
   render() {
     return (
       <div>
+        {/* seems redundant to have two login buttons
         <Link to="/login">
           <FlatButton {...this.props} label="Sign In" />
         </Link>
+        */}
       </div>
     );
   }
