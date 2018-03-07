@@ -32,7 +32,7 @@ class Itinerary extends Component {
                     </div>
                 }
                 {this.props.selectedTrip !== "" &&
-                    <div>Trip selected</div>
+                    <div>{this.props.selectedTrip}{console.log(this.state.orgReference)}</div>
                 }
             </div>
 
