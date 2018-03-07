@@ -24,7 +24,7 @@ class LandingPage extends Component {
                 ultricies ut est sit amet, efficitur faucibus odio.
               </p>
               <RaisedButton
-                className="auth-button"
+                className="about-button"
                 primary={true}
                 onClick={() =>
                   console.log("Learn more button was clicked")

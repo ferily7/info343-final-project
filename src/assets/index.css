@@ -49,6 +49,7 @@ a {
 .contain-intro {
   margin-top: 20px;
   padding-left: 8px;
+  padding-right: 8px;
 }
 .contain-signup-outer {
   margin-bottom: 30px;
@@ -67,6 +68,11 @@ a {
 .auth-button {
   margin-top: 20px;
   float: right;
+}
+.about-button {
+  margin-top: 8px;
+  margin-bottom: 12px;
+  float: left;
 }
 #welcome-header {
   font-size: 3rem;
@@ -239,9 +245,14 @@ a {
   #signup-header {
     font-size: 1.7rem;
   }
+  .about-button {
+    float: right;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
   .contain-intro {
     padding-right: 12%;
-    margin-top: 70px;
+    margin-top: 55px;
   }
   .contain-signup {
     padding: 46px 16px;
@@ -260,6 +271,6 @@ a {
     font-size: 2.3rem;
   }
   .contain-intro {
-    margin-top: 80px;
+    margin-top: 75px;
   }
 }
