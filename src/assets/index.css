@@ -249,6 +249,7 @@ h3 {
   font-size: 1.2rem;
   padding-top: 30px;
   padding-bottom: .5rem;
+  line-height: 21.2px;
 }
 .contain-notrips {
   text-align: center;
@@ -274,10 +275,19 @@ h3 {
   font-weight: 300;
 }
 .overview-button {
+  text-align: center;
+vertical-align: middle;
+line-height: 21.2px;
   float: right;
-  margin-right: 30px !important;
-  background-color: rgba(227,227,227, 1) !important;
-  color: rgb(0,0,0) !important;
+  margin-right: 20%;
+  color: #7c7c7c;
+  cursor: pointer;
+  font-size: .85rem;
+  font-weight: 500;
+}
+.fa-spacer {
+  margin-right: 4px;
+  font-size: .8rem;
 }
 
 /* Reservation tab */

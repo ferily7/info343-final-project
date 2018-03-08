@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import firebase from "firebase";
 import { Grid, Row, Col } from "react-flexbox-grid";
 import NoTrips from "./NoTrips";
-// material ui components
-import FlatButton from "material-ui/FlatButton";
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { faPencilAlt } from '@fortawesome/fontawesome-free-solid'
 
 class Overview extends Component {
   constructor(props) {
@@ -83,12 +83,10 @@ class Overview extends Component {
                     </Row>
                     <Row>
                       <Col xs={12} md={6}>
-                        <h2 className="content-subheader">Departing <FlatButton
+                        <h2 className="content-subheader">Departing <span
                           className="overview-button"
-                          secondary={true}
-                          onClick={console.log("edit departing button")}
-                          label="Edit"
-                        /></h2>
+                          onClick={console.log("edit returning button")}
+                        ><FontAwesomeIcon className="fa-spacer" icon={faPencilAlt} />Edit</span></h2>
                         <ul>
                           <li>[AIRLINE]</li>
                           <li>Departs: [TIME DATE]</li>
@@ -97,12 +95,10 @@ class Overview extends Component {
                         
                       </Col>
                       <Col xs={12} md={6}>
-                        <h2 className="content-subheader">Returning <FlatButton
+                        <h2 className="content-subheader">Returning <span
                           className="overview-button"
-                          secondary={true}
                           onClick={console.log("edit returning button")}
-                          label="Edit"
-                        /></h2>
+                        ><FontAwesomeIcon className="fa-spacer" icon={faPencilAlt} />Edit</span></h2>
                         <ul>
                           <li>[AIRLINE]</li>
                           <li>Departs: [TIME DATE]</li>
