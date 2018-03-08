@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import NoTrips from "./NoTrips";
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
+import './calendar.css';
 import { Grid, Row, Col } from "react-flexbox-grid";
 // material ui components
 import SelectField from 'material-ui/SelectField';
@@ -266,9 +266,7 @@ class Itinerary extends Component {
                                     eventEnd: slotInfo.end.getTime()
                                 });
                                 this.handleDialogOpen();
-                            }
-                            }
-
+                            }}
                         />
 
                         <Dialog
@@ -471,13 +469,7 @@ class Itinerary extends Component {
                         </Dialog>
                     </div>
                 }
-
-                {/* {
-                    new Date(2015, 3, 1).getTime()
-                } */}
             </div>
-
-
         )
     }
 }
