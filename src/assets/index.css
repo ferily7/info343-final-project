@@ -247,6 +247,7 @@ h3 {
   color: #7c7c7c;
   margin: .6rem 0;
 }
+/* Reservation tab */
 .reservation-card {
   border: 1px solid #7c7c7c;
   margin-bottom: 16px;
@@ -258,6 +259,7 @@ h3 {
 .reservation-actions {
   padding: 16px !important;
 }
+/* Budget Tab */
 .addexpense-button {
   margin-top: 18px;
   padding-left: 8px;
@@ -265,7 +267,42 @@ h3 {
 .input-padding {
   padding-right: 8px;
 }
-
+.category-table {
+  max-height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+table {
+  border-top: 1px solid rgb(158, 158, 158);
+  border-bottom: 1px solid rgb(158, 158, 158);
+}
+tr, td {
+  height: 30px !important;
+}
+.table-margin {
+  margin-bottom: 16px;
+}
+.content-subheader {
+  text-transform: uppercase;
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding-top: 30px;
+  padding-bottom: .5rem;
+}
+.new-category {
+  margin-top: 30px;
+  background-color: #e3e3e3;
+  height: 231.2px;
+  cursor: pointer;
+}
+.new-category-text {
+  text-align: center;
+vertical-align: middle;
+line-height: 231.2px;
+color: #7c7c7c;
+font-size: 1.5rem;
+}
 @media (min-width: 480px) {
   /**** LANDING PAGE STYLES ****/
   #welcome-subheader {
