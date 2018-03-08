@@ -137,7 +137,7 @@ class Sidebar extends Component {
                                             className="date-input"
                                             hintText="From"
                                             fullWidth={true}
-                                            onChange={(n, event) => { console.log(event) }}
+                                            onChange={(n, event) => { console.log(event.getTime()) }}
                                         />
                                     </Col>
                                     <Col className="no-padding" xs={12} sm={6}>
