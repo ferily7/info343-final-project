@@ -35,7 +35,7 @@ class Sidebar extends Component {
             this.setState({ errorMessage: "Trip name cannot be empty" });
         } else if (this.state.destination === '') {
             this.setState({ errorMessage: "Destination cannot be empty" });
-        } else if (this.state.dateStart === 0 || this.state.dateEnd === 0) {
+        } else if (this.state.dateStart === 0 || this.state.dateEnd === 0 || this.state.dateStart > this.state.dateEnd) {
             this.setState({ errorMessage: "Invalid dates chosen" });
         } else if (this.state.travelerCount === 0) {
             this.setState({ errorMessage: "Invalid number of travelers" });
@@ -185,9 +185,9 @@ class Sidebar extends Component {
                                         name="travelerCount"
                                         hintText="How many travelers?"
                                         floatingLabelText="Travelers"
-                                        type="text"
+                                        type="number"
                                         fullWidth={true}
-                                        onChange={(event) => { this.setState({ travelerCount: event.target.value }) }}
+                                        onChange={(event) => { this.setState({ travelerCount: Number(event.target.value) }) }}
                                     />
                                 </Row>
                             </Grid>
