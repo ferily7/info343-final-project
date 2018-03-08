@@ -155,6 +155,7 @@ class Itinerary extends Component {
                                 }
                                 return returnObj;
                             }) : []}
+                            longPressThreshold={125}
                             defaultView="week"
                             views={['week']}
                             scrollToTime={new Date(1970, 1, 1, 6)}
