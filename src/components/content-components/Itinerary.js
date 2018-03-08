@@ -10,7 +10,6 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from "material-ui/RaisedButton";
-import { List, ListItem } from "material-ui/List";
 import Dialog from "material-ui/Dialog";
 import DateTimePicker from 'material-ui-datetimepicker';
 import DatePickerDialog from 'material-ui/DatePicker/DatePickerDialog'

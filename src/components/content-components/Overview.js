@@ -46,7 +46,7 @@ class Overview extends Component {
                     <NoTrips />
                 }
                 {this.props.selectedTrip !== "" && this.state.dataRef &&
-                    <div>{this.state.dataRef.tripName}{console.log(this.state.dataRef)}</div>
+                    <div>{this.state.dataRef.tripName}</div>
                 }
             </div>
 
