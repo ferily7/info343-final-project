@@ -55,14 +55,12 @@ class Overview extends Component {
                     <h2>Departing</h2>
                     <ul>
                         <li>[AIRLINE]</li>
-                        <li>Confirmation: [CONFIRMATION]</li>
                         <li>Departs: [TIME DATE]</li>
                         <li>Arrives: [TIME DATE]</li>
                     </ul>
                     <h2>Returning</h2>
                     <ul>
                         <li>[AIRLINE]</li>
-                        <li>Confirmation: [CONFIRMATION]</li>
                         <li>Departs: [TIME DATE]</li>
                         <li>Arrives: [TIME DATE]</li>
                     </ul>
