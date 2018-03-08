@@ -75,7 +75,7 @@ class Sidebar extends Component {
                             Object.keys(this.state.orgReference).map((d, i) => {
                                 return (
                                     <ListItem
-                                        className="trip-list-item"
+                                        className="trip-list-item unselectable"
                                         key={d}
                                         primaryText={this.state.orgReference[d].tripName}
                                         onClick={() => this.props.changeSelectedTrip(d)}
@@ -88,7 +88,7 @@ class Sidebar extends Component {
                         <ListItem className="trip-list-item" primaryText="Trip 4" /> */}
                         <ListItem
                             id="new-trip"
-                            className="trip-list-item"
+                            className="trip-list-item unselectable"
                             primaryText="+ New"
                             onClick={this.handleDialogOpen}
                         />

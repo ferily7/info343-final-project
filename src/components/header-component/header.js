@@ -47,7 +47,7 @@ class Logged extends Component {
     render() {
         const user = firebase.auth().currentUser.displayName;
         return (
-            <div className="signed-in">
+            <div className="signed-in unselectable">
                 Welcome, <span className="highlight">{user}</span>.
       </div>
         );

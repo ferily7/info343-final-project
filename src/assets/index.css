@@ -15,6 +15,14 @@ a {
   color: #f75830;
   font-weight: 400;
 }
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
 /**** APP BAR STYLES ****/
 .appbar {
@@ -151,6 +159,12 @@ a {
 }
 .nav-item {
   padding-right: 10px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .nav-item a {
   color: #ffffff;
@@ -198,12 +212,6 @@ a {
 }
 .trip-list-item {
   border-bottom: 1px solid #7c7c7c !important;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 #new-trip {
   font-weight: 500 !important;
