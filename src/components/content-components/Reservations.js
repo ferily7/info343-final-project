@@ -17,7 +17,8 @@ class Reservations extends Component {
         super(props);
         this.state = {
             dataRef: null,
-            addRequest: false
+            addRequest: false,
+            reservations: 0
         };
         this.addReservation = this.addReservation.bind(this);
     }
@@ -55,11 +56,16 @@ class Reservations extends Component {
         this.mounted = false;
     }
     addReservation(){
+        console.log("hi");
         this.setState({
-            addRequest: true
+            reservations: this.state.reservations + 1, 
         })
     }
     render() {
+        const reservation = [];
+        for (var i = 0; i < this.state.reservations; i += 1){
+            reservation.push(<ReservationCard/>);
+        }
         return (
             <div>
                 {this.props.selectedTrip === "" && <NoTrips />}
@@ -73,14 +79,9 @@ class Reservations extends Component {
                                             <p className="unselectable new-category-text">+ Add Reservation</p>
                                         </div>
                                     </Col>
-                                    {
-                                        this.state.addRequest?
-                                        <Col className="table-margin" xs={12} md={6} xl={4}>
-                                            <ReservationCard />
-                                        </Col>
-                                        :
-                                        <div></div>
-                                    }
+                                    <Col className="table-margin" xs={12} md={6} xl={4}>
+                                        {reservation}
+                                    </Col>
                                 </Row>
                             </Grid>
                         </div>
