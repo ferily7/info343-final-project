@@ -69,96 +69,97 @@ class Sidebar extends Component {
             <div>
                 {this.props.firebaseUser ? undefined : <Redirect to="/" />}
                 <div className="sidebar">
-                <div className="sidebar-content">
-                    <List className="trip-list">
-                        {this.state.orgReference &&
-                            Object.keys(this.state.orgReference).map((d, i) => {
-                                return (
-                                    <ListItem
-                                        className="trip-list-item unselectable"
-                                        key={d}
-                                        primaryText={this.state.orgReference[d].tripName}
-                                        onClick={() => this.props.changeSelectedTrip(d)}
-                                    />
-                                );
-                            })}
-                        {/* <ListItem className="trip-list-item" primaryText="Trip 1" />
+                    <div className="sidebar-content">
+                        <List className="trip-list">
+                            {this.state.orgReference &&
+                                Object.keys(this.state.orgReference).map((d, i) => {
+                                    return (
+                                        <ListItem
+                                            className="trip-list-item unselectable"
+                                            key={d}
+                                            primaryText={this.state.orgReference[d].tripName}
+                                            onClick={() => this.props.changeSelectedTrip(d)}
+                                        />
+                                    );
+                                })}
+                            {/* <ListItem className="trip-list-item" primaryText="Trip 1" />
                         <ListItem className="trip-list-item" primaryText="Trip 2" />
                         <ListItem className="trip-list-item" primaryText="Trip 3" />
                         <ListItem className="trip-list-item" primaryText="Trip 4" /> */}
-                        <ListItem
-                            id="new-trip"
-                            className="trip-list-item unselectable"
-                            primaryText="+ New"
-                            onClick={this.handleDialogOpen}
+                            <ListItem
+                                id="new-trip"
+                                className="trip-list-item unselectable"
+                                primaryText="+ New"
+                                onClick={this.handleDialogOpen}
+                            />
+                        </List>
+
+                        <RaisedButton
+                            className="signout-button"
+                            label="Sign Out"
+                            primary={true}
+                            onClick={() => this.handleSignOut()}
                         />
-                    </List>
 
-                    <RaisedButton
-                        className="signout-button"
-                        label="Sign Out"
-                        primary={true}
-                        onClick={() => this.handleSignOut()}
-                    />
-
-                    <Dialog
-                        title="Plan a New Trip"
-                        actions={dialogActions}
-                        modal={true}
-                        open={this.state.dialogOpen}
-                        onRequestClose={this.handleDialogClose}
-                    >
-                        <Grid>
-                            <Row>
-                                <TextField
-                                    className="auth-input"
-                                    name="tripName"
-                                    hintText="Name your trip..."
-                                    floatingLabelText="Trip Name"
-                                    type="text"
-                                    fullWidth={true}
-                                    onChange={(event) => { console.log(event.target.name, event.target.value) }}
-                                />
-                            </Row>
-                            <Row>
-                                <TextField
-                                    className="auth-input"
-                                    name="Destination"
-                                    hintText="Where are you going?"
-                                    floatingLabelText="Destination"
-                                    type="text"
-                                    fullWidth={true}
-                                />
-                            </Row>
-                            <Row>
-                                <Col className="no-padding" xs={12} sm={6}>
-                                    {/* See http://www.material-ui.com/#/components/date-picker set min/max date */}
-                                    <DatePicker
-                                        className="date-input"
-                                        hintText="From"
+                        <Dialog
+                            title="Plan a New Trip"
+                            actions={dialogActions}
+                            modal={true}
+                            open={this.state.dialogOpen}
+                            onRequestClose={this.handleDialogClose}
+                        >
+                            <Grid>
+                                <Row>
+                                    <TextField
+                                        className="auth-input"
+                                        name="tripName"
+                                        hintText="Name your trip..."
+                                        floatingLabelText="Trip Name"
+                                        type="text"
+                                        fullWidth={true}
+                                        onChange={(event) => { console.log(event.target.name, event.target.value) }}
+                                    />
+                                </Row>
+                                <Row>
+                                    <TextField
+                                        className="auth-input"
+                                        name="Destination"
+                                        hintText="Where are you going?"
+                                        floatingLabelText="Destination"
+                                        type="text"
                                         fullWidth={true}
                                     />
-                                </Col>
-                                <Col className="no-padding" xs={12} sm={6}>
-                                    <DatePicker
-                                        className="date-input"
-                                        hintText="Until"
+                                </Row>
+                                <Row>
+                                    <Col className="no-padding" xs={12} sm={6}>
+                                        {/* See http://www.material-ui.com/#/components/date-picker set min/max date */}
+                                        <DatePicker
+                                            className="date-input"
+                                            hintText="From"
+                                            fullWidth={true}
+                                            onChange={(n, event) => { console.log(event) }}
+                                        />
+                                    </Col>
+                                    <Col className="no-padding" xs={12} sm={6}>
+                                        <DatePicker
+                                            className="date-input"
+                                            hintText="Until"
+                                            fullWidth={true}
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <TextField
+                                        className="auth-input"
+                                        name="Number of travelers"
+                                        hintText="How many travelers?"
+                                        floatingLabelText="Travelers"
+                                        type="text"
                                         fullWidth={true}
                                     />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <TextField
-                                    className="auth-input"
-                                    name="Number of travelers"
-                                    hintText="How many travelers?"
-                                    floatingLabelText="Travelers"
-                                    type="text"
-                                    fullWidth={true}
-                                />
-                            </Row>
-                        </Grid>
-                    </Dialog>
+                                </Row>
+                            </Grid>
+                        </Dialog>
                     </div>
                 </div>
             </div>
