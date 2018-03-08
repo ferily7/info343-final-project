@@ -272,7 +272,6 @@ class Itinerary extends Component {
                         <Dialog
                             title="New Event"
                             actions={dialogActions}
-                            modal={true}
                             open={this.state.dialogOpen}
                             onRequestClose={this.handleDialogClose}
                         >
@@ -370,7 +369,6 @@ class Itinerary extends Component {
                         <Dialog
                             title="Edit Event"
                             actions={editDialogActions}
-                            modal={true}
                             open={this.state.editDialogOpen}
                             onRequestClose={this.handleEditDialogClose}
                         >
