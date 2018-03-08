@@ -69,6 +69,7 @@ class Sidebar extends Component {
             <div>
                 {this.props.firebaseUser ? undefined : <Redirect to="/" />}
                 <div className="sidebar">
+                <div className="sidebar-content">
                     <List className="trip-list">
                         {this.state.orgReference &&
                             Object.keys(this.state.orgReference).map((d, i) => {
@@ -158,6 +159,7 @@ class Sidebar extends Component {
                             </Row>
                         </Grid>
                     </Dialog>
+                    </div>
                 </div>
             </div>
         );
