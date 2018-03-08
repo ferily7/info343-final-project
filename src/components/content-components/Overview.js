@@ -28,7 +28,7 @@ class Overview extends Component {
             this.dataRef = firebase.database().ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
             this.dataRef.on('value', (snapshot) => {
                 if (this.mounted) {
-                    this.setState({ dataRef: this.props.selectedTrip !== "" ? snapshot.val()[this.props.selectedTrip] : snapshot.val() });
+                    this.setState({ dataRef: snapshot.val() });
                 }
             })
         }
@@ -39,8 +39,6 @@ class Overview extends Component {
         this.mounted = false;
     }
     render() {
-        console.log(this.props);
-        console.log(this.state.dataRef);
         return (
 
             <div>
