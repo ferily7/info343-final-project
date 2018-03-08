@@ -14,7 +14,7 @@ class Sidebar extends Component {
         super(props);
         this.state = {
             errorMessage: "",
-            orgReference: null,
+            dataRef: null,
             dialogOpen: false,
             tripName: '',
             destination: '',
@@ -47,7 +47,7 @@ class Sidebar extends Component {
                 numTravelers: this.state.travelerCount,
                 tripName: this.state.tripName
             }
-            this.orgReference.push(pushObj);
+            this.dataRef.push(pushObj);
             this.setState({
                 dialogOpen: false,
                 tripName: '',
@@ -70,12 +70,12 @@ class Sidebar extends Component {
     componentDidMount() {
         this.mounted = true;
         if (this.props.firebaseUser) {
-            this.orgReference = firebase
+            this.dataRef = firebase
                 .database()
                 .ref(`${this.props.firebaseUser.uid}/trips`);
-            this.orgReference.on("value", snapshot => {
+            this.dataRef.on("value", snapshot => {
                 if (this.mounted) {
-                    this.setState({ orgReference: snapshot.val() });
+                    this.setState({ dataRef: snapshot.val() });
                 }
             });
         }
@@ -100,13 +100,13 @@ class Sidebar extends Component {
                 <div className="sidebar">
                     <div className="sidebar-content">
                         <List className="trip-list">
-                            {this.state.orgReference &&
-                                Object.keys(this.state.orgReference).map((d, i) => {
+                            {this.state.dataRef &&
+                                Object.keys(this.state.dataRef).map((d, i) => {
                                     return (
                                         <ListItem
                                             className="trip-list-item unselectable"
                                             key={d}
-                                            primaryText={this.state.orgReference[d].tripName}
+                                            primaryText={this.state.dataRef[d].tripName}
                                             onClick={() => this.props.changeSelectedTrip(d)}
                                         />
                                     );
