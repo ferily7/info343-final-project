@@ -108,7 +108,7 @@ class Budget extends Component {
                       fullWidth={true}
                       label="Add"
                       primary={true}
-                      onClick={console.log("Add expense button clicked")}
+                      onClick={console.log("Add expense button")}
                     />
                   </Col>
                 </Row>
@@ -198,7 +198,7 @@ class Budget extends Component {
                   {/*Add new category*/}
                   <Col className="table-margin" xs={12} md={6} xl={4}>
                     
-                      <div className="new-category" onClick={console.log("new category was clicked")}>
+                      <div className="new-category" onClick={console.log("new category")}>
                         <p className="unselectable new-category-text">+ add category</p>
                       </div>
                   </Col>

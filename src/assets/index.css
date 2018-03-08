@@ -236,6 +236,20 @@ h3 {
   padding: 16px;
   font-size: 0.9rem;
 }
+.content-header {
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: -10px;
+}
+.content-subheader {
+  text-transform: uppercase;
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding-top: 30px;
+  padding-bottom: .5rem;
+}
 .contain-notrips {
   text-align: center;
 }
@@ -247,6 +261,19 @@ h3 {
   color: #7c7c7c;
   margin: .6rem 0;
 }
+/* Overview tab */
+.origin-destination {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 300;
+  padding-top: 30px;
+}
+.start-end {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
 /* Reservation tab */
 .reservation-card {
   border: 1px solid #7c7c7c;
@@ -282,14 +309,6 @@ tr, td {
 .table-margin {
   margin-bottom: 16px;
 }
-.content-subheader {
-  text-transform: uppercase;
-  margin: 0;
-  font-weight: 700;
-  font-size: 1.2rem;
-  padding-top: 30px;
-  padding-bottom: .5rem;
-}
 .new-category {
   margin-top: 30px;
   background-color: #e3e3e3;
@@ -304,12 +323,23 @@ color: #7c7c7c;
 font-size: 1.5rem;
 }
 @media (min-width: 480px) {
-  /**** LANDING PAGE STYLES ****/
+  /* LANDING PAGE STYLES */
   #welcome-subheader {
     font-size: 1.3rem;
   }
   #signup-header {
     font-size: 2.5rem;
+  }
+
+  /* TAB CONTENT STYLES */
+  .content-header {
+    font-size: 2.5rem;
+  }
+  .origin-destination {
+    font-size: 1.8rem;
+  }
+  .start-end {
+    font-size: 1.2rem;
   }
 }
 
@@ -331,6 +361,10 @@ font-size: 1.5rem;
   }
   h3 {
     font-size: 2.5rem !important;
+  }
+ /* TAB CONTENT STYLES */
+ .content-header {
+    font-size: 1.9rem;
   }
 
   /* TABS STYLES */
@@ -356,6 +390,12 @@ font-size: 1.5rem;
     position: relative;
     top: 92.2px;
   }
+  .origin-destination {
+    font-size: 1.5rem;
+  }
+  .start-end {
+    font-size: 1rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -379,6 +419,7 @@ font-size: 1.5rem;
   #signup-header {
     font-size: 1.7rem;
   }
+
   .about-button {
     float: right;
     margin-top: 20px;
@@ -399,6 +440,16 @@ font-size: 1.5rem;
   /* TABS STYLES */
   .nav-item {
     padding-right: 16px;
+  }
+  /* TAB CONTENT STYLES */
+  .content-header {
+    font-size: 2.5rem;
+  }
+  .origin-destination {
+    font-size: 1.8rem;
+  }
+  .start-end {
+    font-size: 1.2rem;
   }
 }
 
@@ -426,5 +477,11 @@ font-size: 1.5rem;
   .notrips p {
     font-size: 2.5rem !important;
     margin: 1rem 0;
+  }
+  .origin-destination {
+    font-size: 2.2rem;
+  }
+  .start-end {
+    font-size: 1.5rem;
   }
 }
