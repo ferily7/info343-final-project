@@ -38,14 +38,9 @@ class Itinerary extends Component {
         }
     }
 
-    handleEditDialogOpen = () => {
-        this.setState({ editDialogOpen: true });
-    }
-    handleEditDialogClose = () => {
-        this.setState({ editDialogOpen: false });
-    }
-
-    handleEditDialogSubmit = () => {
+    // checkError checks if the state values are valid
+    // if they are, errorMessages are sent and nothing is returned, otherwise a "1" is returned
+    checkError = () => {
         if (this.state.eventEnd === 0 || this.state.eventStart === 0 || this.state.eventStart > this.state.eventEnd) {
             this.setState({ errorMessage: "Invalid dates chosen" });
         } else if (this.state.eventName === "") {
@@ -55,6 +50,21 @@ class Itinerary extends Component {
         } else if (this.state.type === "") {
             this.setState({ errorMessage: "Type of event not chosen" });
         } else {
+            return 1;
+        }
+    }
+
+    // handle edit dialogues
+    handleEditDialogOpen = () => {
+        this.setState({ editDialogOpen: true });
+    }
+    handleEditDialogClose = () => {
+        this.setState({ editDialogOpen: false });
+    }
+
+    // handleEditDialogSubmit will handle the changes to the database for editing an event
+    handleEditDialogSubmit = () => {
+        if (this.checkError() === 1) {
             let pushObj = {
                 cost: this.state.cost,
                 eventEnd: this.state.eventEnd,
@@ -80,6 +90,7 @@ class Itinerary extends Component {
         }
     }
 
+    // handleEditEventDelete will delete events based on the current selected event
     handleEditEventDelete = () => {
         this.dataRef.child(`events/${this.state.editEvent}`).remove();
         this.setState({
@@ -107,15 +118,7 @@ class Itinerary extends Component {
     // Submits an event to the database
     // Error messages are sent if certain state values are invalid
     handleDialogSubmit = () => {
-        if (this.state.eventEnd === 0 || this.state.eventStart === 0 || this.state.eventStart > this.state.eventEnd) {
-            this.setState({ errorMessage: "Invalid dates chosen" });
-        } else if (this.state.eventName === "") {
-            this.setState({ errorMessage: "Event name cannot be empty" });
-        } else if (this.state.location === "") {
-            this.setState({ errorMessage: "Invalid location" });
-        } else if (this.state.type === "") {
-            this.setState({ errorMessage: "Type of event not chosen" });
-        } else {
+        if (this.checkError() === 1) {
             let pushObj = {
                 cost: this.state.cost,
                 eventEnd: this.state.eventEnd,
@@ -139,11 +142,6 @@ class Itinerary extends Component {
             });
         }
     };
-
-    // second dialog box popup when on select
-    // change the same things
-    // similar to thing right above except put to the selectedtrip
-    // delete event button
 
     // Component will receive the correct selected trip, update the reference to the trip when this is done
     componentWillReceiveProps(inProp) {
@@ -372,7 +370,7 @@ class Itinerary extends Component {
                         </Dialog>
 
                         <Dialog
-                            title="New Event"
+                            title="Edit Event"
                             actions={editDialogActions}
                             modal={true}
                             open={this.state.editDialogOpen}
