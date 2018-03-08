@@ -64,7 +64,10 @@ class Reservations extends Component {
     render() {
         const reservation = [];
         for (var i = 0; i < this.state.reservations; i += 1){
-            reservation.push(<ReservationCard/>);
+            reservation.push(
+            <Col className="table-margin" xs={12} md={6} xl={4}>
+                <ReservationCard />
+            </Col>);
         }
         return (
             <div>
@@ -79,9 +82,7 @@ class Reservations extends Component {
                                             <p className="unselectable new-category-text">+ Add Reservation</p>
                                         </div>
                                     </Col>
-                                    <Col className="table-margin" xs={12} md={6} xl={4}>
-                                        {reservation}
-                                    </Col>
+                                    {reservation}
                                 </Row>
                             </Grid>
                         </div>
