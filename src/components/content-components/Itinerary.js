@@ -15,6 +15,8 @@ import DateTimePicker from 'material-ui-datetimepicker';
 import DatePickerDialog from 'material-ui/DatePicker/DatePickerDialog'
 import TimePickerDialog from 'material-ui/TimePicker/TimePickerDialog';
 import TextField from "material-ui/TextField";
+
+// Set localizer for BigCalendar (must be over here)
 BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 
 class Itinerary extends Component {
@@ -34,13 +36,16 @@ class Itinerary extends Component {
         }
     }
 
+    // Open and close the dialog
     handleDialogOpen = () => {
         this.setState({ dialogOpen: true });
     };
-
     handleDialogClose = () => {
         this.setState({ dialogOpen: false });
     };
+
+    // Submits an event to the database
+    // Error messages are sent if certain state values are invalid
     handleDialogSubmit = () => {
         if (this.state.eventEnd === 0 || this.state.eventStart === 0 || this.state.eventStart > this.state.eventEnd) {
             this.setState({ errorMessage: "Invalid dates chosen" });
@@ -105,10 +110,6 @@ class Itinerary extends Component {
         this.mounted = false;
     }
 
-    // Load calendar based on existing events from state
-    // Click events for updating calendar events
-    // Add event to database based on inputs
-
     // handleChange to change the event state based on a string, taken from class example
     handleChange(event) {
         let value = event.target.value;
@@ -117,14 +118,6 @@ class Itinerary extends Component {
         change[field] = value;
         this.setState(change);
     }
-
-    // addEvent adds an event to the user's event list in the database, if
-    // requirements are met. Multiple events can have the same event name!
-    // prerequisites:
-    //      this.state.eventEnd and this.state.eventStart must be valid (not 0)
-    //      this.state.type cannot be an empty string
-    //      this.state.eventName cannot be a empty string
-
 
     render() {
         const dialogActions = [
@@ -162,6 +155,7 @@ class Itinerary extends Component {
                                 }
                                 return returnObj;
                             }) : []}
+                            longPressThreshold={125}
                             defaultView="week"
                             views={['week']}
                             scrollToTime={new Date(1970, 1, 1, 6)}
