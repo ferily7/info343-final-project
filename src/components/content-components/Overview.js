@@ -38,6 +38,7 @@ class Overview extends Component {
     componentWillUnmount() {
         this.mounted = false;
     }
+
     render() {
         return (
 
@@ -45,35 +46,35 @@ class Overview extends Component {
                 {this.props.selectedTrip === "" &&
                     <NoTrips />
                 }
-        {this.props.selectedTrip !== "" &&
-          this.state.dataRef && (
-            <div>
-              <h1>{this.state.dataRef.tripName}</h1>
-              <p className="origin-destination">[ORIGIN] to [DESTINATION]</p>
-              <p className="start-end">[START] until [END]</p>
-              <h2>Departing</h2>
-              <ul>
-                <li>[AIRLINE]</li>
-                <li>Confirmation: [CONFIRMATION]</li>
-                <li>Departs: [TIME DATE]</li>
-                <li>Arrives: [TIME DATE]</li>
-              </ul>
-              <h2>Returning</h2>
-              <ul>
-                <li>[AIRLINE]</li>
-                <li>Confirmation: [CONFIRMATION]</li>
-                <li>Departs: [TIME DATE]</li>
-                <li>Arrives: [TIME DATE]</li>
-              </ul>
-            <h2>Travelers</h2>
-            <p>Travelers</p>
+                {this.props.selectedTrip !== "" &&
+                this.state.dataRef && (
+                    <div>
+                    <h1>{this.state.dataRef.tripName}</h1>
+                    <p className="origin-destination">{this.state.dataRef.startLocation} to {this.state.dataRef.endLocation}</p>
+                    <p className="start-end">{new Date(this.state.dataRef.dateStart).toLocaleDateString()} until {new Date(this.state.dataRef.dateEnd).toLocaleDateString()}</p>
+                    <h2>Departing</h2>
+                    <ul>
+                        <li>[AIRLINE]</li>
+                        <li>Confirmation: [CONFIRMATION]</li>
+                        <li>Departs: [TIME DATE]</li>
+                        <li>Arrives: [TIME DATE]</li>
+                    </ul>
+                    <h2>Returning</h2>
+                    <ul>
+                        <li>[AIRLINE]</li>
+                        <li>Confirmation: [CONFIRMATION]</li>
+                        <li>Departs: [TIME DATE]</li>
+                        <li>Arrives: [TIME DATE]</li>
+                    </ul>
+                    <h2>Travelers</h2>
+                    <p>Number of Travelers: {this.state.dataRef.numTravelers}</p>
 
 
+                    </div>
+                )}
             </div>
-          )}
-      </div>
-    );
-  }
+        );
+    }
 }
 
 export default Overview;
