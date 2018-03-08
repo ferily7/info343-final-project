@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import NoTrips from "./NoTrips";
+import BigCalendar from 'react-big-calendar';
+import moment from 'moment';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 
 class Itinerary extends Component {
     constructor(props) {
@@ -111,8 +115,8 @@ class Itinerary extends Component {
     }
 
     render() {
+        console.log(this.state.dataRef);
         return (
-
             <div>
                 {this.props.selectedTrip === "" &&
                     <NoTrips />
@@ -122,6 +126,31 @@ class Itinerary extends Component {
                 }
                 {this.props.selectedTrip !== "" && this.state.dataRef &&
                     <div>
+                        <BigCalendar
+                            selectable
+                            events={this.state.dataRef.events ? Object.keys(this.state.dataRef.events).map((d, i) => {
+                                let returnObj = {
+                                    id: 0,
+                                    name: d,
+                                    title: this.state.dataRef.events[d].eventName,
+                                    start: new Date(this.state.dataRef.events[d].eventStart),
+                                    end: new Date(this.state.dataRef.events[d].eventEnd)
+                                }
+                                return returnObj;
+                            }) : []}
+                            defaultView="week"
+                            scrollToTime={new Date(1970, 1, 1, 6)}
+                            defaultDate={new Date(this.state.dataRef.dateStart)}
+                            onSelectEvent={event => alert(event.title)}
+                            onSelectSlot={slotInfo =>
+                                alert(
+                                    `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
+                                    `\nend: ${slotInfo.end.toLocaleString()}` +
+                                    `\naction: ${slotInfo.action}`
+                                )
+                            }
+
+                        />
                         {this.state.dataRef.tripName}{console.log(this.state.dataRef)}
                         <button className="btn btn-success mr-2" onClick={() => this.testSetState()}>
                             testSetState
@@ -131,6 +160,10 @@ class Itinerary extends Component {
                         </button>
                     </div>
                 }
+
+                {/* {
+                    new Date(2015, 3, 1).getTime()
+                } */}
             </div>
 
 
