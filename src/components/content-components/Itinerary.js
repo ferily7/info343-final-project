@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import NoTrips from "./NoTrips";
 
 class Itinerary extends Component {
     constructor(props) {
@@ -112,9 +113,7 @@ class Itinerary extends Component {
 
             <div>
                 {this.props.selectedTrip === "" &&
-                    <div>
-                        Select a trip to begin
-                    </div>
+                    <NoTrips />
                 }
                 {this.state.errorMessage &&
                     <div><p className="alert alert-danger">{this.state.errorMessage}</p></div>

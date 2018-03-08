@@ -104,7 +104,7 @@ class Sidebar extends Component {
                     <Dialog
                         title="Plan a New Trip"
                         actions={dialogActions}
-                        modal={false}
+                        modal={true}
                         open={this.state.dialogOpen}
                         onRequestClose={this.handleDialogClose}
                     >

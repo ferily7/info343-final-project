@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import NoTrips from "./NoTrips";
 
 class Overview extends Component {
     constructor(props) {
@@ -40,9 +41,7 @@ class Overview extends Component {
 
             <div>
                 {this.props.selectedTrip === "" &&
-                    <div>
-                        Select a trip to begin
-                    </div>
+                    <NoTrips />
                 }
                 {this.props.selectedTrip !== "" && this.state.dataRef &&
                     <div>{this.state.dataRef.tripName}{console.log(this.state.dataRef)}</div>
