@@ -28,7 +28,7 @@ class Overview extends Component {
             this.dataRef = firebase.database().ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
             this.dataRef.on('value', (snapshot) => {
                 if (this.mounted) {
-                    this.setState({ dataRef: snapshot.val() });
+                    this.setState({ dataRef: snapshot.val()[this.props.selectedTrip] ? snapshot.val()[this.props.selectedTrip] : snapshot.val() });
                 }
             })
         }
@@ -47,29 +47,29 @@ class Overview extends Component {
                     <NoTrips />
                 }
                 {this.props.selectedTrip !== "" &&
-                this.state.dataRef && (
-                    <div>
-                    <h1>{this.state.dataRef.tripName}</h1>
-                    <p className="origin-destination">{this.state.dataRef.startLocation} to {this.state.dataRef.endLocation}</p>
-                    <p className="start-end">{new Date(this.state.dataRef.dateStart).toLocaleDateString()} until {new Date(this.state.dataRef.dateEnd).toLocaleDateString()}</p>
-                    <h2>Departing</h2>
-                    <ul>
-                        <li>[AIRLINE]</li>
-                        <li>Departs: [TIME DATE]</li>
-                        <li>Arrives: [TIME DATE]</li>
-                    </ul>
-                    <h2>Returning</h2>
-                    <ul>
-                        <li>[AIRLINE]</li>
-                        <li>Departs: [TIME DATE]</li>
-                        <li>Arrives: [TIME DATE]</li>
-                    </ul>
-                    <h2>Travelers</h2>
-                    <p>Number of Travelers: {this.state.dataRef.numTravelers}</p>
+                    this.state.dataRef && (
+                        <div>
+                            <h1>{this.state.dataRef.tripName}</h1>
+                            <p className="origin-destination">{this.state.dataRef.startLocation} to {this.state.dataRef.endLocation}</p>
+                            <p className="start-end">{new Date(this.state.dataRef.dateStart).toLocaleDateString()} until {new Date(this.state.dataRef.dateEnd).toLocaleDateString()}</p>
+                            <h2>Departing</h2>
+                            <ul>
+                                <li>[AIRLINE]</li>
+                                <li>Departs: [TIME DATE]</li>
+                                <li>Arrives: [TIME DATE]</li>
+                            </ul>
+                            <h2>Returning</h2>
+                            <ul>
+                                <li>[AIRLINE]</li>
+                                <li>Departs: [TIME DATE]</li>
+                                <li>Arrives: [TIME DATE]</li>
+                            </ul>
+                            <h2>Travelers</h2>
+                            <p>Number of Travelers: {this.state.dataRef.numTravelers}</p>
 
 
-                    </div>
-                )}
+                        </div>
+                    )}
             </div>
         );
     }
