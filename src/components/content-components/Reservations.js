@@ -8,7 +8,6 @@ import {
   CardActions,
   CardHeader,
   CardMedia,
-  CardTitle,
   CardText
 } from "material-ui/Card";
 import RaisedButton from "material-ui/RaisedButton";
@@ -59,68 +58,27 @@ class Reservations extends Component {
         {this.props.selectedTrip === "" && <NoTrips />}
         {this.props.selectedTrip !== "" &&
           this.state.dataRef && (
-              
             <div>
-                <Grid>
-                  <Row>
-                      <Col xs={12} md={6} xl={4} >
-              <Card>
-              <CardHeader
-      title="[RESERVATION NAME]"
-      subtitle="[DATE TIME]"
-      actAsExpander={true}
-      showExpandableButton={true}
-    />
-                <CardMedia
-                  overlay={
-                    <CardTitle
-                      title="Overlay title"
-                      subtitle="Overlay subtitle"
-                    />
-                  }
-                  
-                >
-                  <img src="img/placeholder.png" alt="placeholder image" />
-                </CardMedia>
-                
-                <CardText expandable={true}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                  mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                  Donec vulputate interdum sollicitudin. Nunc lacinia auctor
-                  quam sed pellentesque. Aliquam dui mauris, mattis quis lacus
-                  id, pellentesque lobortis odio.
-                </CardText>
-                <CardActions>
-                        <RaisedButton primary={true} label="Edit" />
-                        <RaisedButton secondary={true} className="cancel-button" label="Delete" />
-                      </CardActions>
-              </Card>
-              </Col>
-
-
-              <Col xs={12} md={6} xl={4}>
-              <Card>
+              <Grid>
+                <Row>
+                <Col xs={12} md={6} xl={4}>
+                    <Card className="reservation-card">
+                      <CardMedia>
+                        <img
+                          src="img/placeholder.png"
+                          alt="placeholder"
+                        />
+                      </CardMedia>
                       <CardHeader
                         title="[RESERVATION NAME]"
                         subtitle="[DATE TIME]"
                         actAsExpander={true}
                         showExpandableButton={true}
                       />
-                      <CardMedia
-                        overlay={
-                          <CardTitle
-                            title="Overlay title"
-                            subtitle="Overlay subtitle"
-                          />
-                        }
+                      <CardText
+                        className="reservation-description"
+                        expandable={true}
                       >
-                        <img
-                          src="img/placeholder.png"
-                          alt="placeholder image"
-                        />
-                      </CardMedia>
-
-                      <CardText expandable={true}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Donec mattis pretium massa. Aliquam erat volutpat. Nulla
                         facilisi. Donec vulputate interdum sollicitudin. Nunc
@@ -128,37 +86,35 @@ class Reservations extends Component {
                         mauris, mattis quis lacus id, pellentesque lobortis
                         odio.
                       </CardText>
-                      <CardActions>
+                      <CardActions className="reservation-actions">
                         <RaisedButton primary={true} label="Edit" />
-                        <RaisedButton secondary={true} className="cancel-button" label="Delete" />
+                        <RaisedButton
+                          secondary={true}
+                          className="cancel-button"
+                          label="Delete"
+                        />
                       </CardActions>
                     </Card>
-              </Col>
+                  </Col>
 
-
-              <Col xs={12} md={6} xl={4}>
-              <Card>
+                  <Col xs={12} md={6} xl={4}>
+                    <Card className="reservation-card">
+                      <CardMedia>
+                        <img
+                          src="img/placeholder.png"
+                          alt="placeholder"
+                        />
+                      </CardMedia>
                       <CardHeader
                         title="[RESERVATION NAME]"
                         subtitle="[DATE TIME]"
                         actAsExpander={true}
                         showExpandableButton={true}
                       />
-                      <CardMedia
-                        overlay={
-                          <CardTitle
-                            title="Overlay title"
-                            subtitle="Overlay subtitle"
-                          />
-                        }
+                      <CardText
+                        className="reservation-description"
+                        expandable={true}
                       >
-                        <img
-                          src="img/placeholder.png"
-                          alt="placeholder image"
-                        />
-                      </CardMedia>
-
-                      <CardText expandable={true}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Donec mattis pretium massa. Aliquam erat volutpat. Nulla
                         facilisi. Donec vulputate interdum sollicitudin. Nunc
@@ -166,15 +122,89 @@ class Reservations extends Component {
                         mauris, mattis quis lacus id, pellentesque lobortis
                         odio.
                       </CardText>
-                      <CardActions>
+                      <CardActions className="reservation-actions">
                         <RaisedButton primary={true} label="Edit" />
-                        <RaisedButton secondary={true} className="cancel-button" label="Delete" />
+                        <RaisedButton
+                          secondary={true}
+                          className="cancel-button"
+                          label="Delete"
+                        />
                       </CardActions>
                     </Card>
-              </Col>
-              </Row>
+                  </Col>
+
+                  <Col xs={12} md={6} xl={4}>
+                    <Card className="reservation-card">
+                      <CardMedia>
+                        <img
+                          src="img/placeholder.png"
+                          alt="placeholder"
+                        />
+                      </CardMedia>
+                      <CardHeader
+                        title="[RESERVATION NAME]"
+                        subtitle="[DATE TIME]"
+                        actAsExpander={true}
+                        showExpandableButton={true}
+                      />
+                      <CardText
+                        className="reservation-description"
+                        expandable={true}
+                      >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Donec mattis pretium massa. Aliquam erat volutpat. Nulla
+                        facilisi. Donec vulputate interdum sollicitudin. Nunc
+                        lacinia auctor quam sed pellentesque. Aliquam dui
+                        mauris, mattis quis lacus id, pellentesque lobortis
+                        odio.
+                      </CardText>
+                      <CardActions className="reservation-actions">
+                        <RaisedButton primary={true} label="Edit" />
+                        <RaisedButton
+                          secondary={true}
+                          className="cancel-button"
+                          label="Delete"
+                        />
+                      </CardActions>
+                    </Card>
+                  </Col>
+                  <Col xs={12} md={6} xl={4}>
+                    <Card className="reservation-card">
+                      <CardMedia>
+                        <img
+                          src="img/placeholder.png"
+                          alt="placeholder"
+                        />
+                      </CardMedia>
+                      <CardHeader
+                        title="[RESERVATION NAME]"
+                        subtitle="[DATE TIME]"
+                        actAsExpander={true}
+                        showExpandableButton={true}
+                      />
+                      <CardText
+                        className="reservation-description"
+                        expandable={true}
+                      >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Donec mattis pretium massa. Aliquam erat volutpat. Nulla
+                        facilisi. Donec vulputate interdum sollicitudin. Nunc
+                        lacinia auctor quam sed pellentesque. Aliquam dui
+                        mauris, mattis quis lacus id, pellentesque lobortis
+                        odio.
+                      </CardText>
+                      <CardActions className="reservation-actions">
+                        <RaisedButton primary={true} label="Edit" />
+                        <RaisedButton
+                          secondary={true}
+                          className="cancel-button"
+                          label="Delete"
+                        />
+                      </CardActions>
+                    </Card>
+                  </Col>
+                </Row>
               </Grid>
-
             </div>
           )}
       </div>
