@@ -17,8 +17,9 @@ class Reservations extends Component {
         super(props);
         this.state = {
             dataRef: null,
-            reservations: null
+            addRequest: false
         };
+        this.addReservation = this.addReservation.bind(this);
     }
     // Component will receive the correct selected trip, update the reference to the trip when this is done
     componentWillReceiveProps(inProp) {
@@ -53,6 +54,11 @@ class Reservations extends Component {
     componentWillUnmount() {
         this.mounted = false;
     }
+    addReservation(){
+        this.setState({
+            addRequest: true
+        })
+    }
     render() {
         return (
             <div>
@@ -61,10 +67,20 @@ class Reservations extends Component {
                     this.state.dataRef && (
                         <div>
                             <Grid>
-                                <Row>
-                                    <Col xs={12} md={6} xl={4}>
-                                        <Cards />
+                                <Row id="reservations">
+                                    <Col className="table-margin" xs={12} md={6} xl={4}>
+                                        <div className="new-category" onClick={this.addReservation}>
+                                            <p className="unselectable new-category-text">+ Add Reservation</p>
+                                        </div>
                                     </Col>
+                                    {
+                                        this.state.addRequest?
+                                        <Col className="table-margin" xs={12} md={6} xl={4}>
+                                            <ReservationCard />
+                                        </Col>
+                                        :
+                                        <div></div>
+                                    }
                                 </Row>
                             </Grid>
                         </div>
@@ -73,35 +89,35 @@ class Reservations extends Component {
         );
     }
 }
-class Cards extends Component{
-  
-  render(){
-    return (
-      <div>
-        <Card className="reservation-card">
-          <CardMedia>
-            <img
-              src="img/placeholder.png"
-              alt="placeholder"
-            />
-          </CardMedia>
-          <CardHeader
-            title="Add Reservation"
-            subtitle="[DATE TIME]"
-            actAsExpander={true}
-            showExpandableButton={true}
-          />
-          <CardText
-            className="reservation-description"
-            expandable={true}
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec mattis pretium massa. Aliquam erat volutpat. Nulla
-            facilisi. Donec vulputate interdum sollicitudin. Nunc
-            lacinia auctor quam sed pellentesque. Aliquam dui
-            mauris, mattis quis lacus id, pellentesque lobortis
-            odio.
-          </CardText>
+
+class ReservationCard extends Component {
+    render(){
+        return (
+            <div>
+                <Card className="reservation-card">
+                    <CardMedia>
+                        <img
+                        src="img/placeholder.png"
+                        alt="placeholder"
+                        />
+                    </CardMedia>
+                    <CardHeader
+                        title="Add Reservation"
+                        subtitle="[DATE TIME]"
+                        actAsExpander={true}
+                        showExpandableButton={true}
+                    />
+                    <CardText
+                        className="reservation-description"
+                        expandable={true}
+                    >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Donec mattis pretium massa. Aliquam erat volutpat. Nulla
+                        facilisi. Donec vulputate interdum sollicitudin. Nunc
+                        lacinia auctor quam sed pellentesque. Aliquam dui
+                        mauris, mattis quis lacus id, pellentesque lobortis
+                        odio.
+                    </CardText>
                     <CardActions className="reservation-actions">
                         <RaisedButton primary={true} label="Edit" />
                         <RaisedButton
