@@ -26,14 +26,62 @@ class Itinerary extends Component {
             dataRef: null,
             errorMessage: '',
             dialogOpen: false,
+            editDialogOpen: false,
             cost: 0,
             eventEnd: 0,
             eventStart: 0,
             eventName: '',
             location: '',
             reservation: false,
-            type: ''
+            type: '',
+            editEvent: ''
         }
+    }
+
+    handleEditDialogOpen = () => {
+        this.setState({ editDialogOpen: true });
+    }
+    handleEditDialogClose = () => {
+        this.setState({ editDialogOpen: false });
+    }
+
+    handleEditDialogSubmit = () => {
+        if (this.state.eventEnd === 0 || this.state.eventStart === 0 || this.state.eventStart > this.state.eventEnd) {
+            this.setState({ errorMessage: "Invalid dates chosen" });
+        } else if (this.state.eventName === "") {
+            this.setState({ errorMessage: "Event name cannot be empty" });
+        } else if (this.state.location === "") {
+            this.setState({ errorMessage: "Invalid location" });
+        } else if (this.state.type === "") {
+            this.setState({ errorMessage: "Type of event not chosen" });
+        } else {
+            let pushObj = {
+                cost: this.state.cost,
+                eventEnd: this.state.eventEnd,
+                eventStart: this.state.eventStart,
+                eventName: this.state.eventName,
+                location: this.state.location,
+                reservation: this.state.reservation,
+                type: this.state.type
+            }
+            this.dataRef.child(`events/${this.state.editEvent}`).update(pushObj);
+            this.setState({
+                errorMessage: '',
+                cost: 0,
+                eventEnd: 0,
+                eventStart: 0,
+                eventName: '',
+                location: '',
+                reservation: false,
+                type: '',
+                editDialogOpen: false,
+                editEvent: ''
+            });
+        }
+    }
+
+    handleEditEventDelete = () => {
+
     }
 
     // Open and close the dialog
@@ -104,7 +152,7 @@ class Itinerary extends Component {
             this.dataRef = firebase.database().ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
             this.dataRef.on('value', (snapshot) => {
                 if (this.mounted) {
-                    this.setState({ dataRef: snapshot.val() });
+                    this.setState({ dataRef: snapshot.val()[this.props.selectedTrip] ? snapshot.val()[this.props.selectedTrip] : snapshot.val() });
                 }
             })
         }
@@ -138,6 +186,25 @@ class Itinerary extends Component {
                 onClick={this.handleDialogSubmit}
             />
         ];
+        const editDialogActions = [
+            <RaisedButton
+                className="cancel-button"
+                label="Cancel"
+                secondary={true}
+                onClick={this.handleEditDialogClose}
+            />,
+            <RaisedButton
+                className="cancel-button"
+                label="Delete event"
+                secondary={true}
+                onClick={this.handleEditEventDelete}
+            />,
+            <RaisedButton
+                label="Make edits"
+                primary={true}
+                onClick={this.handleEditDialogSubmit}
+            />
+        ];
         return (
             <div>
                 {this.props.selectedTrip === "" &&
@@ -156,7 +223,11 @@ class Itinerary extends Component {
                                     name: d,
                                     title: this.state.dataRef.events[d].eventName,
                                     start: new Date(this.state.dataRef.events[d].eventStart),
-                                    end: new Date(this.state.dataRef.events[d].eventEnd)
+                                    end: new Date(this.state.dataRef.events[d].eventEnd),
+                                    type: this.state.dataRef.events[d].type,
+                                    cost: this.state.dataRef.events[d].cost,
+                                    reservation: this.state.dataRef.events[d].reservation,
+                                    location: this.state.dataRef.events[d].location
                                 }
                                 return returnObj;
                             }) : []}
@@ -165,7 +236,20 @@ class Itinerary extends Component {
                             views={['week']}
                             scrollToTime={new Date(1970, 1, 1, 6)}
                             defaultDate={new Date(this.state.dataRef.dateStart)}
-                            onSelectEvent={event => alert(event.title)}
+                            onSelectEvent={(event) => {
+                                //alert(event.title)
+                                this.setState({
+                                    eventStart: new Date(event.start),
+                                    eventEnd: new Date(event.end),
+                                    eventName: event.title,
+                                    type: event.type,
+                                    cost: event.cost,
+                                    reservation: event.reservation,
+                                    location: event.location,
+                                    editEvent: event.name
+                                })
+                                this.handleEditDialogOpen();
+                            }}
                             onSelectSlot={(slotInfo) => {
                                 this.setState({
                                     eventStart: slotInfo.start.getTime(),
@@ -275,6 +359,106 @@ class Itinerary extends Component {
                             </Grid>
                         </Dialog>
 
+                        <Dialog
+                            title="New Event"
+                            actions={editDialogActions}
+                            modal={true}
+                            open={this.state.editDialogOpen}
+                            onRequestClose={this.handleEditDialogClose}
+                        >
+                            <Grid>
+                                <Row>
+                                    <TextField
+                                        className="auth-input"
+                                        name="eventName"
+                                        hintText="Name your event..."
+                                        floatingLabelText="Event Name"
+                                        type="text"
+                                        fullWidth={true}
+                                        value={this.state.eventName}
+                                        onChange={(event) => { this.setState({ eventName: event.target.value }) }}
+                                    />
+                                </Row>
+                                <Row>
+                                    <TextField
+                                        className="auth-input"
+                                        name="location"
+                                        hintText="Where will this event be?"
+                                        floatingLabelText="Location"
+                                        type="text"
+                                        fullWidth={true}
+                                        value={this.state.location}
+                                        onChange={(event) => { this.setState({ location: event.target.value }) }}
+                                    />
+                                </Row>
+                                <Row>
+                                    <Col className="no-padding" xs={12} sm={6}>
+                                        {/* See http://www.material-ui.com/#/components/date-picker set min/max date */}
+                                        <DateTimePicker
+                                            className="date-input"
+                                            hintText="From"
+                                            fullWidth={true}
+                                            DatePicker={DatePickerDialog}
+                                            TimePicker={TimePickerDialog}
+                                            value={new Date(this.state.eventStart).toLocaleString()}
+                                            clearIcon={null}
+                                            onChange={(date) => {
+                                                this.setState({ eventStart: date.getTime() })
+                                            }}
+                                        />
+                                    </Col>
+                                    <Col className="no-padding" xs={12} sm={6}>
+                                        <DateTimePicker
+                                            className="date-input"
+                                            hintText="Until"
+                                            fullWidth={true}
+                                            DatePicker={DatePickerDialog}
+                                            TimePicker={TimePickerDialog}
+                                            value={new Date(this.state.eventEnd).toLocaleString()}
+                                            clearIcon={null}
+                                            onChange={(date) => {
+                                                this.setState({ eventEnd: date.getTime() })
+                                            }}
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <TextField
+                                        className="auth-input"
+                                        name="travelerCount"
+                                        hintText="What is the cost?"
+                                        floatingLabelText="Est. cost"
+                                        type="number"
+                                        fullWidth={true}
+                                        value={this.state.cost}
+                                        onChange={(event) => { this.setState({ cost: Number(event.target.value) }) }}
+                                    />
+                                </Row>
+                                <Row>
+                                    <SelectField
+                                        floatingLabelText="Type of event"
+                                        value={this.state.type}
+                                        onChange={(event) => { this.setState({ type: event.target.textContent }) }}
+                                        fullWidth={true}
+                                    >
+                                        <MenuItem value="" primaryText="" />
+                                        <MenuItem value="Dining" primaryText="Dining" />
+                                        <MenuItem value="Services" primaryText="Services" />
+                                        <MenuItem value="Experiences" primaryText="Experiences" />
+                                        <MenuItem value="Shopping" primaryText="Shopping" />
+                                        <MenuItem value="Other" primaryText="Other" />
+                                    </SelectField>
+                                </Row>
+                                <Row>
+                                    <Checkbox
+                                        label="Reservation made?"
+                                        checked={this.state.reservation}
+                                        onCheck={() => this.setState({ reservation: !this.state.reservation })}
+                                        style={{ marginTop: 16 }}
+                                    />
+                                </Row>
+                            </Grid>
+                        </Dialog>
                     </div>
                 }
 
