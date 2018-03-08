@@ -273,6 +273,12 @@ h3 {
   font-size: 1rem;
   font-weight: 300;
 }
+.overview-button {
+  float: right;
+  margin-right: 30px !important;
+  background-color: rgba(227,227,227, 1) !important;
+  color: rgb(0,0,0) !important;
+}
 
 /* Reservation tab */
 .reservation-card {
