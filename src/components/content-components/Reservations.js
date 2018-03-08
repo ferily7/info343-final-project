@@ -91,8 +91,8 @@ class Reservations extends Component {
                   id, pellentesque lobortis odio.
                 </CardText>
                 <CardActions>
-                        <RaisedButton label="Edit" />
-                        <RaisedButton className="cancel-button" label="Delete" />
+                        <RaisedButton primary={true} label="Edit" />
+                        <RaisedButton secondary={true} className="cancel-button" label="Delete" />
                       </CardActions>
               </Card>
               </Col>
@@ -129,8 +129,8 @@ class Reservations extends Component {
                         odio.
                       </CardText>
                       <CardActions>
-                        <RaisedButton label="Edit" />
-                        <RaisedButton className="cancel-button" label="Delete" />
+                        <RaisedButton primary={true} label="Edit" />
+                        <RaisedButton secondary={true} className="cancel-button" label="Delete" />
                       </CardActions>
                     </Card>
               </Col>
@@ -167,8 +167,8 @@ class Reservations extends Component {
                         odio.
                       </CardText>
                       <CardActions>
-                        <RaisedButton label="Edit" />
-                        <RaisedButton className="cancel-button" label="Delete" />
+                        <RaisedButton primary={true} label="Edit" />
+                        <RaisedButton secondary={true} className="cancel-button" label="Delete" />
                       </CardActions>
                     </Card>
               </Col>
