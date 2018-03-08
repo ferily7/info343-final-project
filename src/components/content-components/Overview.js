@@ -45,14 +45,35 @@ class Overview extends Component {
                 {this.props.selectedTrip === "" &&
                     <NoTrips />
                 }
-                {this.props.selectedTrip !== "" && this.state.dataRef &&
-                    <div>{this.state.dataRef.tripName}</div>
-                }
+        {this.props.selectedTrip !== "" &&
+          this.state.dataRef && (
+            <div>
+              <h1>{this.state.dataRef.tripName}</h1>
+              <p className="origin-destination">[ORIGIN] to [DESTINATION]</p>
+              <p className="start-end">[START] until [END]</p>
+              <h2>Departing</h2>
+              <ul>
+                <li>[AIRLINE]</li>
+                <li>Confirmation: [CONFIRMATION]</li>
+                <li>Departs: [TIME DATE]</li>
+                <li>Arrives: [TIME DATE]</li>
+              </ul>
+              <h2>Returning</h2>
+              <ul>
+                <li>[AIRLINE]</li>
+                <li>Confirmation: [CONFIRMATION]</li>
+                <li>Departs: [TIME DATE]</li>
+                <li>Arrives: [TIME DATE]</li>
+              </ul>
+            <h2>Travelers</h2>
+            <p>Travelers</p>
+
+
             </div>
-
-
-        )
-    }
+          )}
+      </div>
+    );
+  }
 }
 
 export default Overview;
