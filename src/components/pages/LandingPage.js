@@ -8,8 +8,10 @@ class LandingPage extends Component {
     render() {
         return (
             <div className="contain">
+            <div className="contain-sm">
                 <Grid fluid>
                     <Row className="landing-content">
+                    
                         <Col className="landing-offset" mdOffset={1} xs={12} md={5}>
                             <div className="contain-intro">
                                 <h1 id="welcome-header">Welcome</h1>
@@ -22,15 +24,13 @@ class LandingPage extends Component {
                                     ante. In porta pharetra sem, sit amet vehicula eros fermentum
                                     ac. Donec finibus dolor vel maximus tincidunt. Donec nulla mi,
                                     ultricies ut est sit amet, efficitur faucibus odio.
-              </p>
+              </p>              <Link to="/about">
                                 <RaisedButton
                                     className="about-button"
                                     primary={true}
-                                    onClick={() =>
-                                        console.log("Learn more button was clicked")
-                                    }
                                     label="Learn More"
                                 />
+                                </Link>
                             </div>
                         </Col>
                         <Col xs={12} md={5}>
@@ -51,6 +51,7 @@ class LandingPage extends Component {
                         </Col>
                     </Row>
                 </Grid>
+                </div>
             </div>
         );
     }

@@ -6,8 +6,9 @@ import getMuiTheme from "material-ui/styles/getMuiTheme";
 import {fade} from 'material-ui/utils/colorManipulator';
 import "./assets/index.css";
 
-import Header from "./components/header-component/header";
-import Login from "./components/pages/login";
+import Header from "./components/header-component/Header";
+import Login from "./components/pages/Login";
+import About from "./components/pages/About";
 import LandingPage from "./components/pages/LandingPage";
 import UserHome from "./components/pages/UserHome";
 
@@ -90,6 +91,10 @@ class App extends Component {
                         <Route
                             path="/login"
                             render={routerProps => <Login firebaseUser={this.state.firebaseUser} />}
+                        />
+                        <Route
+                            path="/about"
+                            render={routerProps => <About firebaseUser={this.state.firebaseUser} />}
                         />
                     </div>
                 </Router>

@@ -41,6 +41,9 @@ a {
 .contain {
   background-color: #131830;
 }
+.contain-sm {
+  padding: 0 8px;
+}
 .landing-offset {
   padding: 0 !important;
 }
@@ -106,7 +109,7 @@ a {
 #signin-link:hover {
   color: #7c7c7c !important;
 }
-.login-header {
+.page-header {
   font-size: 2.5rem;
   font-weight: 500;
   margin-top: 20px;
@@ -297,6 +300,9 @@ h3 {
   .contain {
     height: 100vh;
     margin-top: -56px;
+  }
+  .contain-sm {
+    padding: 0;
   }
   .landing-content {
     padding-top: 110px;

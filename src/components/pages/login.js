@@ -46,7 +46,7 @@ class Login extends Component {
         <Grid fluid>
           <Row>
             <Col xsOffset={1} mdOffset={2} lgOffset={3} xs={10} md={8} lg={6}>
-              <h1 className="login-header">Log In</h1>
+              <h1 className="page-header">Log In</h1>
               <p className="highlight">{this.state.errorMessage}</p>
               {["email", "password"].map((d, i) => {
                 return (
