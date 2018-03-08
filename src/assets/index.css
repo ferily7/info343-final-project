@@ -260,6 +260,10 @@ h3 {
 }
 .addexpense-button {
   margin-top: 18px;
+  padding-left: 8px;
+}
+.input-padding {
+  padding-right: 8px;
 }
 
 @media (min-width: 480px) {
