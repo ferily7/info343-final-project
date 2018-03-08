@@ -17,6 +17,7 @@ class Sidebar extends Component {
             dataRef: null,
             dialogOpen: false,
             tripName: '',
+            origin: '',
             destination: '',
             dateStart: 0,
             dateEnd: 0,
@@ -33,6 +34,8 @@ class Sidebar extends Component {
     handleDialogSubmit = () => {
         if (this.state.tripName === '') {
             this.setState({ errorMessage: "Trip name cannot be empty" });
+        } else if (this.state.origin === '') {
+            this.setState({ errorMessage: "Origin cannot be empty" });
         } else if (this.state.destination === '') {
             this.setState({ errorMessage: "Destination cannot be empty" });
         } else if (this.state.dateStart === 0 || this.state.dateEnd === 0 || this.state.dateStart > this.state.dateEnd) {
@@ -43,6 +46,7 @@ class Sidebar extends Component {
             let pushObj = {
                 dateEnd: this.state.dateEnd,
                 dateStart: this.state.dateStart,
+                startLocation: this.state.origin,
                 endLocation: this.state.destination,
                 numTravelers: this.state.travelerCount,
                 tripName: this.state.tripName
@@ -51,6 +55,7 @@ class Sidebar extends Component {
             this.setState({
                 dialogOpen: false,
                 tripName: '',
+                origin: '',
                 destination: '',
                 dateStart: 0,
                 dateEnd: 0,
@@ -150,15 +155,28 @@ class Sidebar extends Component {
                                     />
                                 </Row>
                                 <Row>
-                                    <TextField
-                                        className="auth-input"
-                                        name="destination"
-                                        hintText="Where are you going?"
-                                        floatingLabelText="Destination"
-                                        type="text"
-                                        fullWidth={true}
-                                        onChange={(event) => { this.setState({ destination: event.target.value }) }}
-                                    />
+                                    <Col className="no-padding" xs={12} sm={6}>
+                                        <TextField
+                                            className="auth-input"
+                                            name="origin"
+                                            hintText="Where are you coming from?"
+                                            floatingLabelText="Origin"
+                                            type="text"
+                                            fullWidth={true}
+                                            onChange={(event) => { this.setState({ origin: event.target.value }) }}
+                                        />
+                                    </Col>
+                                    <Col className="no-padding" xs={12} sm={6}>
+                                        <TextField
+                                            className="auth-input"
+                                            name="destination"
+                                            hintText="Where are you going?"
+                                            floatingLabelText="Destination"
+                                            type="text"
+                                            fullWidth={true}
+                                            onChange={(event) => { this.setState({ destination: event.target.value }) }}
+                                        />
+                                    </Col>
                                 </Row>
                                 <Row>
                                     <Col className="no-padding" xs={12} sm={6}>
