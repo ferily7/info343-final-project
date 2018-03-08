@@ -80,6 +80,11 @@ class Itinerary extends Component {
         }
     };
 
+    // second dialog box popup when on select
+    // change the same things
+    // similar to thing right above except put to the selectedtrip
+    // delete event button
+
     // Component will receive the correct selected trip, update the reference to the trip when this is done
     componentWillReceiveProps(inProp) {
         if (inProp.firebaseUser) {
