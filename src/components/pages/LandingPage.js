@@ -15,16 +15,14 @@ class LandingPage extends Component {
                         <Col className="landing-offset" mdOffset={1} xs={12} md={5}>
                             <div className="contain-intro">
                                 <h1 id="welcome-header">Welcome</h1>
-                                <h2 id="welcome-subheader">
-                                    to the best trip planner on the market
-              </h2>
+                                <h2 id="welcome-subheader">to the best trip planner on the market</h2>
                                 <p id="welcome-blurb">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                                    pulvinar urna ac nisl pulvinar dapibus. Suspendisse eu varius
-                                    ante. In porta pharetra sem, sit amet vehicula eros fermentum
-                                    ac. Donec finibus dolor vel maximus tincidunt. Donec nulla mi,
-                                    ultricies ut est sit amet, efficitur faucibus odio.
-              </p>              <Link to="/about">
+                                    Do you need an easier way to plan your trip? Trip Planner is different 
+                                    from any other calendar or planner. With Trip Planner, there are variety 
+                                    of features you can do: create multiple trips, create a set budget, manage 
+                                    your budget, and even create and edit reservations at restaurants or places 
+                                    you want to visit.</p>
+                                <Link to="/about">
                                 <RaisedButton
                                     className="about-button"
                                     primary={true}
