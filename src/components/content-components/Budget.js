@@ -8,61 +8,61 @@ import RaisedButton from "material-ui/RaisedButton";
 import SelectField from "material-ui/SelectField";
 import MenuItem from "material-ui/MenuItem";
 import {
-  Table,
-  TableBody,
-  TableRow,
-  TableRowColumn
+    Table,
+    TableBody,
+    TableRow,
+    TableRowColumn
 } from "material-ui/Table";
 
 class Budget extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dataRef: null,
-      value: null
-    };
-  }
-
-  // Component will receive the correct selected trip, update the reference to the trip when this is done
-  componentWillReceiveProps(inProp) {
-    if (inProp.firebaseUser) {
-      this.dataRef = firebase
-        .database()
-        .ref(`${inProp.firebaseUser.uid}/trips/${inProp.selectedTrip}`);
-      this.dataRef.on("value", snapshot => {
-        if (this.mounted) {
-          this.setState({ dataRef: snapshot.val() });
-        }
-      });
+    constructor(props) {
+        super(props);
+        this.state = {
+            dataRef: null,
+            value: null
+        };
     }
-  }
 
-  // Grab what it can when component mounts, need this for when switching between tabs.
-  componentDidMount() {
-    this.mounted = true;
-    if (this.props.firebaseUser) {
-      this.dataRef = firebase
-        .database()
-        .ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
-      this.dataRef.on("value", snapshot => {
-        if (this.mounted) {
-          this.setState({ dataRef: snapshot.val() });
+    // Component will receive the correct selected trip, update the reference to the trip when this is done
+    componentWillReceiveProps(inProp) {
+        if (inProp.firebaseUser) {
+            this.dataRef = firebase
+                .database()
+                .ref(`${inProp.firebaseUser.uid}/trips/${inProp.selectedTrip}`);
+            this.dataRef.on("value", snapshot => {
+                if (this.mounted) {
+                    this.setState({ dataRef: snapshot.val() });
+                }
+            });
         }
-      });
     }
-  }
 
-  // Set unmount state so doesn't update when not mounted anymore
-  componentWillUnmount() {
-    this.mounted = false;
-  }
-  handleChange = (event, index, value) => this.setState({ value });
-  render() {
-    return (
-      <div>
-        {this.props.selectedTrip === "" && <NoTrips />}
-        {this.props.selectedTrip !== "" &&
-          this.state.dataRef && (
+    // Grab what it can when component mounts, need this for when switching between tabs.
+    componentDidMount() {
+        this.mounted = true;
+        if (this.props.firebaseUser) {
+            this.dataRef = firebase
+                .database()
+                .ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
+            this.dataRef.on("value", snapshot => {
+                if (this.mounted) {
+                    this.setState({ dataRef: snapshot.val()[this.props.selectedTrip] ? snapshot.val()[this.props.selectedTrip] : snapshot.val() });
+                }
+            });
+        }
+    }
+
+    // Set unmount state so doesn't update when not mounted anymore
+    componentWillUnmount() {
+        this.mounted = false;
+    }
+    handleChange = (event, index, value) => this.setState({ value });
+    render() {
+        return (
+            <div>
+                {this.props.selectedTrip === "" && <NoTrips />}
+                {this.props.selectedTrip !== "" &&
+                    this.state.dataRef && (
             <div>
               <Grid>
                 <Row>budget bar</Row>
@@ -159,41 +159,41 @@ class Budget extends Component {
                     </div>
                   </Col>
 
-                  {/*Category 2*/}
-                  <Col className="table-margin" xs={12} md={6} xl={4}>
-                    <h2 className="content-subheader">Category 2</h2>
-                    <div className="category-table">
-                      <Table selectable={false}>
-                        <TableBody
-                          showRowHover={true}
-                          displayRowCheckbox={false}
-                        >
-                          <TableRow>
-                            <TableRowColumn>Item 1</TableRowColumn>
-                            <TableRowColumn>$0.00</TableRowColumn>
-                          </TableRow>
-                        </TableBody>
-                      </Table>
-                    </div>
-                  </Col>
+                                    {/*Category 2*/}
+                                    <Col className="table-margin" xs={12} md={6} xl={4}>
+                                        <h2 className="content-subheader">Category 2</h2>
+                                        <div className="category-table">
+                                            <Table selectable={false}>
+                                                <TableBody
+                                                    showRowHover={true}
+                                                    displayRowCheckbox={false}
+                                                >
+                                                    <TableRow>
+                                                        <TableRowColumn>Item 1</TableRowColumn>
+                                                        <TableRowColumn>$0.00</TableRowColumn>
+                                                    </TableRow>
+                                                </TableBody>
+                                            </Table>
+                                        </div>
+                                    </Col>
 
-                  {/*Category 3*/}
-                  <Col className="table-margin" xs={12} md={6} xl={4}>
-                    <h2 className="content-subheader">Category 3</h2>
-                    <div className="category-table">
-                      <Table selectable={false}>
-                        <TableBody
-                          showRowHover={true}
-                          displayRowCheckbox={false}
-                        >
-                          <TableRow>
-                            <TableRowColumn>Item 1</TableRowColumn>
-                            <TableRowColumn>$0.00</TableRowColumn>
-                          </TableRow>
-                        </TableBody>
-                      </Table>
-                    </div>
-                  </Col>
+                                    {/*Category 3*/}
+                                    <Col className="table-margin" xs={12} md={6} xl={4}>
+                                        <h2 className="content-subheader">Category 3</h2>
+                                        <div className="category-table">
+                                            <Table selectable={false}>
+                                                <TableBody
+                                                    showRowHover={true}
+                                                    displayRowCheckbox={false}
+                                                >
+                                                    <TableRow>
+                                                        <TableRowColumn>Item 1</TableRowColumn>
+                                                        <TableRowColumn>$0.00</TableRowColumn>
+                                                    </TableRow>
+                                                </TableBody>
+                                            </Table>
+                                        </div>
+                                    </Col>
 
                   {/*Add new category*/}
                   <Col className="table-margin" xs={12} md={6} xl={4}>
@@ -205,10 +205,10 @@ class Budget extends Component {
                 </Row>
               </Grid>
             </div>
-          )}
-      </div>
-    );
-  }
+             )}
+             </div>
+        );
+    }
 }
 
 export default Budget;

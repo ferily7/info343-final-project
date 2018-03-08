@@ -24,20 +24,20 @@ class Overview extends Component {
     }
   }
 
-  // Grab what it can when component mounts, need this for when switching between tabs.
-  componentDidMount() {
-    this.mounted = true;
-    if (this.props.firebaseUser) {
-      this.dataRef = firebase
-        .database()
-        .ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
-      this.dataRef.on("value", snapshot => {
-        if (this.mounted) {
-          this.setState({ dataRef: snapshot.val() });
+    // Grab what it can when component mounts, need this for when switching between tabs.
+    componentDidMount() {
+        this.mounted = true;
+        if (this.props.firebaseUser) {
+            this.dataRef = firebase.database().ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
+            this.dataRef.on('value', (snapshot) => {
+                if (this.mounted) {
+                    this.setState({ dataRef: snapshot.val()[this.props.selectedTrip] ? snapshot.val()[this.props.selectedTrip] : snapshot.val() });
+                }
+            })
         }
-      });
+     
     }
-  }
+  
 
   // Set unmount state so doesn't update when not mounted anymore
   componentWillUnmount() {
@@ -51,7 +51,12 @@ class Overview extends Component {
         {this.props.selectedTrip !== "" &&
           this.state.dataRef && (
             <div>
-              <Grid>
+                {this.props.selectedTrip === "" &&
+                    <NoTrips />
+                }
+                {this.props.selectedTrip !== "" &&
+                    this.state.dataRef && (
+                        <Grid>
                 <Row>
                 <Col xs={12}>
                   <h1 className="content-header">{this.state.dataRef.tripName}</h1>
@@ -93,6 +98,7 @@ class Overview extends Component {
                   </Col>
                 </Row>
               </Grid>
+                    )}
             </div>
           )}
       </div>
