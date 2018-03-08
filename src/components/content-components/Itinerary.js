@@ -17,8 +17,6 @@ import TimePickerDialog from 'material-ui/TimePicker/TimePickerDialog';
 import TextField from "material-ui/TextField";
 BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 
-
-
 class Itinerary extends Component {
     constructor(props) {
         super(props);
@@ -179,12 +177,6 @@ class Itinerary extends Component {
                             }
 
                         />
-                        <button className="btn btn-success mr-2" onClick={() => this.testSetState()}>
-                            testSetState
-                        </button>
-                        <button className="btn btn-success mr-2" onClick={() => this.addEvent()}>
-                            add event
-                        </button>
 
                         <Dialog
                             title="New Event"
@@ -226,6 +218,7 @@ class Itinerary extends Component {
                                             DatePicker={DatePickerDialog}
                                             TimePicker={TimePickerDialog}
                                             value={new Date(this.state.eventStart).toLocaleString()}
+                                            clearIcon={null}
                                             onChange={(date) => {
                                                 this.setState({ eventStart: date.getTime() })
                                             }}
@@ -239,6 +232,7 @@ class Itinerary extends Component {
                                             DatePicker={DatePickerDialog}
                                             TimePicker={TimePickerDialog}
                                             value={new Date(this.state.eventEnd).toLocaleString()}
+                                            clearIcon={null}
                                             onChange={(date) => {
                                                 this.setState({ eventEnd: date.getTime() })
                                             }}
