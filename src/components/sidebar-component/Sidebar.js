@@ -15,7 +15,12 @@ class Sidebar extends Component {
         this.state = {
             errorMessage: "",
             orgReference: null,
-            dialogOpen: false
+            dialogOpen: false,
+            tripName: '',
+            destination: '',
+            dateStart: 0,
+            dateEnd: 0,
+            travelerCount: 0
         };
     }
     handleDialogOpen = () => {
@@ -26,8 +31,32 @@ class Sidebar extends Component {
         this.setState({ dialogOpen: false });
     };
     handleDialogSubmit = () => {
-        this.setState({ dialogOpen: false });
-        // Add code to handle submit + create new trip
+        if (this.state.tripName === '') {
+            this.setState({ errorMessage: "Trip name cannot be empty" });
+        } else if (this.state.destination === '') {
+            this.setState({ errorMessage: "Destination cannot be empty" });
+        } else if (this.state.dateStart === 0 || this.state.dateEnd === 0) {
+            this.setState({ errorMessage: "Invalid dates chosen" });
+        } else if (this.state.travelerCount === 0) {
+            this.setState({ errorMessage: "Invalid number of travelers" });
+        } else {
+            let pushObj = {
+                dateEnd: this.state.dateEnd,
+                dateStart: this.state.dateStart,
+                endLocation: this.state.destination,
+                numTravelers: this.state.travelerCount,
+                tripName: this.state.tripName
+            }
+            this.orgReference.push(pushObj);
+            this.setState({
+                dialogOpen: false,
+                tripName: '',
+                destination: '',
+                dateStart: 0,
+                dateEnd: 0,
+                travelerCount: 0
+            });
+        }
     };
     handleSignOut() {
         firebase
@@ -117,17 +146,18 @@ class Sidebar extends Component {
                                         floatingLabelText="Trip Name"
                                         type="text"
                                         fullWidth={true}
-                                        onChange={(event) => { console.log(event.target.name, event.target.value) }}
+                                        onChange={(event) => { this.setState({ tripName: event.target.value }) }}
                                     />
                                 </Row>
                                 <Row>
                                     <TextField
                                         className="auth-input"
-                                        name="Destination"
+                                        name="destination"
                                         hintText="Where are you going?"
                                         floatingLabelText="Destination"
                                         type="text"
                                         fullWidth={true}
+                                        onChange={(event) => { this.setState({ destination: event.target.value }) }}
                                     />
                                 </Row>
                                 <Row>
@@ -137,7 +167,7 @@ class Sidebar extends Component {
                                             className="date-input"
                                             hintText="From"
                                             fullWidth={true}
-                                            onChange={(n, event) => { console.log(event.getTime()) }}
+                                            onChange={(n, date) => { this.setState({ dateStart: date.getTime() }) }}
                                         />
                                     </Col>
                                     <Col className="no-padding" xs={12} sm={6}>
@@ -145,17 +175,19 @@ class Sidebar extends Component {
                                             className="date-input"
                                             hintText="Until"
                                             fullWidth={true}
+                                            onChange={(n, date) => { this.setState({ dateEnd: date.getTime() }) }}
                                         />
                                     </Col>
                                 </Row>
                                 <Row>
                                     <TextField
                                         className="auth-input"
-                                        name="Number of travelers"
+                                        name="travelerCount"
                                         hintText="How many travelers?"
                                         floatingLabelText="Travelers"
                                         type="text"
                                         fullWidth={true}
+                                        onChange={(event) => { this.setState({ travelerCount: event.target.value }) }}
                                     />
                                 </Row>
                             </Grid>

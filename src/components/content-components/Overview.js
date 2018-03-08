@@ -11,12 +11,14 @@ class Overview extends Component {
     }
     // Component will receive the correct selected trip, update the reference to the trip when this is done
     componentWillReceiveProps(inProp) {
-        this.dataRef = firebase.database().ref(`${inProp.firebaseUser.uid}/trips/${inProp.selectedTrip}`);
-        this.dataRef.on('value', (snapshot) => {
-            if (this.mounted) {
-                this.setState({ dataRef: snapshot.val() });
-            }
-        })
+        if (inProp.firebaseUser) {
+            this.dataRef = firebase.database().ref(`${inProp.firebaseUser.uid}/trips/${inProp.selectedTrip}`);
+            this.dataRef.on('value', (snapshot) => {
+                if (this.mounted) {
+                    this.setState({ dataRef: snapshot.val() });
+                }
+            })
+        }
     }
 
     // Grab what it can when component mounts, need this for when switching between tabs.
