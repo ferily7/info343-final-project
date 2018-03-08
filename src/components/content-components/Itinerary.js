@@ -81,7 +81,19 @@ class Itinerary extends Component {
     }
 
     handleEditEventDelete = () => {
-
+        this.dataRef.child(`events/${this.state.editEvent}`).remove();
+        this.setState({
+            errorMessage: '',
+            cost: 0,
+            eventEnd: 0,
+            eventStart: 0,
+            eventName: '',
+            location: '',
+            reservation: false,
+            type: '',
+            editDialogOpen: false,
+            editEvent: ''
+        });
     }
 
     // Open and close the dialog
@@ -216,7 +228,7 @@ class Itinerary extends Component {
                 {this.props.selectedTrip !== "" && this.state.dataRef &&
                     <div>
                         <BigCalendar
-                            selectable
+                            selectable={'ignoreEvents'}
                             events={this.state.dataRef.events ? Object.keys(this.state.dataRef.events).map((d, i) => {
                                 let returnObj = {
                                     id: 0,
