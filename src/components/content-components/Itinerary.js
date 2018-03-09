@@ -34,7 +34,8 @@ class Itinerary extends Component {
             location: '',
             reservation: false,
             type: '',
-            editEvent: ''
+            editEvent: '',
+            description: ''
         }
     }
 
@@ -72,7 +73,8 @@ class Itinerary extends Component {
                 eventName: this.state.eventName,
                 location: this.state.location,
                 reservation: this.state.reservation,
-                type: this.state.type
+                type: this.state.type,
+                description: this.state.description
             }
             this.dataRef.child(`events/${this.state.editEvent}`).update(pushObj);
             this.setState({
@@ -85,7 +87,8 @@ class Itinerary extends Component {
                 reservation: false,
                 type: '',
                 editDialogOpen: false,
-                editEvent: ''
+                editEvent: '',
+                description: ''
             });
         }
     }
@@ -103,7 +106,8 @@ class Itinerary extends Component {
             reservation: false,
             type: '',
             editDialogOpen: false,
-            editEvent: ''
+            editEvent: '',
+            description: ''
         });
     }
 
@@ -126,7 +130,8 @@ class Itinerary extends Component {
                 eventName: this.state.eventName,
                 location: this.state.location,
                 reservation: this.state.reservation,
-                type: this.state.type
+                type: this.state.type,
+                description: this.state.description
             }
             this.dataRef.child("events").push(pushObj);
             this.setState({
@@ -138,7 +143,8 @@ class Itinerary extends Component {
                 location: '',
                 reservation: false,
                 type: '',
-                dialogOpen: false
+                dialogOpen: false,
+                description: ''
             });
         }
     };
@@ -341,6 +347,17 @@ class Itinerary extends Component {
                                     />
                                 </Row>
                                 <Row>
+                                    <TextField
+                                        className="auth-input"
+                                        name="description"
+                                        hintText="Event description"
+                                        floatingLabelText="Event description"
+                                        type="text"
+                                        fullWidth={true}
+                                        onChange={(event) => { this.setState({ description: event.target.value }) }}
+                                    />
+                                </Row>
+                                <Row>
                                     <SelectField
                                         floatingLabelText="Type of event"
                                         value={this.state.type}
@@ -366,6 +383,7 @@ class Itinerary extends Component {
                             </Grid>
                         </Dialog>
 
+                        {/* Edit dialogue */}
                         <Dialog
                             title="Edit Event"
                             actions={editDialogActions}
@@ -438,6 +456,18 @@ class Itinerary extends Component {
                                         fullWidth={true}
                                         value={this.state.cost}
                                         onChange={(event) => { this.setState({ cost: Number(event.target.value) }) }}
+                                    />
+                                </Row>
+                                <Row>
+                                    <TextField
+                                        className="auth-input"
+                                        name="description"
+                                        hintText="Event description"
+                                        floatingLabelText="Event description"
+                                        type="text"
+                                        fullWidth={true}
+                                        value={this.state.description}
+                                        onChange={(event) => { this.setState({ description: event.target.value }) }}
                                     />
                                 </Row>
                                 <Row>
