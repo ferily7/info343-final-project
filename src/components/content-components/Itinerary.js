@@ -113,7 +113,8 @@ class Itinerary extends Component {
             type: '',
             editDialogOpen: false,
             editEvent: '',
-            description: ''
+            description: '',
+            image: null
         });
     }
 
@@ -129,29 +130,34 @@ class Itinerary extends Component {
     // Error messages are sent if certain state values are invalid
     handleDialogSubmit = () => {
         if (this.checkError() === 1) {
-            let pushObj = {
-                cost: this.state.cost,
-                eventEnd: this.state.eventEnd,
-                eventStart: this.state.eventStart,
-                eventName: this.state.eventName,
-                location: this.state.location,
-                reservation: this.state.reservation,
-                type: this.state.type,
-                description: this.state.description
-            }
-            this.dataRef.child("events").push(pushObj);
-            this.setState({
-                errorMessage: '',
-                cost: 0,
-                eventEnd: 0,
-                eventStart: 0,
-                eventName: '',
-                location: '',
-                reservation: false,
-                type: '',
-                dialogOpen: false,
-                description: ''
-            });
+            let imagePush = this.storageRef.child(`${this.state.eventName}${this.state.eventStart}`);
+            imagePush.put(this.state.image).then((snapshot) => {
+                let pushObj = {
+                    cost: this.state.cost,
+                    eventEnd: this.state.eventEnd,
+                    eventStart: this.state.eventStart,
+                    eventName: this.state.eventName,
+                    location: this.state.location,
+                    reservation: this.state.reservation,
+                    type: this.state.type,
+                    description: this.state.description,
+                    imageURL: snapshot.downloadURL
+                }
+                this.dataRef.child("events").push(pushObj);
+                this.setState({
+                    errorMessage: '',
+                    cost: 0,
+                    eventEnd: 0,
+                    eventStart: 0,
+                    eventName: '',
+                    location: '',
+                    reservation: false,
+                    type: '',
+                    dialogOpen: false,
+                    description: '',
+                    image: null
+                });
+            })
         }
     };
 
@@ -170,6 +176,7 @@ class Itinerary extends Component {
     // Grab what it can when component mounts, need this for when switching between tabs.
     componentDidMount() {
         this.mounted = true;
+        this.storageRef = firebase.storage().ref('imgs/');
         if (this.props.firebaseUser) {
             this.dataRef = firebase.database().ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
             this.dataRef.on('value', (snapshot) => {
@@ -500,24 +507,6 @@ class Itinerary extends Component {
                                         value={this.state.description}
                                         onChange={(event) => { this.setState({ description: event.target.value }) }}
                                     />
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <RaisedButton
-                                            secondary={true}
-                                            containerElement="label"
-                                            label="Click to upload an image"
-                                        >
-                                            <input type="file" onChange={(e) => this.setImage(e)} style={{ display: 'none' }} />
-                                        </RaisedButton>
-                                    </Col>
-                                    <Col>
-                                        {this.state.image &&
-                                            <div>
-                                                <p style={{ marginLeft: 10 }}>File uploaded <span style={{ cursor: "pointer" }} onClick={() => this.setState({ image: null })}>X</span></p>
-                                            </div>
-                                        }
-                                    </Col>
                                 </Row>
                                 <Row>
                                     <SelectField
