@@ -77,7 +77,7 @@ class Reservations extends Component {
                                 <Row id="reservations">
                                     {events}
                                     {events.length === 0 &&
-                                        <div className="contain-notrips">  {/* Alignment here is bad */}
+                                        <div className="contain-noreserv">
                                             <div className="notrips unselectable">
                                                 <p>You have no reservations.</p>
                                                 <p>Create reservations in the Itinerary tab.</p>

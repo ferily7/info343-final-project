@@ -321,6 +321,10 @@ padding-left: 40px;
 .reservation-actions {
   padding: 16px !important;
 }
+.contain-noreserv {
+  text-align: center;
+  width: 100%;
+}
 /* Budget Tab */
 .addexpense-button {
   margin-top: 18px;
