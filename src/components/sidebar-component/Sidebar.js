@@ -143,6 +143,7 @@ class Sidebar extends Component {
                             onRequestClose={this.handleDialogClose}
                             autoScrollBodyContent={true}
                         >
+                        <p className="highlight">{this.state.errorMessage}</p>
                             <Grid>
                                 <Row>
                                     <TextField
