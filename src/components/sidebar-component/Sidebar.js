@@ -52,7 +52,8 @@ class Sidebar extends Component {
                 startLocation: this.state.origin,
                 endLocation: this.state.destination,
                 numTravelers: this.state.travelerCount,
-                tripName: this.state.tripName
+                tripName: this.state.tripName,
+                categories: ["Dining", "Services", "Experiences", "Shopping", "Other"]
             }
             this.dataRef.push(pushObj);
             this.setState({
@@ -108,7 +109,7 @@ class Sidebar extends Component {
                 {this.props.firebaseUser ? undefined : <Redirect to="/" />}
                 <div className="sidebar">
                     <div className="sidebar-content">
-                    <h2 className="trips-header">Your Trips</h2>
+                        <h2 className="trips-header">Your Trips</h2>
                         <List className="trip-list">
                             {this.state.dataRef &&
                                 Object.keys(this.state.dataRef).map((d, i) => {
