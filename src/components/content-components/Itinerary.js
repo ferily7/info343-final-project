@@ -35,8 +35,14 @@ class Itinerary extends Component {
             reservation: false,
             type: '',
             editEvent: '',
-            description: ''
+            description: '',
+            image: null
         }
+    }
+
+    // setImage sets the state of the current selected image
+    setImage = (e) => {
+        this.setState({ image: e.target.files[0] });
     }
 
     // checkError checks if the state values are valid
@@ -361,6 +367,24 @@ class Itinerary extends Component {
                                     />
                                 </Row>
                                 <Row>
+                                    <Col>
+                                        <RaisedButton
+                                            secondary={true}
+                                            containerElement="label"
+                                            label="Click to upload an image"
+                                        >
+                                            <input type="file" onChange={(e) => this.setImage(e)} style={{ display: 'none' }} />
+                                        </RaisedButton>
+                                    </Col>
+                                    <Col>
+                                        {this.state.image &&
+                                            <div>
+                                                <p style={{ marginLeft: 10 }}>File uploaded <span style={{ cursor: "pointer" }} onClick={() => this.setState({ image: null })}>X</span></p>
+                                            </div>
+                                        }
+                                    </Col>
+                                </Row>
+                                <Row>
                                     <SelectField
                                         floatingLabelText="Type of event"
                                         value={this.state.type}
@@ -473,6 +497,24 @@ class Itinerary extends Component {
                                         value={this.state.description}
                                         onChange={(event) => { this.setState({ description: event.target.value }) }}
                                     />
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <RaisedButton
+                                            secondary={true}
+                                            containerElement="label"
+                                            label="Click to upload an image"
+                                        >
+                                            <input type="file" onChange={(e) => this.setImage(e)} style={{ display: 'none' }} />
+                                        </RaisedButton>
+                                    </Col>
+                                    <Col>
+                                        {this.state.image &&
+                                            <div>
+                                                <p style={{ marginLeft: 10 }}>File uploaded <span style={{ cursor: "pointer" }} onClick={() => this.setState({ image: null })}>X</span></p>
+                                            </div>
+                                        }
+                                    </Col>
                                 </Row>
                                 <Row>
                                     <SelectField
