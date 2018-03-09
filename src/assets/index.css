@@ -458,6 +458,7 @@ font-size: 1.5rem;
   .sidebar {
     height: 100vh;
     margin-top: -92.2px;
+    overflow: auto;
   }
   .sidebar-content {
     position: relative;
