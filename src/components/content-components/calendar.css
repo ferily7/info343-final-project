@@ -509,6 +509,8 @@
   }
   .rbc-slot-selection {
     z-index: 10;
+    left: 10px;
+    right: 10px;
     position: absolute;
     cursor: default;
     background-color: rgba(0, 0, 0, 0.5);
