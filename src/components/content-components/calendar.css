@@ -186,6 +186,7 @@
     padding: 2px 5px;
     background-color: #cccccc;
     color: #fff;
+    z-index: 2;
   }
   .rbc-event.rbc-selected {
     background-color: #a1a1a1;
@@ -500,6 +501,10 @@
     -webkit-flex: 1 0 0;
         -ms-flex: 1 0 0px;
             flex: 1 0 0;
+            z-index: 1;
+  }
+  .rbc-time-slot:hover {
+    background-color: rgba(0,123,255, 0.1);
   }
   .rbc-time-slot.rbc-now {
     font-weight: bold;
