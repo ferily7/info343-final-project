@@ -205,6 +205,13 @@ a {
 .no-margin {
   margin: 0 !important;
 }
+.trips-header {
+  text-transform: uppercase;
+  margin: 0;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 16px 16px 4px 16px;
+}
 .signout-button {
   width: 70%;
   margin-left: 15%;
@@ -213,6 +220,7 @@ a {
 }
 .trip-list {
   padding: 0px !important;
+  border-top: 1px solid #7c7c7c !important;
 }
 .trip-list-item {
   border-bottom: 1px solid #7c7c7c !important;

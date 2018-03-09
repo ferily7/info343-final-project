@@ -6,8 +6,8 @@ class NoTrips extends Component {
         return (
             <div className="contain-notrips">
                 <div className="notrips unselectable">
-                    <p>No trips have been chosen.</p>
-                    <p>Begin by choosing an existing trip, or by creating a new one.</p>
+                    <p>No trip has been chosen.</p>
+                    <p>Select or create a trip.</p>
                 </div>
             </div>
         );
