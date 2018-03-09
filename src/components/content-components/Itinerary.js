@@ -131,8 +131,36 @@ class Itinerary extends Component {
     // Error messages are sent if certain state values are invalid
     handleDialogSubmit = () => {
         if (this.checkError() === 1) {
-            let imagePush = this.storageRef.child(`${this.state.eventName}${this.state.eventStart}`);
-            imagePush.put(this.state.image).then((snapshot) => {
+            if (this.state.image) {
+                let imagePush = this.storageRef.child(`${this.state.eventName}${this.state.eventStart}`);
+                imagePush.put(this.state.image).then((snapshot) => {
+                    let pushObj = {
+                        cost: this.state.cost,
+                        eventEnd: this.state.eventEnd,
+                        eventStart: this.state.eventStart,
+                        eventName: this.state.eventName,
+                        location: this.state.location,
+                        reservation: this.state.reservation,
+                        type: this.state.type,
+                        description: this.state.description,
+                        imageURL: snapshot.downloadURL
+                    }
+                    this.dataRef.child("events").push(pushObj);
+                    this.setState({
+                        errorMessage: '',
+                        cost: 0,
+                        eventEnd: 0,
+                        eventStart: 0,
+                        eventName: '',
+                        location: '',
+                        reservation: false,
+                        type: '',
+                        dialogOpen: false,
+                        description: '',
+                        image: null
+                    });
+                })
+            } else {
                 let pushObj = {
                     cost: this.state.cost,
                     eventEnd: this.state.eventEnd,
@@ -141,8 +169,7 @@ class Itinerary extends Component {
                     location: this.state.location,
                     reservation: this.state.reservation,
                     type: this.state.type,
-                    description: this.state.description,
-                    imageURL: snapshot.downloadURL
+                    description: this.state.description
                 }
                 this.dataRef.child("events").push(pushObj);
                 this.setState({
@@ -158,7 +185,7 @@ class Itinerary extends Component {
                     description: '',
                     image: null
                 });
-            })
+            }
         }
     };
 
