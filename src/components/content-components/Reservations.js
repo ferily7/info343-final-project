@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import firebase from "firebase";
 import { Grid, Row, Col } from "react-flexbox-grid";
 import NoTrips from "./NoTrips";
+import _ from "lodash";
 // material ui components
 import {
     Card,
@@ -62,13 +63,6 @@ class Reservations extends Component {
         })
     }
     render() {
-        const reservation = [];
-        for (var i = 0; i < this.state.reservations; i += 1) {
-            reservation.push(
-                <Col className="table-margin" xs={12} md={6} xl={4}>
-                    <ReservationCard />
-                </Col>);
-        }
         return (
             <div>
                 {this.props.selectedTrip === "" && <NoTrips />}
@@ -77,43 +71,23 @@ class Reservations extends Component {
                         <div>
                             <Grid>
                                 <Row id="reservations">
-
                                     {this.state.dataRef.events &&
-                                        Object.keys(this.state.dataRef.events).map((d, i) => {
-                                            if (this.state.dataRef.events[d].reservation) {
+                                        _.orderBy(this.state.dataRef.events, 'eventStart', 'asc').map((d, i) => {
+                                            if (d.reservation && Date.now() < d.eventEnd) {
                                                 return (
-                                                    <Col key={d} className="table-margin" xs={12} md={6} xl={4}>
-                                                        <ReservationCard event={this.state.dataRef.events[d]} />
+                                                    <Col key={d.eventName + i} className="table-margin" xs={12} md={6} xl={4}>
+                                                        <ReservationCard event={d} />
                                                     </Col>
                                                 )
                                             }
                                         })
                                     }
 
-                                    <Col className="table-margin" xs={12} md={6} xl={4}>
+                                    {/* <Col className="table-margin" xs={12} md={6} xl={4}>
                                         <div className="new-category" onClick={this.addReservation}>
                                             <p className="unselectable new-category-text">+ Add Reservation</p>
                                         </div>
-                                    </Col>
-
-
-                                    {/* this.state.dataRef.events ? Object.keys(this.state.dataRef.events).map((d, i) => {
-                                let returnObj = {
-                                    id: 0,
-                                    name: d,
-                                    title: this.state.dataRef.events[d].eventName,
-                                    start: new Date(this.state.dataRef.events[d].eventStart),
-                                    end: new Date(this.state.dataRef.events[d].eventEnd),
-                                    type: this.state.dataRef.events[d].type,
-                                    cost: this.state.dataRef.events[d].cost,
-                                    reservation: this.state.dataRef.events[d].reservation,
-                                    location: this.state.dataRef.events[d].location
-                                } */}
-
-
-
-
-                                    {/* {reservation} */}
+                                    </Col> */}
                                 </Row>
                             </Grid>
                         </div>
@@ -159,6 +133,5 @@ class ReservationCard extends Component {
         )
     }
 }
-
 
 export default Reservations;

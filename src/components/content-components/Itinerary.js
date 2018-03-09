@@ -123,8 +123,10 @@ class Itinerary extends Component {
         this.setState({ dialogOpen: true });
     };
     handleDialogClose = () => {
-        this.setState({ dialogOpen: false,
-            errorMessage: null });
+        this.setState({
+            dialogOpen: false,
+            errorMessage: null
+        });
     };
 
     // Submits an event to the database
@@ -297,8 +299,8 @@ class Itinerary extends Component {
                             onSelectEvent={(event) => {
                                 //alert(event.title)
                                 this.setState({
-                                    eventStart: new Date(event.start),
-                                    eventEnd: new Date(event.end),
+                                    eventStart: (new Date(event.start)).getTime(),
+                                    eventEnd: (new Date(event.end)).getTime(),
                                     eventName: event.title,
                                     type: event.type,
                                     cost: event.cost,
@@ -325,8 +327,8 @@ class Itinerary extends Component {
                             onRequestClose={this.handleDialogClose}
                             autoScrollBodyContent={true}
                         >
-                        <p className="highlight">{this.state.errorMessage}</p>
-                        
+                            <p className="highlight">{this.state.errorMessage}</p>
+
                             <Grid className="neg-margin">
                                 <Row>
                                     <TextField
@@ -455,7 +457,7 @@ class Itinerary extends Component {
                             onRequestClose={this.handleEditDialogClose}
                             autoScrollBodyContent={true}
                         >
-                        <p className="highlight">{this.state.errorMessage}</p>
+                            <p className="highlight">{this.state.errorMessage}</p>
                             <Grid className="neg-margin">
                                 <Row>
                                     <TextField
