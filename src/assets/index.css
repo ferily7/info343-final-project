@@ -14,6 +14,7 @@ a {
 .highlight {
   color: #f75830;
   font-weight: 400;
+  margin-bottom: 0;
 }
 .unselectable {
   -webkit-touch-callout: none;
