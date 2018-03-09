@@ -55,19 +55,19 @@ class Reservations extends Component {
     componentWillUnmount() {
         this.mounted = false;
     }
-    addReservation(){
+    addReservation() {
         console.log("hi");
         this.setState({
-            reservations: this.state.reservations + 1, 
+            reservations: this.state.reservations + 1,
         })
     }
     render() {
         const reservation = [];
-        for (var i = 0; i < this.state.reservations; i += 1){
+        for (var i = 0; i < this.state.reservations; i += 1) {
             reservation.push(
-            <Col className="table-margin" xs={12} md={6} xl={4}>
-                <ReservationCard />
-            </Col>);
+                <Col className="table-margin" xs={12} md={6} xl={4}>
+                    <ReservationCard />
+                </Col>);
         }
         return (
             <div>
@@ -77,12 +77,43 @@ class Reservations extends Component {
                         <div>
                             <Grid>
                                 <Row id="reservations">
+
+                                    {this.state.dataRef.events &&
+                                        Object.keys(this.state.dataRef.events).map((d, i) => {
+                                            if (this.state.dataRef.events[d].reservation) {
+                                                return (
+                                                    <Col key={d} className="table-margin" xs={12} md={6} xl={4}>
+                                                        <ReservationCard event={this.state.dataRef.events[d]} />
+                                                    </Col>
+                                                )
+                                            }
+                                        })
+                                    }
+
                                     <Col className="table-margin" xs={12} md={6} xl={4}>
                                         <div className="new-category" onClick={this.addReservation}>
                                             <p className="unselectable new-category-text">+ Add Reservation</p>
                                         </div>
                                     </Col>
-                                    {reservation}
+
+
+                                    {/* this.state.dataRef.events ? Object.keys(this.state.dataRef.events).map((d, i) => {
+                                let returnObj = {
+                                    id: 0,
+                                    name: d,
+                                    title: this.state.dataRef.events[d].eventName,
+                                    start: new Date(this.state.dataRef.events[d].eventStart),
+                                    end: new Date(this.state.dataRef.events[d].eventEnd),
+                                    type: this.state.dataRef.events[d].type,
+                                    cost: this.state.dataRef.events[d].cost,
+                                    reservation: this.state.dataRef.events[d].reservation,
+                                    location: this.state.dataRef.events[d].location
+                                } */}
+
+
+
+
+                                    {/* {reservation} */}
                                 </Row>
                             </Grid>
                         </div>
@@ -93,14 +124,14 @@ class Reservations extends Component {
 }
 
 class ReservationCard extends Component {
-    render(){
+    render() {
         return (
             <div>
                 <Card className="reservation-card">
                     <CardMedia>
                         <img
-                        src="img/placeholder.png"
-                        alt="placeholder"
+                            src="img/placeholder.png"
+                            alt="placeholder"
                         />
                     </CardMedia>
                     <CardHeader
