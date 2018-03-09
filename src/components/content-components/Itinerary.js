@@ -243,7 +243,8 @@ class Itinerary extends Component {
                                     type: this.state.dataRef.events[d].type,
                                     cost: this.state.dataRef.events[d].cost,
                                     reservation: this.state.dataRef.events[d].reservation,
-                                    location: this.state.dataRef.events[d].location
+                                    location: this.state.dataRef.events[d].location,
+                                    description: this.state.dataRef.events[d].description
                                 }
                                 return returnObj;
                             }) : []}
@@ -262,6 +263,7 @@ class Itinerary extends Component {
                                     cost: event.cost,
                                     reservation: event.reservation,
                                     location: event.location,
+                                    description: event.description,
                                     editEvent: event.name
                                 })
                                 this.handleEditDialogOpen();
