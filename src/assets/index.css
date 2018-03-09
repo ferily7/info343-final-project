@@ -346,6 +346,81 @@ line-height: 231.2px;
 color: #7c7c7c;
 font-size: 1.5rem;
 }
+.text-center {
+  text-align: center !important;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+.contain-progress {
+  width: 100%;
+  background-color: #e3e3e3;
+  padding: 8px;
+}
+.progress {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 2.5rem;
+  overflow: hidden;
+  font-size: 0.75rem;
+  background-color: #ffffff;
+  border-radius: 1.25rem;
+  width: 100%;
+}
+
+.progress-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  background-color: #007bff;
+  transition: width 0.6s ease;
+}
+.progress-bar-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+    white-space: nowrap;
+    display: inline;
+    line-height: 2.5rem;
+    vertical-align: middle;
+    padding: 0 5px;
+}
+.category-1 {
+  background-color: #42A5F5;
+}
+.category-2 {
+  background-color: #EC407A;
+}
+.category-3 {
+  background-color: #66BB6A;
+}
+.category-4 {
+  background-color: #AB47BC;
+}
+.category-5 {
+  background-color: #FFB300;
+}
+.category-6 {
+  background-color: #5C6BC0;
+}
+.category-7 {
+  background-color: #FF7043;
+}
+.category-8 {
+  background-color: #C0CA33;
+}
+
 @media (min-width: 480px) {
   /* LANDING PAGE STYLES */
   #welcome-subheader {
