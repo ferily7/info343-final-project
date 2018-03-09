@@ -295,7 +295,8 @@ class Itinerary extends Component {
                             defaultView="week"
                             views={['week']}
                             scrollToTime={new Date(1970, 1, 1, 6)}
-                            defaultDate={new Date(this.state.dataRef.dateStart)}
+                            date={new Date(this.state.dataRef.dateStart)}
+                            onNavigate
                             onSelectEvent={(event) => {
                                 //alert(event.title)
                                 this.setState({
