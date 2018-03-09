@@ -82,7 +82,7 @@ class Overview extends Component {
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col xs={12} md={6}>
+                                            <Col xs={12} md={6} xl={4}>
                                                 <h2 className="content-subheader">Departing <span
                                                     className="overview-button"
                                                     onClick={console.log("edit departing button")}
@@ -94,7 +94,7 @@ class Overview extends Component {
                                                 </ul>
 
                                             </Col>
-                                            <Col xs={12} md={6}>
+                                            <Col xs={12} md={6} xl={4}>
                                                 <h2 className="content-subheader">Returning <span
                                                     className="overview-button"
                                                     onClick={console.log("edit returning button")}
@@ -105,9 +105,7 @@ class Overview extends Component {
                                                     <li className="overview-li">Arrives: [TIME DATE]</li>
                                                 </ul>
                                             </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col xs={12}>
+                                            <Col xs={12} md={6} xl={4}>
                                                 <h2 className="content-subheader">Travelers <span
                                                     className="overview-button"
                                                     onClick={console.log("edit travelers button")}
@@ -119,6 +117,8 @@ class Overview extends Component {
                                                 </ul>
                                             </Col>
                                         </Row>
+                                        
+
                                     </Grid>
                                 )}
                         </div>
