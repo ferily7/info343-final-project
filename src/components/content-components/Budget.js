@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import firebase from "firebase";
 import { Grid, Row, Col } from "react-flexbox-grid";
 import NoTrips from "./NoTrips";
+import { Progress } from 'reactstrap';
+import "react-sweet-progress/lib/style.css";
 // material ui components
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 import SelectField from "material-ui/SelectField";
 import MenuItem from "material-ui/MenuItem";
+import { Table, TableBody, TableRow, TableRowColumn } from "material-ui/Table";
 
 class Budget extends Component {
   constructor(props) {
@@ -39,8 +42,12 @@ class Budget extends Component {
         .database()
         .ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
       this.dataRef.on("value", snapshot => {
-        if (this.mounted) {
-          this.setState({ dataRef: snapshot.val() });
+        if (this.mounted && this.props.selectedTrip !== "") {
+          this.setState({
+            dataRef: snapshot.val()[this.props.selectedTrip]
+              ? snapshot.val()[this.props.selectedTrip]
+              : snapshot.val()
+          });
         }
       });
     }
@@ -59,7 +66,37 @@ class Budget extends Component {
           this.state.dataRef && (
             <div>
               <Grid>
-                <Row>budget bar</Row>
+                <Row>
+                    <div className="contain-progress">
+                <div className="text-center">[AMOUNT] of [BUDGET] spent</div>
+                  <Progress multi>
+                    <Progress bar className="category-1 progress-bar-text unselectable" value="10">
+                    category-1
+                    </Progress>
+                    <Progress bar className="category-2 progress-bar-text unselectable" value="10">
+                    category-2
+                    </Progress>
+                    <Progress bar className="category-3 progress-bar-text unselectable" value="10">
+                    category-3
+                    </Progress>
+                    <Progress bar className="category-4 progress-bar-text unselectable" value="10">
+                    category-4
+                    </Progress>
+                    <Progress bar className="category-5 progress-bar-text unselectable" value="10">
+                    category-5
+                    </Progress>
+                    <Progress bar className="category-6 progress-bar-text unselectable" value="10">
+                    category-6
+                    </Progress>
+                    <Progress bar className="category-7 progress-bar-text unselectable" value="10">
+                    category-7
+                    </Progress>
+                    <Progress bar className="category-8 progress-bar-text unselectable" value="10">
+                    category-8
+                    </Progress>
+                  </Progress>
+                  </div>
+                </Row>
                 <Row>
                   <Col className="no-padding" xs={12} sm={8} md={5}>
                     <TextField
@@ -75,7 +112,7 @@ class Budget extends Component {
                     <TextField
                       className="auth-input input-padding"
                       name="amount"
-                      hintText="$0.00"
+                      hintText="0.00"
                       floatingLabelText="Cost"
                       type="number"
                       fullWidth={true}
@@ -83,7 +120,7 @@ class Budget extends Component {
                   </Col>
                   <Col className="no-padding" xs={5} sm={7} md={3}>
                     <SelectField
-                    className="auth-input"
+                      className="auth-input"
                       floatingLabelText="Category"
                       value={this.state.value}
                       onChange={this.handleChange}
@@ -102,64 +139,103 @@ class Budget extends Component {
                       fullWidth={true}
                       label="Add"
                       primary={true}
-                      onClick={console.log("Add expense button clicked")}
+                      onClick={console.log("Add expense button")}
                     />
                   </Col>
                 </Row>
                 <Row>
                   {/*Category 1*/}
-                  <Col className="no-padding" xs={12} md={6} xl={4}>
-                    <p>[CATEGORY NAME]</p>
-                    <table>
-                      <tr>
-                        <td>item 1</td>
-                        <td>$0.00</td>
-                      </tr>
-                      <tr>
-                        <td>item 2</td>
-                        <td>$0.00</td>
-                      </tr>
-                      <tr>
-                        <td>item 3</td>
-                        <td>$0.00</td>
-                      </tr>
-                    </table>
+                  <Col className="table-margin" xs={12} md={6} xl={4}>
+                    <h2 className="content-subheader">Category 1</h2>
+                    <div className="category-table">
+                      <Table selectable={false}>
+                        <TableBody
+                          showRowHover={true}
+                          displayRowCheckbox={false}
+                        >
+                          <TableRow>
+                            <TableRowColumn>Item 1</TableRowColumn>
+                            <TableRowColumn>$0.00</TableRowColumn>
+                          </TableRow>
+                          <TableRow>
+                            <TableRowColumn>Item 2</TableRowColumn>
+                            <TableRowColumn>$0.00</TableRowColumn>
+                          </TableRow>
+                          <TableRow>
+                            <TableRowColumn>Item 3</TableRowColumn>
+                            <TableRowColumn>$0.00</TableRowColumn>
+                          </TableRow>
+                          <TableRow>
+                            <TableRowColumn>Item 4</TableRowColumn>
+                            <TableRowColumn>$0.00</TableRowColumn>
+                          </TableRow>
+                          <TableRow>
+                            <TableRowColumn>Item 5</TableRowColumn>
+                            <TableRowColumn>$0.00</TableRowColumn>
+                          </TableRow>
+                          <TableRow>
+                            <TableRowColumn>Item 6</TableRowColumn>
+                            <TableRowColumn>$0.00</TableRowColumn>
+                          </TableRow>
+                          <TableRow>
+                            <TableRowColumn>Item 7</TableRowColumn>
+                            <TableRowColumn>$0.00</TableRowColumn>
+                          </TableRow>
+                          <TableRow>
+                            <TableRowColumn>Item 8</TableRowColumn>
+                            <TableRowColumn>$0.00</TableRowColumn>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </div>
                   </Col>
+
                   {/*Category 2*/}
-                  <Col className="no-padding" xs={12} md={6} xl={4}>
-                    <p>[CATEGORY NAME]</p>
-                    <table>
-                      <tr>
-                        <td>item 1</td>
-                        <td>$0.00</td>
-                      </tr>
-                      <tr>
-                        <td>item 2</td>
-                        <td>$0.00</td>
-                      </tr>
-                      <tr>
-                        <td>item 3</td>
-                        <td>$0.00</td>
-                      </tr>
-                    </table>
+                  <Col className="table-margin" xs={12} md={6} xl={4}>
+                    <h2 className="content-subheader">Category 2</h2>
+                    <div className="category-table">
+                      <Table selectable={false}>
+                        <TableBody
+                          showRowHover={true}
+                          displayRowCheckbox={false}
+                        >
+                          <TableRow>
+                            <TableRowColumn>Item 1</TableRowColumn>
+                            <TableRowColumn>$0.00</TableRowColumn>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </div>
                   </Col>
+
                   {/*Category 3*/}
-                  <Col className="no-padding" xs={12} md={6} xl={4}>
-                    <p>[CATEGORY NAME]</p>
-                    <table>
-                      <tr>
-                        <td>item 1</td>
-                        <td>$0.00</td>
-                      </tr>
-                      <tr>
-                        <td>item 2</td>
-                        <td>$0.00</td>
-                      </tr>
-                      <tr>
-                        <td>item 3</td>
-                        <td>$0.00</td>
-                      </tr>
-                    </table>
+                  <Col className="table-margin" xs={12} md={6} xl={4}>
+                    <h2 className="content-subheader">Category 3</h2>
+                    <div className="category-table">
+                      <Table selectable={false}>
+                        <TableBody
+                          showRowHover={true}
+                          displayRowCheckbox={false}
+                        >
+                          <TableRow>
+                            <TableRowColumn>Item 1</TableRowColumn>
+                            <TableRowColumn>$0.00</TableRowColumn>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </div>
+                  </Col>
+
+                  {/*Add new category*/}
+                  <Col className="table-margin" xs={12} md={6} xl={4}>
+                    <div
+                      className="new-category"
+                      onClick={console.log("new category")}
+                    >
+                      <p className="unselectable new-category-text">
+                        + add category
+                      </p>
+                    </div>
                   </Col>
                 </Row>
               </Grid>

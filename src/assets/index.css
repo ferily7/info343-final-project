@@ -14,6 +14,7 @@ a {
 .highlight {
   color: #f75830;
   font-weight: 400;
+  margin-bottom: 0;
 }
 .unselectable {
   -webkit-touch-callout: none;
@@ -22,6 +23,9 @@ a {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+.neg-margin {
+  margin-top: -10px;
 }
 
 /**** APP BAR STYLES ****/
@@ -201,6 +205,13 @@ a {
 .no-margin {
   margin: 0 !important;
 }
+.trips-header {
+  text-transform: uppercase;
+  margin: 0;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 16px 16px 4px 16px;
+}
 .signout-button {
   width: 70%;
   margin-left: 15%;
@@ -209,6 +220,7 @@ a {
 }
 .trip-list {
   padding: 0px !important;
+  border-top: 1px solid #7c7c7c !important;
 }
 .trip-list-item {
   border-bottom: 1px solid #7c7c7c !important;
@@ -223,7 +235,7 @@ a {
   margin-top: 14px;
 }
 h3 {
-  padding-bottom: 0px !important;
+  padding-bottom: 24px !important;
   font-size: 1.9rem !important;
   font-weight: 500 !important;
   color: #1c1c1c;
@@ -236,6 +248,21 @@ h3 {
   padding: 16px;
   font-size: 0.9rem;
 }
+.content-header {
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: -10px;
+}
+.content-subheader {
+  text-transform: uppercase;
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding-top: 30px;
+  padding-bottom: .5rem;
+  line-height: 21.2px;
+}
 .contain-notrips {
   text-align: center;
 }
@@ -247,6 +274,42 @@ h3 {
   color: #7c7c7c;
   margin: .6rem 0;
 }
+/* Overview tab */
+.origin-destination {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 300;
+  padding-top: 30px;
+}
+.start-end {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 300;
+}
+.overview-button {
+  text-align: center;
+vertical-align: middle;
+line-height: 21.2px;
+padding-left: 40px;
+  color: #7c7c7c;
+  cursor: pointer;
+  font-size: .85rem;
+  font-weight: 500;
+}
+.fa-spacer {
+  margin-right: 4px;
+  font-size: .8rem;
+}
+.overview-list {
+  margin: 0;
+  padding: 0;
+}
+.overview-li {
+  list-style-type: none;
+  padding-bottom: 5px;
+}
+
+/* Reservation tab */
 .reservation-card {
   border: 1px solid #7c7c7c;
   margin-bottom: 16px;
@@ -258,6 +321,7 @@ h3 {
 .reservation-actions {
   padding: 16px !important;
 }
+/* Budget Tab */
 .addexpense-button {
   margin-top: 18px;
   padding-left: 8px;
@@ -265,15 +329,130 @@ h3 {
 .input-padding {
   padding-right: 8px;
 }
+.category-table {
+  max-height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+table {
+  border-top: 1px solid rgb(158, 158, 158);
+  border-bottom: 1px solid rgb(158, 158, 158);
+}
+tr, td {
+  height: 30px !important;
+}
+.table-margin {
+  margin-bottom: 16px;
+}
+.new-category {
+  margin-top: 30px;
+  background-color: #e3e3e3;
+  height: 231.2px;
+  cursor: pointer;
+}
+.new-category-text {
+  text-align: center;
+vertical-align: middle;
+line-height: 231.2px;
+color: #7c7c7c;
+font-size: 1.5rem;
+}
+.text-center {
+  text-align: center !important;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+.contain-progress {
+  width: 100%;
+  background-color: #e3e3e3;
+  padding: 8px;
+  margin-bottom: 20px;
+}
+.progress {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 2.5rem;
+  overflow: hidden;
+  font-size: 0.75rem;
+  background-color: #ffffff;
+  border-radius: 1.25rem;
+  width: 100%;
+}
+
+.progress-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  background-color: #007bff;
+  transition: width 0.6s ease;
+}
+.progress-bar-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+    white-space: nowrap;
+    display: inline;
+    line-height: 2.5rem;
+    vertical-align: middle;
+    padding: 0 5px;
+}
+.category-1 {
+  background-color: #42A5F5;
+}
+.category-2 {
+  background-color: #EC407A;
+}
+.category-3 {
+  background-color: #66BB6A;
+}
+.category-4 {
+  background-color: #AB47BC;
+}
+.category-5 {
+  background-color: #FFB300;
+}
+.category-6 {
+  background-color: #5C6BC0;
+}
+.category-7 {
+  background-color: #FF7043;
+}
+.category-8 {
+  background-color: #C0CA33;
+}
 
 @media (min-width: 480px) {
-  /**** LANDING PAGE STYLES ****/
+  /* LANDING PAGE STYLES */
   #welcome-subheader {
     font-size: 1.3rem;
   }
   #signup-header {
     font-size: 2.5rem;
   }
+
+  /* TAB CONTENT STYLES */
+  .content-header {
+    font-size: 2.5rem;
+  }
+  .origin-destination {
+    font-size: 1.8rem;
+  }
+  .start-end {
+    font-size: 1.2rem;
+  }
+
 }
 
 @media (min-width: 576px) {
@@ -287,6 +466,7 @@ h3 {
   .sidebar {
     height: 100vh;
     margin-top: -92.2px;
+    overflow: auto;
   }
   .sidebar-content {
     position: relative;
@@ -295,6 +475,7 @@ h3 {
   h3 {
     font-size: 2.5rem !important;
   }
+ 
 
   /* TABS STYLES */
   .nav {
@@ -309,7 +490,11 @@ h3 {
     background-color: #ffffff;
     border-color: #ffffff #ffffff #ffffff;
   }
-  /* DASHBOARD CONTENT STYLES */
+
+/* TAB CONTENT STYLES */
+.content-header {
+  font-size: 1.9rem;
+}
   .contain-dashboard-content {
     height: 100vh;
     margin-top: -92.2px;
@@ -318,6 +503,12 @@ h3 {
   .dashboard-content {
     position: relative;
     top: 92.2px;
+  }
+  .origin-destination {
+    font-size: 1.5rem;
+  }
+  .start-end {
+    font-size: 1rem;
   }
 }
 
@@ -342,6 +533,7 @@ h3 {
   #signup-header {
     font-size: 1.7rem;
   }
+
   .about-button {
     float: right;
     margin-top: 20px;
@@ -362,6 +554,16 @@ h3 {
   /* TABS STYLES */
   .nav-item {
     padding-right: 16px;
+  }
+  /* TAB CONTENT STYLES */
+  .content-header {
+    font-size: 2.5rem;
+  }
+  .origin-destination {
+    font-size: 1.8rem;
+  }
+  .start-end {
+    font-size: 1.2rem;
   }
 }
 
@@ -389,5 +591,11 @@ h3 {
   .notrips p {
     font-size: 2.5rem !important;
     margin: 1rem 0;
+  }
+  .origin-destination {
+    font-size: 2.2rem;
+  }
+  .start-end {
+    font-size: 1.5rem;
   }
 }

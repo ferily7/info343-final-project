@@ -29,7 +29,10 @@ class Sidebar extends Component {
     };
 
     handleDialogClose = () => {
-        this.setState({ dialogOpen: false });
+        this.setState({
+            dialogOpen: false,
+            errorMessage: null
+        });
     };
     handleDialogSubmit = () => {
         if (this.state.tripName === '') {
@@ -64,6 +67,7 @@ class Sidebar extends Component {
         }
     };
     handleSignOut() {
+        this.props.changeSelectedTrip("");
         firebase
             .auth()
             .signOut()
@@ -104,6 +108,7 @@ class Sidebar extends Component {
                 {this.props.firebaseUser ? undefined : <Redirect to="/" />}
                 <div className="sidebar">
                     <div className="sidebar-content">
+                    <h2 className="trips-header">Your Trips</h2>
                         <List className="trip-list">
                             {this.state.dataRef &&
                                 Object.keys(this.state.dataRef).map((d, i) => {
@@ -141,8 +146,10 @@ class Sidebar extends Component {
                             modal={true}
                             open={this.state.dialogOpen}
                             onRequestClose={this.handleDialogClose}
+                            autoScrollBodyContent={true}
                         >
-                            <Grid>
+                            <p className="highlight">{this.state.errorMessage}</p>
+                            <Grid className="neg-margin">
                                 <Row>
                                     <TextField
                                         className="auth-input"

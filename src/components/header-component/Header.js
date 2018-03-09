@@ -48,8 +48,14 @@ class Logged extends Component {
         const user = firebase.auth().currentUser.displayName;
         return (
             <div className="signed-in unselectable">
-                Welcome, <span className="highlight">{user}</span>.
-      </div>
+                {user &&
+                    <div>Welcome, <span className="highlight">{user}</span>.</div>
+                }
+                {
+                    !user &&
+                    <div>Welcome.</div>
+                }
+            </div>
         );
     }
 }
