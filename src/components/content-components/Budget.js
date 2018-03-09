@@ -2,14 +2,20 @@ import React, { Component } from "react";
 import firebase from "firebase";
 import { Grid, Row, Col } from "react-flexbox-grid";
 import NoTrips from "./NoTrips";
-import { Progress } from 'reactstrap';
+import { Progress } from "reactstrap";
 import "react-sweet-progress/lib/style.css";
 // material ui components
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 import SelectField from "material-ui/SelectField";
 import MenuItem from "material-ui/MenuItem";
-import { Table, TableBody, TableRow, TableRowColumn } from "material-ui/Table";
+import {
+  Table,
+  TableBody,
+  TableRow,
+  TableRowColumn,
+  TableFooter
+} from "material-ui/Table";
 
 class Budget extends Component {
   constructor(props) {
@@ -67,34 +73,68 @@ class Budget extends Component {
             <div>
               <Grid>
                 <Row>
-                    <div className="contain-progress">
-                <div className="text-center">[AMOUNT] of [BUDGET] spent</div>
-                  <Progress multi>
-                    <Progress bar className="category-1 progress-bar-text unselectable" value="10">
-                    category-1
+                  <div className="contain-progress">
+                    <div className="text-center">
+                      [AMOUNT] of [BUDGET] spent
+                    </div>
+                    <Progress multi>
+                      <Progress
+                        bar
+                        className="category-1 progress-bar-text unselectable"
+                        value="10"
+                      >
+                        category-1
+                      </Progress>
+                      <Progress
+                        bar
+                        className="category-2 progress-bar-text unselectable"
+                        value="10"
+                      >
+                        category-2
+                      </Progress>
+                      <Progress
+                        bar
+                        className="category-3 progress-bar-text unselectable"
+                        value="10"
+                      >
+                        category-3
+                      </Progress>
+                      <Progress
+                        bar
+                        className="category-4 progress-bar-text unselectable"
+                        value="10"
+                      >
+                        category-4
+                      </Progress>
+                      <Progress
+                        bar
+                        className="category-5 progress-bar-text unselectable"
+                        value="10"
+                      >
+                        category-5
+                      </Progress>
+                      <Progress
+                        bar
+                        className="category-6 progress-bar-text unselectable"
+                        value="10"
+                      >
+                        category-6
+                      </Progress>
+                      <Progress
+                        bar
+                        className="category-7 progress-bar-text unselectable"
+                        value="10"
+                      >
+                        category-7
+                      </Progress>
+                      <Progress
+                        bar
+                        className="category-8 progress-bar-text unselectable"
+                        value="10"
+                      >
+                        category-8
+                      </Progress>
                     </Progress>
-                    <Progress bar className="category-2 progress-bar-text unselectable" value="10">
-                    category-2
-                    </Progress>
-                    <Progress bar className="category-3 progress-bar-text unselectable" value="10">
-                    category-3
-                    </Progress>
-                    <Progress bar className="category-4 progress-bar-text unselectable" value="10">
-                    category-4
-                    </Progress>
-                    <Progress bar className="category-5 progress-bar-text unselectable" value="10">
-                    category-5
-                    </Progress>
-                    <Progress bar className="category-6 progress-bar-text unselectable" value="10">
-                    category-6
-                    </Progress>
-                    <Progress bar className="category-7 progress-bar-text unselectable" value="10">
-                    category-7
-                    </Progress>
-                    <Progress bar className="category-8 progress-bar-text unselectable" value="10">
-                    category-8
-                    </Progress>
-                  </Progress>
                   </div>
                 </Row>
                 <Row>
@@ -148,7 +188,11 @@ class Budget extends Component {
                   <Col className="table-margin" xs={12} md={6} xl={4}>
                     <h2 className="content-subheader">Category 1</h2>
                     <div className="category-table">
-                      <Table selectable={false}>
+                      <Table
+                        selectable={false}
+                        fixedFooter={true}
+                        height="200px"
+                      >
                         <TableBody
                           showRowHover={true}
                           displayRowCheckbox={false}
@@ -186,6 +230,16 @@ class Budget extends Component {
                             <TableRowColumn>$0.00</TableRowColumn>
                           </TableRow>
                         </TableBody>
+                        <TableFooter className="table-footer">
+                          <TableRow>
+                            <TableRowColumn>
+                              <span className="bold">Total:</span>
+                            </TableRowColumn>
+                            <TableRowColumn>
+                              <span className="bold">[TOTAL]</span>
+                            </TableRowColumn>
+                          </TableRow>
+                        </TableFooter>
                       </Table>
                     </div>
                   </Col>
@@ -204,6 +258,16 @@ class Budget extends Component {
                             <TableRowColumn>$0.00</TableRowColumn>
                           </TableRow>
                         </TableBody>
+                        <TableFooter className="table-footer">
+                          <TableRow>
+                            <TableRowColumn>
+                              <span className="bold">Total:</span>
+                            </TableRowColumn>
+                            <TableRowColumn>
+                              <span className="bold">[TOTAL]</span>
+                            </TableRowColumn>
+                          </TableRow>
+                        </TableFooter>
                       </Table>
                     </div>
                   </Col>
@@ -222,6 +286,16 @@ class Budget extends Component {
                             <TableRowColumn>$0.00</TableRowColumn>
                           </TableRow>
                         </TableBody>
+                        <TableFooter className="table-footer">
+                          <TableRow>
+                            <TableRowColumn>
+                              <span className="bold">Total:</span>
+                            </TableRowColumn>
+                            <TableRowColumn>
+                              <span className="bold">[TOTAL]</span>
+                            </TableRowColumn>
+                          </TableRow>
+                        </TableFooter>
                       </Table>
                     </div>
                   </Col>

@@ -11,6 +11,9 @@ body {
 a {
   text-decoration: none;
 }
+.bold {
+  font-weight: 500;
+}
 .highlight {
   color: #f75830;
   font-weight: 400;
@@ -333,14 +336,9 @@ padding-left: 40px;
 .input-padding {
   padding-right: 8px;
 }
-.category-table {
-  max-height: 200px;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
+
 table {
   border-top: 1px solid rgb(158, 158, 158);
-  border-bottom: 1px solid rgb(158, 158, 158);
 }
 tr, td {
   height: 30px !important;
@@ -348,10 +346,13 @@ tr, td {
 .table-margin {
   margin-bottom: 16px;
 }
+.table-footer td {
+  padding: 0 !important;
+}
 .new-category {
   margin-top: 30px;
   background-color: #e3e3e3;
-  height: 231.2px;
+  height: 259.2px;
   cursor: pointer;
 }
 .new-category-text {
