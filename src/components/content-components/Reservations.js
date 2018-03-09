@@ -6,12 +6,10 @@ import _ from "lodash";
 // material ui components
 import {
     Card,
-    CardActions,
     CardHeader,
     CardMedia,
     CardText
 } from "material-ui/Card";
-import RaisedButton from "material-ui/RaisedButton";
 
 class Reservations extends Component {
     constructor(props) {
@@ -21,7 +19,6 @@ class Reservations extends Component {
             addRequest: false,
             reservations: 0
         };
-        this.addReservation = this.addReservation.bind(this);
     }
     // Component will receive the correct selected trip, update the reference to the trip when this is done
     componentWillReceiveProps(inProp) {
@@ -56,13 +53,20 @@ class Reservations extends Component {
     componentWillUnmount() {
         this.mounted = false;
     }
-    addReservation() {
-        console.log("hi");
-        this.setState({
-            reservations: this.state.reservations + 1,
-        })
-    }
+
     render() {
+        const events = this.state.dataRef && this.state.dataRef.events ? _.orderBy(this.state.dataRef.events, 'eventStart', 'asc').map((d, i) => {
+            if (d.reservation && Date.now() < d.eventEnd) {
+                return (
+                    <Col key={d.eventName + i} className="table-margin" xs={12} md={6} xl={4}>
+                        <ReservationCard event={d} />
+                    </Col>
+                )
+            } else {
+                return <div key={d}></div>;
+            }
+        }) : [];
+
         return (
             <div>
                 {this.props.selectedTrip === "" && <NoTrips />}
@@ -71,18 +75,15 @@ class Reservations extends Component {
                         <div>
                             <Grid>
                                 <Row id="reservations">
-                                    {this.state.dataRef.events &&
-                                        _.orderBy(this.state.dataRef.events, 'eventStart', 'asc').map((d, i) => {
-                                            if (d.reservation && Date.now() < d.eventEnd) {
-                                                return (
-                                                    <Col key={d.eventName + i} className="table-margin" xs={12} md={6} xl={4}>
-                                                        <ReservationCard event={d} />
-                                                    </Col>
-                                                )
-                                            }
-                                        })
+                                    {events}
+                                    {events.length === 0 &&
+                                        <div className="contain-notrips">  {/* Alignment here is bad */}
+                                            <div className="notrips unselectable">
+                                                <p>You have no reservations.</p>
+                                                <p>Create reservations in the Itinerary tab.</p>
+                                            </div>
+                                        </div>
                                     }
-
                                     {/* <Col className="table-margin" xs={12} md={6} xl={4}>
                                         <div className="new-category" onClick={this.addReservation}>
                                             <p className="unselectable new-category-text">+ Add Reservation</p>
@@ -120,14 +121,6 @@ class ReservationCard extends Component {
                     >
                         {this.props.event.description}
                     </CardText>
-                    <CardActions className="reservation-actions">
-                        <RaisedButton primary={true} label="Edit" />
-                        <RaisedButton
-                            secondary={true}
-                            className="cancel-button"
-                            label="Delete"
-                        />
-                    </CardActions>
                 </Card>
             </div>
         )
