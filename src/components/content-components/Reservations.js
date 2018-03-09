@@ -130,7 +130,7 @@ class ReservationCard extends Component {
                 <Card className="reservation-card">
                     <CardMedia>
                         <img
-                            src={this.props.event.imageURL}
+                            src={this.props.event.imageURL ? this.props.event.imageURL : 'img/placeholder.png'}
                             alt={this.props.event.eventName}
                         />
                     </CardMedia>
