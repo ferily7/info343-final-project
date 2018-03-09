@@ -112,7 +112,7 @@ class Budget extends Component {
                     <TextField
                       className="auth-input input-padding"
                       name="amount"
-                      hintText="$0.00"
+                      hintText="0.00"
                       floatingLabelText="Cost"
                       type="number"
                       fullWidth={true}

@@ -282,6 +282,7 @@ class Itinerary extends Component {
                             actions={dialogActions}
                             open={this.state.dialogOpen}
                             onRequestClose={this.handleDialogClose}
+                            autoScrollBodyContent={true}
                         >
                             <Grid>
                                 <Row>
@@ -391,6 +392,7 @@ class Itinerary extends Component {
                             actions={editDialogActions}
                             open={this.state.editDialogOpen}
                             onRequestClose={this.handleEditDialogClose}
+                            autoScrollBodyContent={true}
                         >
                             <Grid>
                                 <Row>
