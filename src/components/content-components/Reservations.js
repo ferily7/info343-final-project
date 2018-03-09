@@ -130,12 +130,12 @@ class ReservationCard extends Component {
                 <Card className="reservation-card">
                     <CardMedia>
                         <img
-                            src="img/placeholder.png"
-                            alt="placeholder"
+                            src={this.props.event.imageURL}
+                            alt={this.props.event.eventName}
                         />
                     </CardMedia>
                     <CardHeader
-                        title={this.props.event.eventName}
+                        title={`${this.props.event.eventName} -- ${this.props.event.location}`}
                         subtitle={(new Date(this.props.event.eventStart)).toLocaleString()}
                         actAsExpander={true}
                         showExpandableButton={true}
@@ -144,7 +144,7 @@ class ReservationCard extends Component {
                         className="reservation-description"
                         expandable={true}
                     >
-                        {this.props.event.location}
+                        {this.props.event.description}
                     </CardText>
                     <CardActions className="reservation-actions">
                         <RaisedButton primary={true} label="Edit" />
