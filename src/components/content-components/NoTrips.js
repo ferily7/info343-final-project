@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 class NoTrips extends Component {
 
     render() {
-        return(
+        return (
             <div className="contain-notrips">
-            <div className="notrips unselectable">
-                <p>You have no trips planned.</p>
-                <p>Begin by adding a new trip.</p>
+                <div className="notrips unselectable">
+                    <p>No trips have been chosen.</p>
+                    <p>Begin by choosing an existing trip, or by creating a new one.</p>
                 </div>
             </div>
         );

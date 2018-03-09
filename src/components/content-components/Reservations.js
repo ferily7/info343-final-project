@@ -135,8 +135,8 @@ class ReservationCard extends Component {
                         />
                     </CardMedia>
                     <CardHeader
-                        title="Add Reservation"
-                        subtitle="[DATE TIME]"
+                        title={this.props.event.eventName}
+                        subtitle={(new Date(this.props.event.eventStart)).toLocaleString()}
                         actAsExpander={true}
                         showExpandableButton={true}
                     />
@@ -144,12 +144,7 @@ class ReservationCard extends Component {
                         className="reservation-description"
                         expandable={true}
                     >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Donec mattis pretium massa. Aliquam erat volutpat. Nulla
-                        facilisi. Donec vulputate interdum sollicitudin. Nunc
-                        lacinia auctor quam sed pellentesque. Aliquam dui
-                        mauris, mattis quis lacus id, pellentesque lobortis
-                        odio.
+                        {this.props.event.location}
                     </CardText>
                     <CardActions className="reservation-actions">
                         <RaisedButton primary={true} label="Edit" />
