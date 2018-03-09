@@ -85,7 +85,7 @@ class Overview extends Component {
                                             <Col xs={12} md={6}>
                                                 <h2 className="content-subheader">Departing <span
                                                     className="overview-button"
-                                                    onClick={console.log("edit returning button")}
+                                                    onClick={console.log("edit departing button")}
                                                 ><FontAwesomeIcon className="fa-spacer" icon={faPencilAlt} />Edit</span></h2>
                                                 <ul className="overview-list">
                                                     <li className="overview-li">[AIRLINE]</li>
@@ -108,10 +108,15 @@ class Overview extends Component {
                                         </Row>
                                         <Row>
                                             <Col xs={12}>
-                                                <h2 className="content-subheader">Travelers</h2>
-                                                <p>
-                                                    Number of Travelers: {this.state.dataRef.numTravelers}
-                                                </p>
+                                                <h2 className="content-subheader">Travelers <span
+                                                    className="overview-button"
+                                                    onClick={console.log("edit travelers button")}
+                                                ><FontAwesomeIcon className="fa-spacer" icon={faPencilAlt} />Edit</span></h2>
+                                                <ul className="overview-list">
+                                                    <li className="overview-li">Travelers: {this.state.dataRef.numTravelers}</li>
+                                                    <li className="overview-li">[TRAVELER 1 NAME]</li>
+                                                    <li className="overview-li">[TRAVELER 2 NAME]</li>
+                                                </ul>
                                             </Col>
                                         </Row>
                                     </Grid>
