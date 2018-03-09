@@ -87,10 +87,10 @@ class Overview extends Component {
                           className="overview-button"
                           onClick={console.log("edit returning button")}
                         ><FontAwesomeIcon className="fa-spacer" icon={faPencilAlt} />Edit</span></h2>
-                        <ul>
-                          <li>[AIRLINE]</li>
-                          <li>Departs: [TIME DATE]</li>
-                          <li>Arrives: [TIME DATE]</li>
+                        <ul className="overview-list">
+                          <li className="overview-li">[AIRLINE]</li>
+                          <li className="overview-li">Departs: [TIME DATE]</li>
+                          <li className="overview-li">Arrives: [TIME DATE]</li>
                         </ul>
                         
                       </Col>
@@ -99,10 +99,10 @@ class Overview extends Component {
                           className="overview-button"
                           onClick={console.log("edit returning button")}
                         ><FontAwesomeIcon className="fa-spacer" icon={faPencilAlt} />Edit</span></h2>
-                        <ul>
-                          <li>[AIRLINE]</li>
-                          <li>Departs: [TIME DATE]</li>
-                          <li>Arrives: [TIME DATE]</li>
+                        <ul className="overview-list">
+                          <li className="overview-li">[AIRLINE]</li>
+                          <li className="overview-li">Departs: [TIME DATE]</li>
+                          <li className="overview-li">Arrives: [TIME DATE]</li>
                         </ul>
                       </Col>
                     </Row>

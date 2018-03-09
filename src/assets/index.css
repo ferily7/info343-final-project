@@ -289,6 +289,14 @@ line-height: 21.2px;
   margin-right: 4px;
   font-size: .8rem;
 }
+.overview-list {
+  margin: 0;
+  padding: 0;
+}
+.overview-li {
+  list-style-type: none;
+  padding-bottom: 5px;
+}
 
 /* Reservation tab */
 .reservation-card {

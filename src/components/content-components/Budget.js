@@ -2,70 +2,74 @@ import React, { Component } from "react";
 import firebase from "firebase";
 import { Grid, Row, Col } from "react-flexbox-grid";
 import NoTrips from "./NoTrips";
+import { Progress } from "react-sweet-progress";
+import "react-sweet-progress/lib/style.css";
 // material ui components
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 import SelectField from "material-ui/SelectField";
 import MenuItem from "material-ui/MenuItem";
-import {
-    Table,
-    TableBody,
-    TableRow,
-    TableRowColumn
-} from "material-ui/Table";
+import { Table, TableBody, TableRow, TableRowColumn } from "material-ui/Table";
 
 class Budget extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            dataRef: null,
-            value: null
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataRef: null,
+      value: null
+    };
+  }
 
-    // Component will receive the correct selected trip, update the reference to the trip when this is done
-    componentWillReceiveProps(inProp) {
-        if (inProp.firebaseUser) {
-            this.dataRef = firebase
-                .database()
-                .ref(`${inProp.firebaseUser.uid}/trips/${inProp.selectedTrip}`);
-            this.dataRef.on("value", snapshot => {
-                if (this.mounted) {
-                    this.setState({ dataRef: snapshot.val() });
-                }
-            });
+  // Component will receive the correct selected trip, update the reference to the trip when this is done
+  componentWillReceiveProps(inProp) {
+    if (inProp.firebaseUser) {
+      this.dataRef = firebase
+        .database()
+        .ref(`${inProp.firebaseUser.uid}/trips/${inProp.selectedTrip}`);
+      this.dataRef.on("value", snapshot => {
+        if (this.mounted) {
+          this.setState({ dataRef: snapshot.val() });
         }
+      });
     }
+  }
 
-    // Grab what it can when component mounts, need this for when switching between tabs.
-    componentDidMount() {
-        this.mounted = true;
-        if (this.props.firebaseUser) {
-            this.dataRef = firebase
-                .database()
-                .ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
-            this.dataRef.on("value", snapshot => {
-                if (this.mounted) {
-                    this.setState({ dataRef: snapshot.val()[this.props.selectedTrip] ? snapshot.val()[this.props.selectedTrip] : snapshot.val() });
-                }
-            });
+  // Grab what it can when component mounts, need this for when switching between tabs.
+  componentDidMount() {
+    this.mounted = true;
+    if (this.props.firebaseUser) {
+      this.dataRef = firebase
+        .database()
+        .ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
+      this.dataRef.on("value", snapshot => {
+        if (this.mounted) {
+          this.setState({
+            dataRef: snapshot.val()[this.props.selectedTrip]
+              ? snapshot.val()[this.props.selectedTrip]
+              : snapshot.val()
+          });
         }
+      });
     }
+  }
 
-    // Set unmount state so doesn't update when not mounted anymore
-    componentWillUnmount() {
-        this.mounted = false;
-    }
-    handleChange = (event, index, value) => this.setState({ value });
-    render() {
-        return (
-            <div>
-                {this.props.selectedTrip === "" && <NoTrips />}
-                {this.props.selectedTrip !== "" &&
-                    this.state.dataRef && (
+  // Set unmount state so doesn't update when not mounted anymore
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+  handleChange = (event, index, value) => this.setState({ value });
+  render() {
+    return (
+      <div>
+        {this.props.selectedTrip === "" && <NoTrips />}
+        {this.props.selectedTrip !== "" &&
+          this.state.dataRef && (
             <div>
               <Grid>
-                <Row>budget bar</Row>
+                <Row>
+                    {/*PROGRESS BAR PROBABLY GOING TO CHANGE*/}
+                  <Progress percent={69} />
+                </Row>
                 <Row>
                   <Col className="no-padding" xs={12} sm={8} md={5}>
                     <TextField
@@ -159,56 +163,60 @@ class Budget extends Component {
                     </div>
                   </Col>
 
-                                    {/*Category 2*/}
-                                    <Col className="table-margin" xs={12} md={6} xl={4}>
-                                        <h2 className="content-subheader">Category 2</h2>
-                                        <div className="category-table">
-                                            <Table selectable={false}>
-                                                <TableBody
-                                                    showRowHover={true}
-                                                    displayRowCheckbox={false}
-                                                >
-                                                    <TableRow>
-                                                        <TableRowColumn>Item 1</TableRowColumn>
-                                                        <TableRowColumn>$0.00</TableRowColumn>
-                                                    </TableRow>
-                                                </TableBody>
-                                            </Table>
-                                        </div>
-                                    </Col>
+                  {/*Category 2*/}
+                  <Col className="table-margin" xs={12} md={6} xl={4}>
+                    <h2 className="content-subheader">Category 2</h2>
+                    <div className="category-table">
+                      <Table selectable={false}>
+                        <TableBody
+                          showRowHover={true}
+                          displayRowCheckbox={false}
+                        >
+                          <TableRow>
+                            <TableRowColumn>Item 1</TableRowColumn>
+                            <TableRowColumn>$0.00</TableRowColumn>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </div>
+                  </Col>
 
-                                    {/*Category 3*/}
-                                    <Col className="table-margin" xs={12} md={6} xl={4}>
-                                        <h2 className="content-subheader">Category 3</h2>
-                                        <div className="category-table">
-                                            <Table selectable={false}>
-                                                <TableBody
-                                                    showRowHover={true}
-                                                    displayRowCheckbox={false}
-                                                >
-                                                    <TableRow>
-                                                        <TableRowColumn>Item 1</TableRowColumn>
-                                                        <TableRowColumn>$0.00</TableRowColumn>
-                                                    </TableRow>
-                                                </TableBody>
-                                            </Table>
-                                        </div>
-                                    </Col>
+                  {/*Category 3*/}
+                  <Col className="table-margin" xs={12} md={6} xl={4}>
+                    <h2 className="content-subheader">Category 3</h2>
+                    <div className="category-table">
+                      <Table selectable={false}>
+                        <TableBody
+                          showRowHover={true}
+                          displayRowCheckbox={false}
+                        >
+                          <TableRow>
+                            <TableRowColumn>Item 1</TableRowColumn>
+                            <TableRowColumn>$0.00</TableRowColumn>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </div>
+                  </Col>
 
                   {/*Add new category*/}
                   <Col className="table-margin" xs={12} md={6} xl={4}>
-                    
-                      <div className="new-category" onClick={console.log("new category")}>
-                        <p className="unselectable new-category-text">+ add category</p>
-                      </div>
+                    <div
+                      className="new-category"
+                      onClick={console.log("new category")}
+                    >
+                      <p className="unselectable new-category-text">
+                        + add category
+                      </p>
+                    </div>
                   </Col>
                 </Row>
               </Grid>
             </div>
-             )}
-             </div>
-        );
-    }
+          )}
+      </div>
+    );
+  }
 }
 
 export default Budget;
