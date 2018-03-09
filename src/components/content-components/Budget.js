@@ -70,29 +70,29 @@ class Budget extends Component {
                     <div className="contain-progress">
                 <div className="text-center">[AMOUNT] of [BUDGET] spent</div>
                   <Progress multi>
-                    <Progress bar className="category-1" value="10">
+                    <Progress bar className="category-1 progress-bar-text" value="10">
                     category-1
                     </Progress>
-                    <Progress bar className="category-2" value="10">
-                    category-1
+                    <Progress bar className="category-2 progress-bar-text" value="10">
+                    category-2
                     </Progress>
-                    <Progress bar className="category-3" value="10">
-                    category-1
+                    <Progress bar className="category-3 progress-bar-text" value="10">
+                    category-3
                     </Progress>
-                    <Progress bar className="category-4" value="10">
-                    category-1
+                    <Progress bar className="category-4 progress-bar-text" value="10">
+                    category-4
                     </Progress>
-                    <Progress bar className="category-5" value="10">
-                    category-1
+                    <Progress bar className="category-5 progress-bar-text" value="10">
+                    category-5
                     </Progress>
-                    <Progress bar className="category-6" value="10">
-                    category-1
+                    <Progress bar className="category-6 progress-bar-text" value="10">
+                    category-6
                     </Progress>
-                    <Progress bar className="category-7" value="10">
-                    category-1
+                    <Progress bar className="category-7 progress-bar-text" value="10">
+                    category-7
                     </Progress>
-                    <Progress bar className="category-8" value="10">
-                    category-1
+                    <Progress bar className="category-8 progress-bar-text" value="10">
+                    category-8
                     </Progress>
                   </Progress>
                   </div>

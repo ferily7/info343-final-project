@@ -279,11 +279,11 @@ h3 {
 vertical-align: middle;
 line-height: 21.2px;
   float: right;
-  margin-right: 20%;
   color: #7c7c7c;
   cursor: pointer;
   font-size: .85rem;
   font-weight: 500;
+  margin-right: 30%;
 }
 .fa-spacer {
   margin-right: 4px;
@@ -358,6 +358,7 @@ font-size: 1.5rem;
   width: 100%;
   background-color: #e3e3e3;
   padding: 8px;
+  margin-bottom: 20px;
 }
 .progress {
   display: -webkit-box;
@@ -440,6 +441,10 @@ font-size: 1.5rem;
   .start-end {
     font-size: 1.2rem;
   }
+  .overview-button {
+    margin-right: 50%;
+  }
+
 }
 
 @media (min-width: 576px) {
@@ -461,10 +466,7 @@ font-size: 1.5rem;
   h3 {
     font-size: 2.5rem !important;
   }
- /* TAB CONTENT STYLES */
- .content-header {
-    font-size: 1.9rem;
-  }
+ 
 
   /* TABS STYLES */
   .nav {
@@ -479,7 +481,11 @@ font-size: 1.5rem;
     background-color: #ffffff;
     border-color: #ffffff #ffffff #ffffff;
   }
-  /* DASHBOARD CONTENT STYLES */
+
+/* TAB CONTENT STYLES */
+.content-header {
+  font-size: 1.9rem;
+}
   .contain-dashboard-content {
     height: 100vh;
     margin-top: -92.2px;
@@ -495,6 +501,11 @@ font-size: 1.5rem;
   .start-end {
     font-size: 1rem;
   }
+  .overview-button {
+    margin-right: 40%;
+  }
+
+
 }
 
 @media (min-width: 768px) {
@@ -550,6 +561,9 @@ font-size: 1.5rem;
   .start-end {
     font-size: 1.2rem;
   }
+  .overview-button {
+    margin-right: 20%;
+  }
 }
 
 @media (min-width: 996px) {
@@ -582,5 +596,8 @@ font-size: 1.5rem;
   }
   .start-end {
     font-size: 1.5rem;
+  }
+  .overview-button {
+    margin-right: 50%;
   }
 }
