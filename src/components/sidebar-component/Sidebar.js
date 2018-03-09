@@ -141,6 +141,7 @@ class Sidebar extends Component {
                             modal={true}
                             open={this.state.dialogOpen}
                             onRequestClose={this.handleDialogClose}
+                            autoScrollBodyContent={true}
                         >
                             <Grid>
                                 <Row>
