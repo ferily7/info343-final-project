@@ -29,8 +29,10 @@ class Sidebar extends Component {
     };
 
     handleDialogClose = () => {
-        this.setState({ dialogOpen: false,
-        errorMessage: null });
+        this.setState({
+            dialogOpen: false,
+            errorMessage: null
+        });
     };
     handleDialogSubmit = () => {
         if (this.state.tripName === '') {
@@ -65,6 +67,7 @@ class Sidebar extends Component {
         }
     };
     handleSignOut() {
+        this.props.changeSelectedTrip("");
         firebase
             .auth()
             .signOut()
@@ -144,7 +147,7 @@ class Sidebar extends Component {
                             onRequestClose={this.handleDialogClose}
                             autoScrollBodyContent={true}
                         >
-                        <p className="highlight">{this.state.errorMessage}</p>
+                            <p className="highlight">{this.state.errorMessage}</p>
                             <Grid className="neg-margin">
                                 <Row>
                                     <TextField
