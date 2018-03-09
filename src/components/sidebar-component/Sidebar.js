@@ -29,7 +29,8 @@ class Sidebar extends Component {
     };
 
     handleDialogClose = () => {
-        this.setState({ dialogOpen: false });
+        this.setState({ dialogOpen: false,
+        errorMessage: null });
     };
     handleDialogSubmit = () => {
         if (this.state.tripName === '') {
@@ -144,7 +145,7 @@ class Sidebar extends Component {
                             autoScrollBodyContent={true}
                         >
                         <p className="highlight">{this.state.errorMessage}</p>
-                            <Grid>
+                            <Grid className="neg-margin">
                                 <Row>
                                     <TextField
                                         className="auth-input"

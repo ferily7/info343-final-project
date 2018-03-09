@@ -123,7 +123,8 @@ class Itinerary extends Component {
         this.setState({ dialogOpen: true });
     };
     handleDialogClose = () => {
-        this.setState({ dialogOpen: false });
+        this.setState({ dialogOpen: false,
+            errorMessage: null });
     };
 
     // Submits an event to the database
@@ -299,7 +300,7 @@ class Itinerary extends Component {
                         >
                         <p className="highlight">{this.state.errorMessage}</p>
                         
-                            <Grid>
+                            <Grid className="neg-margin">
                                 <Row>
                                     <TextField
                                         className="auth-input"
@@ -428,7 +429,7 @@ class Itinerary extends Component {
                             autoScrollBodyContent={true}
                         >
                         <p className="highlight">{this.state.errorMessage}</p>
-                            <Grid>
+                            <Grid className="neg-margin">
                                 <Row>
                                     <TextField
                                         className="auth-input"
