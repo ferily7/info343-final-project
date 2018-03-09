@@ -278,12 +278,11 @@ h3 {
   text-align: center;
 vertical-align: middle;
 line-height: 21.2px;
-  float: right;
+padding-left: 40px;
   color: #7c7c7c;
   cursor: pointer;
   font-size: .85rem;
   font-weight: 500;
-  margin-right: 30%;
 }
 .fa-spacer {
   margin-right: 4px;
@@ -441,9 +440,6 @@ font-size: 1.5rem;
   .start-end {
     font-size: 1.2rem;
   }
-  .overview-button {
-    margin-right: 50%;
-  }
 
 }
 
@@ -501,11 +497,6 @@ font-size: 1.5rem;
   .start-end {
     font-size: 1rem;
   }
-  .overview-button {
-    margin-right: 40%;
-  }
-
-
 }
 
 @media (min-width: 768px) {
@@ -561,9 +552,6 @@ font-size: 1.5rem;
   .start-end {
     font-size: 1.2rem;
   }
-  .overview-button {
-    margin-right: 20%;
-  }
 }
 
 @media (min-width: 996px) {
@@ -596,8 +584,5 @@ font-size: 1.5rem;
   }
   .start-end {
     font-size: 1.5rem;
-  }
-  .overview-button {
-    margin-right: 50%;
   }
 }
