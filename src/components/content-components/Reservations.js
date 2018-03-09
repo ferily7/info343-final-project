@@ -44,7 +44,7 @@ class Reservations extends Component {
                 .database()
                 .ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
             this.dataRef.on("value", snapshot => {
-                if (this.mounted) {
+                if (this.mounted && this.props.selectedTrip !== "") {
                     this.setState({ dataRef: snapshot.val()[this.props.selectedTrip] ? snapshot.val()[this.props.selectedTrip] : snapshot.val() });
                 }
             });
