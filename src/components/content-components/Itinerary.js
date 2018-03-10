@@ -56,6 +56,8 @@ class Itinerary extends Component {
             this.setState({ errorMessage: "Invalid location" });
         } else if (this.state.type === "") {
             this.setState({ errorMessage: "Type of event not chosen" });
+        } else if (this.state.cost < 0) {
+            this.setState({ errorMessage: "Invalid cost" });
         } else {
             return 1;
         }
