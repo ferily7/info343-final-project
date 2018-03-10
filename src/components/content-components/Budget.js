@@ -57,6 +57,14 @@ class Budget extends Component {
         }
     };
 
+    handleDeleteCategory = (category) => {
+        let pushArr = this.state.dataRef.categories;
+        if (pushArr.indexOf(category) !== -1 || category !== "Other") {
+            pushArr.splice(pushArr.indexOf(category), 1);
+            this.dataRef.child(`categories`).set(pushArr);
+        }
+    }
+
     addExpense = () => {
         if (this.state.buyItem !== "" && this.state.value !== "") {
             let pushObj = {
@@ -68,7 +76,8 @@ class Budget extends Component {
             this.setState({
                 buyItem: '',
                 costItem: 0,
-                value: ''
+                value: '',
+                errorMessage: ''
             })
         } else {
             this.setState({ errorMessage: "Invalid input!" })
@@ -167,7 +176,7 @@ class Budget extends Component {
         let categoryBoxes = Object.keys(totalBudget).map((d) => {
             return (
                 <Col key={d} className="table-margin" xs={12} md={6} xl={4}>
-                    <h2 className="content-subheader">{d}</h2>
+                    <h2 className="content-subheader">{d}</h2> {/* add delete category button that    onClick={() => this.handleDeleteCategory(d)}    <-- whatever thing this is put on will work 100%, tested */}
                     <div className="category-table">
                         <Table
                             selectable={false}
