@@ -127,6 +127,58 @@ class Budget extends Component {
                 onClick={this.handleDialogSubmit}
             />
         ];
+        let combinedArr = [];
+        if (this.state.dataRef) {
+            Object.keys(this.state.dataRef.events).forEach((d) => {
+                let pushObj = {
+                    name: this.state.dataRef.events[d].eventName,
+                    cost: this.state.dataRef.events[d].cost,
+                    category: this.state.dataRef.events[d].type
+                }
+                combinedArr.push(pushObj);
+            });
+            Object.keys(this.state.dataRef.purchases).forEach((d) => {
+                let pushObj = {
+                    name: this.state.dataRef.purchases[d].eventName,
+                    cost: this.state.dataRef.purchases[d].cost,
+                    category: this.state.dataRef.purchases[d].type
+                }
+                combinedArr.push(pushObj);
+            });
+        }
+        let totalBudget = {};
+        combinedArr.forEach((d) => {
+            if (this.state.dataRef.categories.indexOf(d.category) !== -1) {
+                if (totalBudget[d.category] === undefined) {
+                    totalBudget[d.category] = [];
+                }
+                totalBudget[d.category].push({ item: d.name, cost: d.cost });
+            } else {
+                if (totalBudget["Other"] === undefined) {
+                    totalBudget["Other"] = [];
+                }
+                totalBudget["Other"].push({ item: d.name, cost: d.cost });
+            }
+        })
+        console.log(totalBudget);
+
+        // create a new array of purchases+events objects from database, should work as long as things are named the same (name, cost, category) <--might have to be a Object.keys() map twice
+        // create new totalbudget object
+        // for each object in the array (d, i)
+        //     if the category is in the categorylist
+        //         if totalbudget["category"] == undefined {
+        //             totalbudget["category"] = [];
+        //         }
+        //         totalbudget["category"].push({item: d.name, cost: d.cost})
+        //     if not in categorylist
+        //         if totalbudget["other"] == undefined {
+        //             totalbudget["other"] = [];
+        //         }
+        //         totalbudget["other"].push({item: d.name, cost:d.cost})
+        // }
+
+        // now totalbudget should end up looking like the congregated data above, which now we can iterate through to make the front end display
+
         return (
             <div>
                 {this.props.selectedTrip === "" && <NoTrips />}
