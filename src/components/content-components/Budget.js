@@ -137,7 +137,7 @@ class Budget extends Component {
             />
         ];
         let combinedArr = [];
-        if (this.state.dataRef) {
+        if (this.state.dataRef && this.state.dataRef.events) {
             Object.keys(this.state.dataRef.events).forEach((d) => {
                 let pushObj = {
                     name: this.state.dataRef.events[d].eventName,

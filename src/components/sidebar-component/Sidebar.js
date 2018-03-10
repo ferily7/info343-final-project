@@ -21,7 +21,8 @@ class Sidebar extends Component {
             destination: '',
             dateStart: 0,
             dateEnd: 0,
-            travelerCount: 0
+            travelerCount: 0,
+            budget: 0
         };
     }
     handleDialogOpen = () => {
@@ -45,6 +46,8 @@ class Sidebar extends Component {
             this.setState({ errorMessage: "Invalid dates chosen" });
         } else if (this.state.travelerCount === 0) {
             this.setState({ errorMessage: "Invalid number of travelers" });
+        } else if (this.state.budget <= 0) {
+            this.setState({ errorMessage: "Invalid maximum budget" })
         } else {
             let pushObj = {
                 dateEnd: this.state.dateEnd,
@@ -52,6 +55,7 @@ class Sidebar extends Component {
                 startLocation: this.state.origin,
                 endLocation: this.state.destination,
                 numTravelers: this.state.travelerCount,
+                budget: this.state.budget,
                 tripName: this.state.tripName,
                 categories: ["Dining", "Services", "Experiences", "Shopping", "Other"]
             }
@@ -63,7 +67,8 @@ class Sidebar extends Component {
                 destination: '',
                 dateStart: 0,
                 dateEnd: 0,
-                travelerCount: 0
+                travelerCount: 0,
+                budget: 0
             });
         }
     };
@@ -214,6 +219,17 @@ class Sidebar extends Component {
                                         type="number"
                                         fullWidth={true}
                                         onChange={(event) => { this.setState({ travelerCount: Number(event.target.value) }) }}
+                                    />
+                                </Row>
+                                <Row>
+                                    <TextField
+                                        className="auth-input"
+                                        name="budget"
+                                        hintText="What is your budget?"
+                                        floatingLabelText="Budget"
+                                        type="number"
+                                        fullWidth={true}
+                                        onChange={(event) => { this.setState({ budget: Number(event.target.value) }) }}
                                     />
                                 </Row>
                             </Grid>
