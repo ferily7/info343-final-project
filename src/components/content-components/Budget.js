@@ -150,34 +150,58 @@ class Budget extends Component {
         combinedArr.forEach((d) => {
             if (this.state.dataRef.categories.indexOf(d.category) !== -1) {
                 if (totalBudget[d.category] === undefined) {
-                    totalBudget[d.category] = [];
+                    totalBudget[d.category] = { list: [], cost: 0 };
                 }
-                totalBudget[d.category].push({ item: d.name, cost: d.cost });
+                totalBudget[d.category].list.push({ item: d.name, cost: d.cost });
+                totalBudget[d.category].cost += d.cost;
             } else {
                 if (totalBudget["Other"] === undefined) {
-                    totalBudget["Other"] = [];
+                    totalBudget["Other"] = { list: [], cost: 0 };
                 }
-                totalBudget["Other"].push({ item: d.name, cost: d.cost });
+                totalBudget["Other"].list.push({ item: d.name, cost: d.cost });
+                totalBudget["Other"].cost += d.cost;
             }
         })
-        console.log(totalBudget);
 
-        // create a new array of purchases+events objects from database, should work as long as things are named the same (name, cost, category) <--might have to be a Object.keys() map twice
-        // create new totalbudget object
-        // for each object in the array (d, i)
-        //     if the category is in the categorylist
-        //         if totalbudget["category"] == undefined {
-        //             totalbudget["category"] = [];
-        //         }
-        //         totalbudget["category"].push({item: d.name, cost: d.cost})
-        //     if not in categorylist
-        //         if totalbudget["other"] == undefined {
-        //             totalbudget["other"] = [];
-        //         }
-        //         totalbudget["other"].push({item: d.name, cost:d.cost})
-        // }
-
-        // now totalbudget should end up looking like the congregated data above, which now we can iterate through to make the front end display
+        // categoryBoxes can be moved to its own class, but I think I can do calculations here for the progress bar.
+        let categoryBoxes = Object.keys(totalBudget).map((d) => {
+            return (
+                <Col key={d} className="table-margin" xs={12} md={6} xl={4}>
+                    <h2 className="content-subheader">{d}</h2>
+                    <div className="category-table">
+                        <Table
+                            selectable={false}
+                            fixedFooter={true}
+                            height="200px"
+                        >
+                            <TableBody
+                                showRowHover={true}
+                                displayRowCheckbox={false}
+                            >
+                                {totalBudget[d].list.map((e, i) => {
+                                    return (
+                                        <TableRow key={d + i}>
+                                            <TableRowColumn>{e.item}</TableRowColumn>
+                                            <TableRowColumn>{`$${e.cost.toFixed(2)}`}</TableRowColumn>
+                                        </TableRow>
+                                    )
+                                })}
+                            </TableBody>
+                            <TableFooter className="table-footer">
+                                <TableRow>
+                                    <TableRowColumn>
+                                        <span className="bold">Total:</span>
+                                    </TableRowColumn>
+                                    <TableRowColumn>
+                                        <span className="bold">{`$${totalBudget[d].cost.toFixed(2)}`}</span>
+                                    </TableRowColumn>
+                                </TableRow>
+                            </TableFooter>
+                        </Table>
+                    </div>
+                </Col>
+            )
+        });
 
         return (
             <div>
@@ -303,8 +327,9 @@ class Budget extends Component {
                                     </Col>
                                 </Row>
                                 <Row>
+                                    {categoryBoxes}
                                     {/*Category 1*/}
-                                    <Col className="table-margin" xs={12} md={6} xl={4}>
+                                    {/* <Col className="table-margin" xs={12} md={6} xl={4}>
                                         <h2 className="content-subheader">Category 1</h2>
                                         <div className="category-table">
                                             <Table
@@ -339,61 +364,7 @@ class Budget extends Component {
                                         </div>
                                     </Col>
 
-                                    {/*Category 2*/}
-                                    <Col className="table-margin" xs={12} md={6} xl={4}>
-                                        <h2 className="content-subheader">Category 2</h2>
-                                        <div className="category-table">
-                                            <Table selectable={false}>
-                                                <TableBody
-                                                    showRowHover={true}
-                                                    displayRowCheckbox={false}
-                                                >
-                                                    <TableRow>
-                                                        <TableRowColumn>Item 1</TableRowColumn>
-                                                        <TableRowColumn>$0.00</TableRowColumn>
-                                                    </TableRow>
-                                                </TableBody>
-                                                <TableFooter className="table-footer">
-                                                    <TableRow>
-                                                        <TableRowColumn>
-                                                            <span className="bold">Total:</span>
-                                                        </TableRowColumn>
-                                                        <TableRowColumn>
-                                                            <span className="bold">[TOTAL]</span>
-                                                        </TableRowColumn>
-                                                    </TableRow>
-                                                </TableFooter>
-                                            </Table>
-                                        </div>
-                                    </Col>
-
-                                    {/*Category 3*/}
-                                    <Col className="table-margin" xs={12} md={6} xl={4}>
-                                        <h2 className="content-subheader">Category 3</h2>
-                                        <div className="category-table">
-                                            <Table selectable={false}>
-                                                <TableBody
-                                                    showRowHover={true}
-                                                    displayRowCheckbox={false}
-                                                >
-                                                    <TableRow>
-                                                        <TableRowColumn>Item 1</TableRowColumn>
-                                                        <TableRowColumn>$0.00</TableRowColumn>
-                                                    </TableRow>
-                                                </TableBody>
-                                                <TableFooter className="table-footer">
-                                                    <TableRow>
-                                                        <TableRowColumn>
-                                                            <span className="bold">Total:</span>
-                                                        </TableRowColumn>
-                                                        <TableRowColumn>
-                                                            <span className="bold">[TOTAL]</span>
-                                                        </TableRowColumn>
-                                                    </TableRow>
-                                                </TableFooter>
-                                            </Table>
-                                        </div>
-                                    </Col>
+                                     */}
 
                                     {/*Add new category*/}
                                     {this.state.dataRef.categories.length < 8 &&
