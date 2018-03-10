@@ -24,10 +24,12 @@ class Budget extends Component {
         super(props);
         this.state = {
             dataRef: null,
-            value: null,
+            value: "",
             dialogOpen: false,
             categoryToAdd: '',
-            errorMessage: ''
+            errorMessage: '',
+            buyItem: '',
+            costItem: 0
         };
     }
     handleDialogOpen = () => {
@@ -55,6 +57,23 @@ class Budget extends Component {
         }
     };
 
+    addExpense = () => {
+        if (this.state.buyItem !== "" && this.state.value !== "") {
+            let pushObj = {
+                eventName: this.state.buyItem,
+                cost: this.state.costItem,
+                type: this.state.value
+            };
+            this.dataRef.child("purchases").push(pushObj);
+            this.setState({
+                buyItem: '',
+                costItem: 0,
+                value: ''
+            })
+        } else {
+            this.setState({ errorMessage: "Invalid input!" })
+        }
+    }
 
     // Component will receive the correct selected trip, update the reference to the trip when this is done
     componentWillReceiveProps(inProp) {
@@ -189,6 +208,8 @@ class Budget extends Component {
                                             floatingLabelText="Item"
                                             type="text"
                                             fullWidth={true}
+                                            value={this.state.buyItem}
+                                            onChange={(e) => this.setState({ buyItem: e.target.value })}
                                         />
                                     </Col>
                                     <Col className="no-padding" xs={3} sm={4} md={2}>
@@ -199,6 +220,8 @@ class Budget extends Component {
                                             floatingLabelText="Cost"
                                             type="number"
                                             fullWidth={true}
+                                            value={this.state.costItem}
+                                            onChange={(e) => this.setState({ costItem: Number(e.target.value) })}
                                         />
                                     </Col>
                                     <Col className="no-padding" xs={5} sm={7} md={3}>
@@ -209,11 +232,12 @@ class Budget extends Component {
                                             onChange={this.handleChange}
                                             fullWidth={true}
                                         >
-                                            <MenuItem value={1} primaryText="Category 1" />
-                                            <MenuItem value={2} primaryText="Category 2" />
-                                            <MenuItem value={3} primaryText="Category 3" />
-                                            <MenuItem value={4} primaryText="Category 4" />
-                                            <MenuItem value={5} primaryText="Category 5" />
+                                            <MenuItem value="" primaryText="" />
+                                            {
+                                                this.state.dataRef.categories.map((d, i) => {
+                                                    return (<MenuItem key={d} value={d} primaryText={d} />);
+                                                })
+                                            }
                                         </SelectField>
                                     </Col>
                                     <Col className="no-padding" xs={4} sm={5} md={2}>
@@ -222,7 +246,7 @@ class Budget extends Component {
                                             fullWidth={true}
                                             label="Add"
                                             primary={true}
-                                            onClick={console.log("Add expense button")}
+                                            onClick={() => this.addExpense()}
                                         />
                                     </Col>
                                 </Row>
@@ -246,30 +270,6 @@ class Budget extends Component {
                                                     </TableRow>
                                                     <TableRow>
                                                         <TableRowColumn>Item 2</TableRowColumn>
-                                                        <TableRowColumn>$0.00</TableRowColumn>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableRowColumn>Item 3</TableRowColumn>
-                                                        <TableRowColumn>$0.00</TableRowColumn>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableRowColumn>Item 4</TableRowColumn>
-                                                        <TableRowColumn>$0.00</TableRowColumn>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableRowColumn>Item 5</TableRowColumn>
-                                                        <TableRowColumn>$0.00</TableRowColumn>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableRowColumn>Item 6</TableRowColumn>
-                                                        <TableRowColumn>$0.00</TableRowColumn>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableRowColumn>Item 7</TableRowColumn>
-                                                        <TableRowColumn>$0.00</TableRowColumn>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableRowColumn>Item 8</TableRowColumn>
                                                         <TableRowColumn>$0.00</TableRowColumn>
                                                     </TableRow>
                                                 </TableBody>
