@@ -17,13 +17,17 @@ import {
     TableFooter
 } from "material-ui/Table";
 
+import Dialog from "material-ui/Dialog";
+
 class Budget extends Component {
     constructor(props) {
         super(props);
         this.state = {
             dataRef: null,
             value: null,
-            dialogOpen: false
+            dialogOpen: false,
+            categoryToAdd: '',
+            errorMessage: ''
         };
     }
     handleDialogOpen = () => {
@@ -33,14 +37,22 @@ class Budget extends Component {
     handleDialogClose = () => {
         this.setState({
             dialogOpen: false,
-            errorMessage: null
+            categoryToAdd: '',
+            errorMessage: ''
         });
     };
     handleDialogSubmit = () => {
-        // add here 
-        this.setState({
-            dialogOpen: false,
-        });
+        if (this.state.categoryToAdd !== '') {
+            let categories = this.state.dataRef.categories;
+            categories.push(this.state.categoryToAdd);
+            this.dataRef.child("categories").set(categories);
+            this.setState({
+                dialogOpen: false,
+                categoryToAdd: ''
+            });
+        } else {
+            this.setState({ errorMessage: "Invalid category name" });
+        }
     };
 
 
@@ -83,6 +95,19 @@ class Budget extends Component {
     }
     handleChange = (event, index, value) => this.setState({ value });
     render() {
+        const dialogActions = [
+            <RaisedButton
+                className="cancel-button"
+                label="Cancel"
+                secondary={true}
+                onClick={this.handleDialogClose}
+            />,
+            <RaisedButton
+                label="Create"
+                primary={true}
+                onClick={this.handleDialogSubmit}
+            />
+        ];
         return (
             <div>
                 {this.props.selectedTrip === "" && <NoTrips />}
@@ -319,20 +344,46 @@ class Budget extends Component {
                                     </Col>
 
                                     {/*Add new category*/}
-                                    <Col className="table-margin" xs={12} md={6} xl={4}>
-                                        <div
-                                            className="new-category"
-                                            onClick={() => {
-                                                this.handleDialogOpen();
-                                            }}
-                                        >
-                                            <p className="unselectable new-category-text">
-                                                + add category
+                                    {this.state.dataRef.categories.length < 9 &&
+                                        <Col className="table-margin" xs={12} md={6} xl={4}>
+                                            <div
+                                                className="new-category"
+                                                onClick={() => {
+                                                    this.handleDialogOpen();
+                                                }}
+                                            >
+                                                <p className="unselectable new-category-text">
+                                                    + add category
                                             </p>
-                                        </div>
-                                    </Col>
+                                            </div>
+                                        </Col>
+                                    }
                                 </Row>
                             </Grid>
+
+                            <Dialog
+                                title="Add Category"
+                                actions={dialogActions}
+                                open={this.state.dialogOpen}
+                                onRequestClose={this.handleDialogClose}
+                                autoScrollBodyContent={true}
+                            >
+                                <p className="highlight">{this.state.errorMessage}</p>
+
+                                <Grid className="neg-margin">
+                                    <Row>
+                                        <TextField
+                                            className="auth-input"
+                                            name="categoryToAdd"
+                                            hintText="Name your category"
+                                            floatingLabelText="Category name"
+                                            type="text"
+                                            fullWidth={true}
+                                            onChange={(event) => { this.setState({ categoryToAdd: event.target.value }) }}
+                                        />
+                                    </Row>
+                                </Grid>
+                            </Dialog>
                         </div>
                     )}
             </div>
