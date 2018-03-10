@@ -174,28 +174,23 @@ class Budget extends Component {
                 onClick={this.handleBudgetDialogSubmit}
             />
         ];
+        let combinedObj = {};
         let combinedArr = [];
         if (this.state.dataRef) {
             if (this.state.dataRef.events) {
-                Object.keys(this.state.dataRef.events).forEach((d) => {
-                    let pushObj = {
-                        name: this.state.dataRef.events[d].eventName,
-                        cost: this.state.dataRef.events[d].cost,
-                        category: this.state.dataRef.events[d].type
-                    }
-                    combinedArr.push(pushObj);
-                });
+                Object.assign(combinedObj, this.state.dataRef.events);
             }
             if (this.state.dataRef.purchases) {
-                Object.keys(this.state.dataRef.purchases).forEach((d) => {
-                    let pushObj = {
-                        name: this.state.dataRef.purchases[d].eventName,
-                        cost: this.state.dataRef.purchases[d].cost,
-                        category: this.state.dataRef.purchases[d].type
-                    }
-                    combinedArr.push(pushObj);
-                });
+                Object.assign(combinedObj, this.state.dataRef.purchases);
             }
+            Object.keys(combinedObj).forEach((d) => {
+                let pushObj = {
+                    name: combinedObj[d].eventName,
+                    cost: combinedObj[d].cost,
+                    category: combinedObj[d].type
+                }
+                combinedArr.push(pushObj);
+            });
         }
         let totalBudget = {};
         let maxCost = 0;
@@ -256,7 +251,6 @@ class Budget extends Component {
                 </Col>
             )
         });
-        console.log(totalBudget);
         return (
             <div>
                 {this.props.selectedTrip === "" && <NoTrips />}
