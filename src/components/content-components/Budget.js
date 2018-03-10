@@ -26,10 +26,12 @@ class Budget extends Component {
             dataRef: null,
             value: "",
             dialogOpen: false,
+            budgetDialogOpen: false,
             categoryToAdd: '',
             errorMessage: '',
             buyItem: '',
-            costItem: 0
+            costItem: 0,
+            budget: 0
         };
     }
     handleDialogOpen = () => {
@@ -54,6 +56,29 @@ class Budget extends Component {
             });
         } else {
             this.setState({ errorMessage: "Invalid category name" });
+        }
+    };
+
+    handleBudgetDialogOpen = () => {
+        this.setState({ budgetDialogOpen: true });
+    };
+
+    handleBudgetDialogClose = () => {
+        this.setState({
+            budgetDialogOpen: false,
+            budget: 0,
+            errorMessage: ''
+        });
+    };
+    handleBudgetDialogSubmit = () => {
+        if (this.state.budget > 0) {
+            this.dataRef.child("budget").set(this.state.budget);
+            this.setState({
+                budgetDialogOpen: false,
+                budget: 0
+            })
+        } else {
+            this.setState({ errorMessage: "Invalid budget provided" });
         }
     };
 
@@ -136,26 +161,44 @@ class Budget extends Component {
                 onClick={this.handleDialogSubmit}
             />
         ];
+        const budgetDialogActions = [
+            <RaisedButton
+                className="cancel-button"
+                label="Cancel"
+                secondary={true}
+                onClick={this.handleBudgetDialogClose}
+            />,
+            <RaisedButton
+                label="Update"
+                primary={true}
+                onClick={this.handleBudgetDialogSubmit}
+            />
+        ];
         let combinedArr = [];
-        if (this.state.dataRef && this.state.dataRef.events) {
-            Object.keys(this.state.dataRef.events).forEach((d) => {
-                let pushObj = {
-                    name: this.state.dataRef.events[d].eventName,
-                    cost: this.state.dataRef.events[d].cost,
-                    category: this.state.dataRef.events[d].type
-                }
-                combinedArr.push(pushObj);
-            });
-            Object.keys(this.state.dataRef.purchases).forEach((d) => {
-                let pushObj = {
-                    name: this.state.dataRef.purchases[d].eventName,
-                    cost: this.state.dataRef.purchases[d].cost,
-                    category: this.state.dataRef.purchases[d].type
-                }
-                combinedArr.push(pushObj);
-            });
+        if (this.state.dataRef) {
+            if (this.state.dataRef.events) {
+                Object.keys(this.state.dataRef.events).forEach((d) => {
+                    let pushObj = {
+                        name: this.state.dataRef.events[d].eventName,
+                        cost: this.state.dataRef.events[d].cost,
+                        category: this.state.dataRef.events[d].type
+                    }
+                    combinedArr.push(pushObj);
+                });
+            }
+            if (this.state.dataRef.purchases) {
+                Object.keys(this.state.dataRef.purchases).forEach((d) => {
+                    let pushObj = {
+                        name: this.state.dataRef.purchases[d].eventName,
+                        cost: this.state.dataRef.purchases[d].cost,
+                        category: this.state.dataRef.purchases[d].type
+                    }
+                    combinedArr.push(pushObj);
+                });
+            }
         }
         let totalBudget = {};
+        let maxCost = 0;
         combinedArr.forEach((d) => {
             if (this.state.dataRef.categories.indexOf(d.category) !== -1) {
                 if (totalBudget[d.category] === undefined) {
@@ -163,12 +206,14 @@ class Budget extends Component {
                 }
                 totalBudget[d.category].list.push({ item: d.name, cost: d.cost });
                 totalBudget[d.category].cost += d.cost;
+                maxCost += d.cost;
             } else {
                 if (totalBudget["Other"] === undefined) {
                     totalBudget["Other"] = { list: [], cost: 0 };
                 }
                 totalBudget["Other"].list.push({ item: d.name, cost: d.cost });
                 totalBudget["Other"].cost += d.cost;
+                maxCost += d.cost;
             }
         })
 
@@ -211,7 +256,7 @@ class Budget extends Component {
                 </Col>
             )
         });
-
+        console.log(totalBudget);
         return (
             <div>
                 {this.props.selectedTrip === "" && <NoTrips />}
@@ -222,7 +267,7 @@ class Budget extends Component {
                                 <Row>
                                     <div className="contain-progress">
                                         <div className="text-center">
-                                            [AMOUNT] of [BUDGET] spent
+                                            {`$${maxCost.toFixed(2)}`} of {`$${this.state.dataRef.budget.toFixed(2)}`} spent
                     </div>
                                         <Progress multi>
                                             <Progress
@@ -277,7 +322,7 @@ class Budget extends Component {
                                             <Progress
                                                 bar
                                                 className="category-8 progress-bar-text unselectable"
-                                                value="10"
+                                                value="30"
                                             >
                                                 category-8
                       </Progress>
@@ -412,6 +457,32 @@ class Budget extends Component {
                                             type="text"
                                             fullWidth={true}
                                             onChange={(event) => { this.setState({ categoryToAdd: event.target.value }) }}
+                                        />
+                                    </Row>
+                                </Grid>
+                            </Dialog>
+
+                            <RaisedButton label="Change max budget" primary={true} onClick={() => this.handleBudgetDialogOpen()} />
+
+                            <Dialog
+                                title="Change maximum budget"
+                                actions={budgetDialogActions}
+                                open={this.state.budgetDialogOpen}
+                                onRequestClose={this.handleBudgetDialogClose}
+                                autoScrollBodyContent={true}
+                            >
+                                <p className="highlight">{this.state.errorMessage}</p>
+
+                                <Grid className="neg-margin">
+                                    <Row>
+                                        <TextField
+                                            className="auth-input"
+                                            name="budget"
+                                            hintText="Update your maximum budget"
+                                            floatingLabelText="Max budget"
+                                            type="number"
+                                            fullWidth={true}
+                                            onChange={(event) => { this.setState({ budget: Number(event.target.value) }) }}
                                         />
                                     </Row>
                                 </Grid>
