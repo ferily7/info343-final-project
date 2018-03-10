@@ -394,7 +394,7 @@ class Budget extends Component {
                             </Grid>
 
                             <Dialog
-                                title="Add Category"
+                                title="Add Category (max 8)"
                                 actions={dialogActions}
                                 open={this.state.dialogOpen}
                                 onRequestClose={this.handleDialogClose}
