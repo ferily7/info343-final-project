@@ -344,7 +344,7 @@ class Budget extends Component {
                                     </Col>
 
                                     {/*Add new category*/}
-                                    {this.state.dataRef.categories.length < 9 &&
+                                    {this.state.dataRef.categories.length < 8 &&
                                         <Col className="table-margin" xs={12} md={6} xl={4}>
                                             <div
                                                 className="new-category"
