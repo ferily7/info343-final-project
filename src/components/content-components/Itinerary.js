@@ -432,11 +432,11 @@ class Itinerary extends Component {
                                         fullWidth={true}
                                     >
                                         <MenuItem value="" primaryText="" />
-                                        <MenuItem value="Dining" primaryText="Dining" />
-                                        <MenuItem value="Services" primaryText="Services" />
-                                        <MenuItem value="Experiences" primaryText="Experiences" />
-                                        <MenuItem value="Shopping" primaryText="Shopping" />
-                                        <MenuItem value="Other" primaryText="Other" />
+                                        {
+                                            this.state.dataRef.categories.map((d, i) => {
+                                                return (<MenuItem key={d} value={d} primaryText={d} />);
+                                            })
+                                        }
                                     </SelectField>
                                 </Row>
                                 <Row>
@@ -547,11 +547,11 @@ class Itinerary extends Component {
                                         fullWidth={true}
                                     >
                                         <MenuItem value="" primaryText="" />
-                                        <MenuItem value="Dining" primaryText="Dining" />
-                                        <MenuItem value="Services" primaryText="Services" />
-                                        <MenuItem value="Experiences" primaryText="Experiences" />
-                                        <MenuItem value="Shopping" primaryText="Shopping" />
-                                        <MenuItem value="Other" primaryText="Other" />
+                                        {
+                                            this.state.dataRef.categories.map((d, i) => {
+                                                return (<MenuItem key={d} value={d} primaryText={d} />);
+                                            })
+                                        }
                                     </SelectField>
                                 </Row>
                                 <Row>
