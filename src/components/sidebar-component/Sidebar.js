@@ -57,7 +57,7 @@ class Sidebar extends Component {
                 numTravelers: this.state.travelerCount,
                 budget: this.state.budget,
                 tripName: this.state.tripName,
-                categories: ["Dining", "Services", "Experiences", "Shopping", "Other"]
+                categories: ["Dining", "Services", "Experiences", "Shopping", "Uncategorized"]
             }
             this.dataRef.push(pushObj);
             this.setState({
