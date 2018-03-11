@@ -5,7 +5,7 @@ import NoTrips from "./NoTrips";
 import { Progress } from "reactstrap";
 import "react-sweet-progress/lib/style.css";
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/fontawesome-free-solid';
+import { faTrashAlt, faTimesCircle } from '@fortawesome/fontawesome-free-solid';
 // material ui components
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
@@ -257,7 +257,7 @@ class Budget extends Component {
                                         <TableRow key={d + i}>
                                             <TableRowColumn>{e.item}</TableRowColumn>
                                             <TableRowColumn style={{ textAlign: "right" }}>{`$${e.cost.toFixed(2)}`}</TableRowColumn>
-                                            <TableRowColumn style={{ textAlign: "right" }}><span style={{ cursor: "pointer" }} onClick={() => { this.removeItem(e.key) }}>X</span></TableRowColumn>
+                                            <TableRowColumn style={{ textAlign: "right" }}><span className="item-delete highlight" onClick={() => { this.removeItem(e.key) }}><FontAwesomeIcon className="fa-spacer" icon={faTimesCircle} /></span></TableRowColumn>
                                         </TableRow>
                                     )
                                 })}
