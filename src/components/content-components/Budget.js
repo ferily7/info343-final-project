@@ -34,10 +34,13 @@ class Budget extends Component {
             budget: 0
         };
     }
+
+    // Open add new category dialog
     handleDialogOpen = () => {
         this.setState({ dialogOpen: true });
     };
 
+    // Close add new category dialog
     handleDialogClose = () => {
         this.setState({
             dialogOpen: false,
@@ -45,6 +48,8 @@ class Budget extends Component {
             errorMessage: ''
         });
     };
+
+    // Handle adding a new category
     handleDialogSubmit = () => {
         if (this.state.categoryToAdd !== '') {
             let categories = this.state.dataRef.categories;
@@ -59,10 +64,12 @@ class Budget extends Component {
         }
     };
 
+    // Open change budget maximum menu
     handleBudgetDialogOpen = () => {
         this.setState({ budgetDialogOpen: true });
     };
 
+    // Close change budget maximum menu
     handleBudgetDialogClose = () => {
         this.setState({
             budgetDialogOpen: false,
@@ -70,6 +77,8 @@ class Budget extends Component {
             errorMessage: ''
         });
     };
+
+    // Handle changing maximum budget
     handleBudgetDialogSubmit = () => {
         if (this.state.budget > 0) {
             this.dataRef.child("budget").set(this.state.budget);
@@ -82,6 +91,7 @@ class Budget extends Component {
         }
     };
 
+    // Handle deleting categories
     handleDeleteCategory = (category) => {
         let pushArr = this.state.dataRef.categories;
         if (pushArr.indexOf(category) !== -1 || category !== "Other") {
@@ -90,7 +100,8 @@ class Budget extends Component {
         }
     }
 
-    removeItem(key) {
+    // Handle remove item based on item's key
+    removeItem = (key) => {
         let childRef = "";
         if (this.state.dataRef.events && this.state.dataRef.events[key] !== undefined) {
             childRef = `events/${key}`;
@@ -100,6 +111,7 @@ class Budget extends Component {
         this.dataRef.child(childRef).remove();
     }
 
+    // Handle adding a purchase
     addExpense = () => {
         if (this.state.buyItem !== "" && this.state.value !== "") {
             let pushObj = {
