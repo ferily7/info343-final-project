@@ -312,6 +312,19 @@ padding-left: 40px;
   padding-bottom: 5px;
 }
 
+/* Itinterary tab */
+.image-uploaded {
+  margin: 0;
+  padding-top: 4px;
+  font-size: .85rem;
+}
+.file-delete {
+  cursor: pointer;
+}
+.extra-margin {
+  margin-top: 10px;
+}
+
 /* Reservation tab */
 .reservation-card {
   border: 1px solid #7c7c7c;
