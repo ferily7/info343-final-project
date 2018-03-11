@@ -96,7 +96,7 @@ class Budget extends Component {
     // Handle deleting categories
     handleDeleteCategory = (category) => {
         let pushArr = this.state.dataRef.categories;
-        if (pushArr.indexOf(category) !== -1 || category !== "Other") {
+        if (pushArr.indexOf(category) !== -1 && category !== "Other") {
             pushArr.splice(pushArr.indexOf(category), 1);
             this.dataRef.child(`categories`).set(pushArr);
         }
@@ -200,6 +200,7 @@ class Budget extends Component {
         ];
         let combinedObj = {};
         let combinedArr = [];
+        let totalBudget = {};
         if (this.state.dataRef) {
             if (this.state.dataRef.events) {
                 Object.assign(combinedObj, this.state.dataRef.events);
@@ -216,8 +217,11 @@ class Budget extends Component {
                 }
                 combinedArr.push(pushObj);
             });
+            this.state.dataRef.categories.forEach((d) => {
+                totalBudget[d] = { list: [], cost: 0 };
+            })
         }
-        let totalBudget = {};
+
         let maxCost = 0;
         combinedArr.forEach((d) => {
             let addCat = ""
@@ -225,9 +229,6 @@ class Budget extends Component {
                 addCat = d.category;
             } else {
                 addCat = "Other";
-            }
-            if (totalBudget[addCat] === undefined) {
-                totalBudget[addCat] = { list: [], cost: 0 };
             }
             totalBudget[addCat].list.push({ item: d.name, cost: d.cost, key: d.key });
             totalBudget[addCat].cost += d.cost;
@@ -238,10 +239,10 @@ class Budget extends Component {
         let categoryBoxes = Object.keys(totalBudget).map((d, i) => {
             return (
                 <Col key={d} className="table-margin" xs={12} md={6} xl={4}>
-                    <h2 className="content-subheader">{d}<span className={`dot category-${i + 1}`} ></span><span
-                                                    className="category-delete"
-                                                    onClick={() => this.handleDeleteCategory(d)}
-                                                ><FontAwesomeIcon className="fa-spacer" icon={faTrashAlt} />Delete</span></h2> {/* add delete category button that    onClick={() => this.handleDeleteCategory(d)}    <-- whatever thing this is put on will work 100%, tested */}
+                    <h2 className="content-subheader">{d}<span className={`dot category-${i + 1}`} ></span>{d !== "Other" && <span
+                        className="category-delete"
+                        onClick={() => this.handleDeleteCategory(d)}
+                    ><FontAwesomeIcon className="fa-spacer" icon={faTrashAlt} />Delete</span>} </h2> {/* add delete category button that    onClick={() => this.handleDeleteCategory(d)}    <-- whatever thing this is put on will work 100%, tested */}
                     <div className="category-table">
                         <Table
                             selectable={false}
@@ -252,6 +253,11 @@ class Budget extends Component {
                                 showRowHover={true}
                                 displayRowCheckbox={false}
                             >
+                                {totalBudget[d].list.length === 0 && <TableRow>
+                                    <TableRowColumn></TableRowColumn>
+                                    <TableRowColumn style={{ textAlign: "right" }}></TableRowColumn>
+                                    <TableRowColumn style={{ textAlign: "right" }}></TableRowColumn>
+                                </TableRow>}
                                 {totalBudget[d].list.map((e, i) => {
                                     return (
                                         <TableRow key={d + i}>
