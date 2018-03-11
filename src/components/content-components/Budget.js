@@ -282,16 +282,20 @@ class Budget extends Component {
         });
 
         let categoryProgressBar = Object.keys(totalBudget).map((d, i) => {
-            return (
-                <Progress bar
-                    key={d}
-                    className={`category-${i + 1} progress-bar-text unselectable`}
-                    value={`${totalBudget[d].cost}`}
-                    max={this.state.dataRef.budget}
-                >
-                    {d}
-                </Progress>
-            )
+            if (totalBudget[d].cost > 0) {
+                return (
+                    <Progress bar
+                        key={d}
+                        className={`category-${i + 1} progress-bar-text unselectable`}
+                        value={`${totalBudget[d].cost}`}
+                        max={this.state.dataRef.budget}
+                    >
+                        {d}
+                    </Progress>
+                )
+            } else {
+                return (<div key={d}></div>)
+            }
         });
 
         return (
