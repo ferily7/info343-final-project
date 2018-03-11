@@ -12,10 +12,14 @@ a {
   text-decoration: none;
 }
 .bold {
-  font-weight: 500;
+  font-weight: 500 !important;
+}
+.extra-bold {
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
 }
 .highlight {
-  color: #f75830;
+  color: #D50000 !important;
   font-weight: 400;
   margin-bottom: 0;
 }
@@ -266,6 +270,10 @@ h3 {
   padding-bottom: .5rem;
   line-height: 21.2px;
 }
+.header-border {
+  border-bottom: 1px solid #9E9E9E;
+  margin-bottom: .5rem;
+}
 .contain-notrips {
   text-align: center;
 }
@@ -293,7 +301,7 @@ h3 {
   text-align: center;
 vertical-align: middle;
 line-height: 21.2px;
-padding-left: 40px;
+float: right;
   color: #7c7c7c;
   cursor: pointer;
   font-size: .85rem;
@@ -349,7 +357,16 @@ padding-left: 40px;
 .input-padding {
   padding-right: 8px;
 }
-
+.edit-budget {
+  text-align: center;
+vertical-align: middle;
+line-height: 21.6px;
+float: right;
+  color: #7c7c7c;
+  cursor: pointer;
+  font-size: .85rem;
+  font-weight: 500;
+}
 table {
   border-top: 1px solid rgb(158, 158, 158);
 }
@@ -363,9 +380,6 @@ tr, td {
   padding: 0 !important;
 }
 .category-delete {
-  text-align: center;
-vertical-align: middle;
-line-height: 21.2px;
 float: right;
   color: #7c7c7c;
   cursor: pointer;
@@ -398,12 +412,16 @@ font-size: 1.5rem;
   font-size: 1rem;
   font-weight: 300;
   letter-spacing: 1px;
+  margin-left: 49.28px;
 }
 .contain-progress {
   width: 100%;
   background-color: #e3e3e3;
   padding: 8px;
   margin-bottom: 20px;
+}
+.progress-outer {
+  display: inline;
 }
 .progress {
   display: -webkit-box;
@@ -473,9 +491,6 @@ font-size: 1.5rem;
     margin-left: 10px;
     border-radius: 50%;
     display: inline-block;
-}
-.red-text {
-    color: red;
 }
 
 @media (min-width: 480px) {

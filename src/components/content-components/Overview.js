@@ -83,7 +83,7 @@ class Overview extends Component {
                                         </Row>
                                         <Row>
                                             <Col xs={12} md={6} xl={4}>
-                                                <h2 className="content-subheader">Departing <span
+                                                <h2 className="content-subheader header-border">Departing <span
                                                     className="overview-button"
                                                     onClick={console.log("edit departing button")}
                                                 ><FontAwesomeIcon className="fa-spacer" icon={faPencilAlt} />Edit</span></h2>
@@ -95,7 +95,7 @@ class Overview extends Component {
 
                                             </Col>
                                             <Col xs={12} md={6} xl={4}>
-                                                <h2 className="content-subheader">Returning <span
+                                                <h2 className="content-subheader header-border">Returning <span
                                                     className="overview-button"
                                                     onClick={console.log("edit returning button")}
                                                 ><FontAwesomeIcon className="fa-spacer" icon={faPencilAlt} />Edit</span></h2>
@@ -106,7 +106,7 @@ class Overview extends Component {
                                                 </ul>
                                             </Col>
                                             <Col xs={12} md={6} xl={4}>
-                                                <h2 className="content-subheader">Travelers <span
+                                                <h2 className="content-subheader header-border">Travelers <span
                                                     className="overview-button"
                                                     onClick={console.log("edit travelers button")}
                                                 ><FontAwesomeIcon className="fa-spacer" icon={faPencilAlt} />Edit</span></h2>

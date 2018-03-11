@@ -498,7 +498,7 @@ class Itinerary extends Component {
                     )}
                   </Row>
                   <Row>
-                    {this.state.image && (
+                    {this.state.image && this.state.reservation && (
                       <div>
                         <p className="image-uploaded">
                           Your file has been uploaded.{" "}
