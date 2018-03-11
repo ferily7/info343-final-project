@@ -195,28 +195,25 @@ class Budget extends Component {
         let totalBudget = {};
         let maxCost = 0;
         combinedArr.forEach((d) => {
+            let addCat = ""
             if (this.state.dataRef.categories.indexOf(d.category) !== -1) {
-                if (totalBudget[d.category] === undefined) {
-                    totalBudget[d.category] = { list: [], cost: 0 };
-                }
-                totalBudget[d.category].list.push({ item: d.name, cost: d.cost });
-                totalBudget[d.category].cost += d.cost;
-                maxCost += d.cost;
+                addCat = d.category;
             } else {
-                if (totalBudget["Other"] === undefined) {
-                    totalBudget["Other"] = { list: [], cost: 0 };
-                }
-                totalBudget["Other"].list.push({ item: d.name, cost: d.cost });
-                totalBudget["Other"].cost += d.cost;
-                maxCost += d.cost;
+                addCat = "Other";
             }
+            if (totalBudget[addCat] === undefined) {
+                totalBudget[addCat] = { list: [], cost: 0 };
+            }
+            totalBudget[addCat].list.push({ item: d.name, cost: d.cost });
+            totalBudget[addCat].cost += d.cost;
+            maxCost += d.cost;
         })
 
         // categoryBoxes can be moved to its own class, but I think I can do calculations here for the progress bar.
-        let categoryBoxes = Object.keys(totalBudget).map((d) => {
+        let categoryBoxes = Object.keys(totalBudget).map((d, i) => {
             return (
                 <Col key={d} className="table-margin" xs={12} md={6} xl={4}>
-                    <h2 className="content-subheader">{d}</h2> {/* add delete category button that    onClick={() => this.handleDeleteCategory(d)}    <-- whatever thing this is put on will work 100%, tested */}
+                    <h2 className="content-subheader">{d}<span className={`dot category-${i + 1}`} ></span></h2> {/* add delete category button that    onClick={() => this.handleDeleteCategory(d)}    <-- whatever thing this is put on will work 100%, tested */}
                     <div className="category-table">
                         <Table
                             selectable={false}
@@ -251,6 +248,20 @@ class Budget extends Component {
                 </Col>
             )
         });
+
+        let categoryProgressBar = Object.keys(totalBudget).map((d, i) => {
+            return (
+                <Progress bar
+                    key={d}
+                    className={`category-${i + 1} progress-bar-text unselectable`}
+                    value={`${totalBudget[d].cost}`}
+                    max={this.state.dataRef.budget}
+                >
+                    {d}
+                </Progress>
+            )
+        });
+
         return (
             <div>
                 {this.props.selectedTrip === "" && <NoTrips />}
@@ -260,66 +271,11 @@ class Budget extends Component {
                             <Grid>
                                 <Row>
                                     <div className="contain-progress">
-                                        <div className="text-center">
+                                        <div className={`text-center ${maxCost > this.state.dataRef.budget ? "red-text" : ""}`}>
                                             {`$${maxCost.toFixed(2)}`} of {`$${this.state.dataRef.budget.toFixed(2)}`} spent
-                    </div>
+                                        </div>
                                         <Progress multi>
-                                            <Progress
-                                                bar
-                                                className="category-1 progress-bar-text unselectable"
-                                                value="10"
-                                            >
-                                                category-1
-                      </Progress>
-                                            <Progress
-                                                bar
-                                                className="category-2 progress-bar-text unselectable"
-                                                value="10"
-                                            >
-                                                category-2
-                      </Progress>
-                                            <Progress
-                                                bar
-                                                className="category-3 progress-bar-text unselectable"
-                                                value="10"
-                                            >
-                                                category-3
-                      </Progress>
-                                            <Progress
-                                                bar
-                                                className="category-4 progress-bar-text unselectable"
-                                                value="10"
-                                            >
-                                                category-4
-                      </Progress>
-                                            <Progress
-                                                bar
-                                                className="category-5 progress-bar-text unselectable"
-                                                value="10"
-                                            >
-                                                category-5
-                      </Progress>
-                                            <Progress
-                                                bar
-                                                className="category-6 progress-bar-text unselectable"
-                                                value="10"
-                                            >
-                                                category-6
-                      </Progress>
-                                            <Progress
-                                                bar
-                                                className="category-7 progress-bar-text unselectable"
-                                                value="10"
-                                            >
-                                                category-7
-                      </Progress>
-                                            <Progress
-                                                bar
-                                                className="category-8 progress-bar-text unselectable"
-                                                value="30"
-                                            >
-                                                category-8
-                      </Progress>
+                                            {categoryProgressBar}
                                         </Progress>
                                     </div>
                                 </Row>
@@ -344,7 +300,7 @@ class Budget extends Component {
                                             floatingLabelText="Cost"
                                             type="number"
                                             fullWidth={true}
-                                            value={this.state.costItem}
+                                            value={this.state.costItem === 0 ? "" : this.state.costItem}
                                             onChange={(e) => this.setState({ costItem: Number(e.target.value) })}
                                         />
                                     </Col>

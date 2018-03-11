@@ -438,6 +438,17 @@ font-size: 1.5rem;
   background-color: #C0CA33;
 }
 
+.dot {
+    height: 14px;
+    width: 14px;
+    margin-left: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.red-text {
+    color: red;
+}
+
 @media (min-width: 480px) {
   /* LANDING PAGE STYLES */
   #welcome-subheader {
