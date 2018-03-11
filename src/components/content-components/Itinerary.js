@@ -33,7 +33,7 @@ class Itinerary extends Component {
             eventName: '',
             location: '',
             reservation: false,
-            type: '',
+            type: 'Uncategorized',
             editEvent: '',
             description: '',
             image: null
@@ -428,7 +428,7 @@ class Itinerary extends Component {
                                 </Row>
                                 <Row>
                                     <SelectField
-                                        floatingLabelText="Type of event"
+                                        floatingLabelText="Event category"
                                         value={this.state.type}
                                         onChange={(event) => { this.setState({ type: event.target.textContent }) }}
                                         fullWidth={true}

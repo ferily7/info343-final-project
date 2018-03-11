@@ -96,7 +96,7 @@ class Budget extends Component {
     // Handle deleting categories
     handleDeleteCategory = (category) => {
         let pushArr = this.state.dataRef.categories;
-        if (pushArr.indexOf(category) !== -1 && category !== "Other") {
+        if (pushArr.indexOf(category) !== -1 && category !== "Uncategorized") {
             pushArr.splice(pushArr.indexOf(category), 1);
             this.dataRef.child(`categories`).set(pushArr);
         }
@@ -228,7 +228,7 @@ class Budget extends Component {
             if (this.state.dataRef.categories.indexOf(d.category) !== -1) {
                 addCat = d.category;
             } else {
-                addCat = "Other";
+                addCat = "Uncategorized";
             }
             totalBudget[addCat].list.push({ item: d.name, cost: d.cost, key: d.key });
             totalBudget[addCat].cost += d.cost;
@@ -239,7 +239,7 @@ class Budget extends Component {
         let categoryBoxes = Object.keys(totalBudget).map((d, i) => {
             return (
                 <Col key={d} className="table-margin" xs={12} md={6} xl={4}>
-                    <h2 className="content-subheader">{d}<span className={`dot category-${i + 1}`} ></span>{d !== "Other" && <span
+                    <h2 className="content-subheader">{d}<span className={`dot category-${i + 1}`} ></span>{d !== "Uncategorized" && <span
                         className="category-delete"
                         onClick={() => this.handleDeleteCategory(d)}
                     ><FontAwesomeIcon className="fa-spacer" icon={faTrashAlt} />Delete</span>} </h2> {/* add delete category button that    onClick={() => this.handleDeleteCategory(d)}    <-- whatever thing this is put on will work 100%, tested */}
