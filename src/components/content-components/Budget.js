@@ -230,9 +230,11 @@ class Budget extends Component {
             } else {
                 addCat = "Uncategorized";
             }
-            totalBudget[addCat].list.push({ item: d.name, cost: d.cost, key: d.key });
-            totalBudget[addCat].cost += d.cost;
-            maxCost += d.cost;
+            if (d.cost > 0) {
+                totalBudget[addCat].list.push({ item: d.name, cost: d.cost, key: d.key });
+                totalBudget[addCat].cost += d.cost;
+                maxCost += d.cost;
+            }
         });
 
         // categoryBoxes can be moved to its own class, but I think I can do calculations here for the progress bar.
