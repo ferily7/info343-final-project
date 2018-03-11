@@ -312,12 +312,15 @@ float: right;
   font-size: .8rem;
 }
 .overview-list {
-  margin: 0;
+  margin: 1rem 0 0 0;
   padding: 0;
 }
 .overview-li {
   list-style-type: none;
   padding-bottom: 5px;
+}
+.delete-trip-button {
+  margin-top: 50px;
 }
 
 /* Itinterary tab */
@@ -677,5 +680,8 @@ font-size: 1.5rem;
   }
   .start-end {
     font-size: 1.5rem;
+  }
+  .delete-trip-button {
+    margin-top: 100px;
   }
 }

@@ -4,6 +4,7 @@ import { Grid, Row, Col } from "react-flexbox-grid";
 import NoTrips from "./NoTrips";
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from '@fortawesome/fontawesome-free-solid';
+import RaisedButton from "material-ui/RaisedButton";
 
 class Overview extends Component {
     constructor(props) {
@@ -116,7 +117,25 @@ class Overview extends Component {
                                                     <li className="overview-li">[TRAVELER 2 NAME]</li>
                                                 </ul>
                                             </Col>
+                                            <Col xs={12} md={6} xl={12}>
+                                                <h2 className="content-subheader header-border">Notes <span
+                                                    className="overview-button"
+                                                    onClick={console.log("edit travelers button")}
+                                                ><FontAwesomeIcon className="fa-spacer" icon={faPencilAlt} />Edit</span></h2>
+                                                <p>Add any trip notes or details here.</p>
+                                            </Col>
                                         </Row>
+                                        <Row>
+<Col lgOffset={2} xlOffset={3} xs={12} lg={8} xl={6}>
+<RaisedButton
+                className="delete-trip-button"
+                label="Delete this Trip"
+                fullWidth={true}
+                secondary={true}
+                onClick={console.log("delete trip button")}
+            />
+</Col>
+                                            </Row>
                                         
 
                                     </Grid>
