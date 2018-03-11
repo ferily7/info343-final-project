@@ -53,7 +53,7 @@ class Budget extends Component {
 
     // Handle adding a new category
     handleDialogSubmit = () => {
-        if (this.state.categoryToAdd !== '') {
+        if (this.state.categoryToAdd !== '' && this.state.dataRef.categories.indexOf(this.state.categoryToAdd) === -1) {
             let categories = this.state.dataRef.categories;
             categories.push(this.state.categoryToAdd);
             this.dataRef.child("categories").set(categories);
