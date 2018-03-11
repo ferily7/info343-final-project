@@ -356,44 +356,6 @@ class Budget extends Component {
                                 </Row>
                                 <Row>
                                     {categoryBoxes}
-                                    {/*Category 1*/}
-                                    {/* <Col className="table-margin" xs={12} md={6} xl={4}>
-                                        <h2 className="content-subheader">Category 1</h2>
-                                        <div className="category-table">
-                                            <Table
-                                                selectable={false}
-                                                fixedFooter={true}
-                                                height="200px"
-                                            >
-                                                <TableBody
-                                                    showRowHover={true}
-                                                    displayRowCheckbox={false}
-                                                >
-                                                    <TableRow>
-                                                        <TableRowColumn>Item 1</TableRowColumn>
-                                                        <TableRowColumn>$0.00</TableRowColumn>
-                                                    </TableRow>
-                                                    <TableRow>
-                                                        <TableRowColumn>Item 2</TableRowColumn>
-                                                        <TableRowColumn>$0.00</TableRowColumn>
-                                                    </TableRow>
-                                                </TableBody>
-                                                <TableFooter className="table-footer">
-                                                    <TableRow>
-                                                        <TableRowColumn>
-                                                            <span className="bold">Total:</span>
-                                                        </TableRowColumn>
-                                                        <TableRowColumn>
-                                                            <span className="bold">[TOTAL]</span>
-                                                        </TableRowColumn>
-                                                    </TableRow>
-                                                </TableFooter>
-                                            </Table>
-                                        </div>
-                                    </Col>
-
-                                     */}
-
                                     {/*Add new category*/}
                                     {this.state.dataRef.categories.length < 8 &&
                                         <Col className="table-margin" xs={12} md={6} xl={4}>
