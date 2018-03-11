@@ -90,6 +90,16 @@ class Budget extends Component {
         }
     }
 
+    removeItem(key) {
+        let childRef = "";
+        if (this.state.dataRef.events && this.state.dataRef.events[key] !== undefined) {
+            childRef = `events/${key}`;
+        } else {
+            childRef = `purchases/${key}`;
+        }
+        this.dataRef.child(childRef).remove();
+    }
+
     addExpense = () => {
         if (this.state.buyItem !== "" && this.state.value !== "") {
             let pushObj = {
@@ -187,7 +197,8 @@ class Budget extends Component {
                 let pushObj = {
                     name: combinedObj[d].eventName,
                     cost: combinedObj[d].cost,
-                    category: combinedObj[d].type
+                    category: combinedObj[d].type,
+                    key: d
                 }
                 combinedArr.push(pushObj);
             });
@@ -204,10 +215,10 @@ class Budget extends Component {
             if (totalBudget[addCat] === undefined) {
                 totalBudget[addCat] = { list: [], cost: 0 };
             }
-            totalBudget[addCat].list.push({ item: d.name, cost: d.cost });
+            totalBudget[addCat].list.push({ item: d.name, cost: d.cost, key: d.key });
             totalBudget[addCat].cost += d.cost;
             maxCost += d.cost;
-        })
+        });
 
         // categoryBoxes can be moved to its own class, but I think I can do calculations here for the progress bar.
         let categoryBoxes = Object.keys(totalBudget).map((d, i) => {
@@ -228,7 +239,8 @@ class Budget extends Component {
                                     return (
                                         <TableRow key={d + i}>
                                             <TableRowColumn>{e.item}</TableRowColumn>
-                                            <TableRowColumn>{`$${e.cost.toFixed(2)}`}</TableRowColumn>
+                                            <TableRowColumn style={{ textAlign: "right" }}>{`$${e.cost.toFixed(2)}`}</TableRowColumn>
+                                            <TableRowColumn style={{ textAlign: "right" }}><span style={{ cursor: "pointer" }} onClick={() => { this.removeItem(e.key) }}>X</span></TableRowColumn>
                                         </TableRow>
                                     )
                                 })}
