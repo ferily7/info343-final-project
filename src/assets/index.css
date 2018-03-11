@@ -367,6 +367,21 @@ float: right;
   font-size: .85rem;
   font-weight: 500;
 }
+.header-table {
+  width: 100%;
+  table-layout: fixed;
+  border: none;
+}
+.header-table td {
+  width: 70%;
+}
+.header-table td+td {
+  width: auto;
+}
+.category-name {
+  overflow: hidden;
+  white-space: nowrap;
+}
 table {
   border-top: 1px solid rgb(158, 158, 158);
 }
@@ -405,6 +420,11 @@ line-height: 231.2px;
 color: #7c7c7c;
 font-size: 1.5rem;
 }
+.category-wrapper {
+  display: block;
+  width: 200px;
+}
+
 .text-center {
   text-align: center !important;
   text-transform: uppercase;

@@ -255,18 +255,25 @@ class Budget extends Component {
     let categoryBoxes = Object.keys(totalBudget).map((d, i) => {
       return (
         <Col key={d} className="table-margin" xs={12} md={6} xl={4}>
-          <h2 className="content-subheader">
-            {d}
-            <span className={`dot category-${i + 1}`} />
+        <table className="header-table">
+        <tbody>
+          <tr>
+            <td>
+              
+          <h2 className="content-subheader category-name">
+          <span className={`dot category-${i + 1}`} />{" "}{d}
+            </h2></td><td>
             {d !== "Uncategorized" && (
               <span
-                className="category-delete unselectable"
+                className="content-subheader category-delete unselectable"
                 onClick={() => this.handleDeleteCategory(d)}
               >
                 <FontAwesomeIcon className="fa-spacer" icon={faTrashAlt} />Delete
               </span>
-            )}{" "}
-          </h2>{" "}
+            )}</td>
+            </tr>
+            </tbody>
+            </table>
           {/* add delete category button that    onClick={() => this.handleDeleteCategory(d)}    <-- whatever thing this is put on will work 100%, tested */}
           <div className="category-table">
             <Table selectable={false} fixedFooter={true} height="200px">
@@ -483,6 +490,7 @@ class Budget extends Component {
                       floatingLabelText="Name"
                       type="text"
                       fullWidth={true}
+                      maxLength="24"
                       onChange={event => {
                         this.setState({ categoryToAdd: event.target.value });
                       }}
