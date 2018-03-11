@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import firebase from "firebase";
 import { Grid, Row, Col } from "react-flexbox-grid";
 import NoTrips from "./NoTrips";
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faPencilAlt } from '@fortawesome/fontawesome-free-solid'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faPencilAlt } from '@fortawesome/fontawesome-free-solid';
 
 class Overview extends Component {
     constructor(props) {

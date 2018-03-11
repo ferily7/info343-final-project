@@ -349,6 +349,16 @@ tr, td {
 .table-footer td {
   padding: 0 !important;
 }
+.category-delete {
+  text-align: center;
+vertical-align: middle;
+line-height: 21.2px;
+float: right;
+  color: #7c7c7c;
+  cursor: pointer;
+  font-size: .85rem;
+  font-weight: 500;
+}
 .new-category {
   margin-top: 30px;
   background-color: #e3e3e3;

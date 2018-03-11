@@ -4,6 +4,8 @@ import { Grid, Row, Col } from "react-flexbox-grid";
 import NoTrips from "./NoTrips";
 import { Progress } from "reactstrap";
 import "react-sweet-progress/lib/style.css";
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/fontawesome-free-solid';
 // material ui components
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
@@ -236,7 +238,10 @@ class Budget extends Component {
         let categoryBoxes = Object.keys(totalBudget).map((d, i) => {
             return (
                 <Col key={d} className="table-margin" xs={12} md={6} xl={4}>
-                    <h2 className="content-subheader">{d}<span className={`dot category-${i + 1}`} ></span></h2> {/* add delete category button that    onClick={() => this.handleDeleteCategory(d)}    <-- whatever thing this is put on will work 100%, tested */}
+                    <h2 className="content-subheader">{d}<span className={`dot category-${i + 1}`} ></span><span
+                                                    className="category-delete"
+                                                    onClick={() => this.handleDeleteCategory(d)}
+                                                ><FontAwesomeIcon className="fa-spacer" icon={faTrashAlt} />Delete</span></h2> {/* add delete category button that    onClick={() => this.handleDeleteCategory(d)}    <-- whatever thing this is put on will work 100%, tested */}
                     <div className="category-table">
                         <Table
                             selectable={false}
@@ -260,10 +265,7 @@ class Budget extends Component {
                             <TableFooter className="table-footer">
                                 <TableRow>
                                     <TableRowColumn>
-                                        <span className="bold">Total:</span>
-                                    </TableRowColumn>
-                                    <TableRowColumn>
-                                        <span className="bold">{`$${totalBudget[d].cost.toFixed(2)}`}</span>
+                                        <span className="bold">Total: {`$${totalBudget[d].cost.toFixed(2)}`}</span>
                                     </TableRowColumn>
                                 </TableRow>
                             </TableFooter>
