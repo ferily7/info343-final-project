@@ -43,7 +43,7 @@ class Budget extends Component {
 
     // Open add new category dialog
     handleDialogOpen = () => {
-        this.setState({ dialogOpen: true });
+        this.setState({ dialogOpen: true, errorMessage: "" });
     };
 
     // Close add new category dialog
@@ -75,7 +75,7 @@ class Budget extends Component {
 
     // Open change budget maximum menu
     handleBudgetDialogOpen = () => {
-        this.setState({ budgetDialogOpen: true });
+        this.setState({ budgetDialogOpen: true, errorMessage: "" });
     };
 
     // Close change budget maximum menu
@@ -93,7 +93,8 @@ class Budget extends Component {
             this.dataRef.child("budget").set(this.state.budget);
             this.setState({
                 budgetDialogOpen: false,
-                budget: 0
+                budget: 0,
+                errorMessage: ""
             });
         } else {
             this.setState({ errorMessage: "Invalid budget provided" });
