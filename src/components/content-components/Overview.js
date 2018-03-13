@@ -28,8 +28,8 @@ class Overview extends Component {
       deleteTripDialogOpen: false,
       errorMessage: "",
       airlineName: "",
-      departTime: 0,
-      arrivalTime: 0,
+      departTime: Date.now(),
+      arrivalTime: Date.now(),
       confirmation: "",
       notes: "",
       travelers: ""
@@ -54,8 +54,8 @@ class Overview extends Component {
       editTravelersDialogOpen: false,
       errorMessage: null,
       airlineName: "",
-      departTime: 0,
-      arrivalTime: 0,
+      departTime: Date.now(),
+      arrivalTime: Date.now(),
       confirmation: "",
       travelers: ""
     });
@@ -97,8 +97,8 @@ class Overview extends Component {
         editDialogOpen: false,
         airlineName: "",
         confirmation: "",
-        departTime: 0,
-        arrivalTime: 0
+        departTime: Date.now(),
+        arrivalTime: Date.now(),
       });
     } else {
       let pushObj = {
@@ -113,8 +113,8 @@ class Overview extends Component {
         editDepartDialogOpen: false,
         airlineName: "",
         confirmation: "",
-        departTime: 0,
-        arrivalTime: 0
+        departTime: Date.now(),
+        arrivalTime: Date.now(),
       });
     }
   };
@@ -160,8 +160,8 @@ class Overview extends Component {
         editArriveDialogOpen: false,
         airlineName: "",
         confirmation: "",
-        departTime: 0,
-        arrivalTime: 0
+        departTime: Date.now(),
+        arrivalTime: Date.now(),
       });
     } else {
       let pushObj = {
@@ -176,8 +176,8 @@ class Overview extends Component {
         editArriveDialogOpen: false,
         airlineName: "",
         confirmation: "",
-        departTime: 0,
-        arrivalTime: 0
+        departTime: Date.now(),
+        arrivalTime: Date.now(),
       });
     }
   };
@@ -450,7 +450,7 @@ class Overview extends Component {
                     <Row>
                       <Col xs={12} md={6} xl={4}>
                         <h2 className="content-subheader header-border">
-                          Leaving{" "}
+                          Departing{" "}
                           <span
                             className="overview-button"
                             onClick={() => {
@@ -493,91 +493,11 @@ class Overview extends Component {
                         )}
                       </Col>
 
-                      {/* New Departing Flight Dialog */}
+                      {/* Departing Flight Dialog */}
                       <Dialog
                         title="Departing Flight"
-                        actions={departDialogActions}
-                        open={this.state.departDialogOpen}
-                        onRequestClose={this.handleDialogClose}
-                        autoScrollBodyContent={true}
-                      >
-                        <p className="highlight">{this.state.errorMessage}</p>
-
-                        <Grid className="neg-margin">
-                          <Row>
-                            <TextField
-                              className="auth-input"
-                              name="airlineName"
-                              hintText="Airline name?"
-                              floatingLabelText="Airline"
-                              type="text"
-                              fullWidth={true}
-                              onChange={event => {
-                                this.setState({
-                                  airlineName: event.target.value
-                                });
-                              }}
-                            />
-                          </Row>
-                          <Row>
-                            <TextField
-                              className="auth-input"
-                              name="confirmation"
-                              hintText="Flight confirmation code?"
-                              floatingLabelText="Confirmation Code"
-                              type="text"
-                              fullWidth={true}
-                              onChange={event => {
-                                this.setState({
-                                  confirmation: event.target.value
-                                });
-                              }}
-                            />
-                          </Row>
-                          <Row>
-                            <Col className="no-padding" xs={12} sm={6}>
-                              <DateTimePicker
-                                className="date-input-overview"
-                                hintText="Departs"
-                                fullWidth={true}
-                                DatePicker={DatePickerDialog}
-                                TimePicker={TimePickerDialog}
-                                clearIcon={null}
-                                onChange={date => {
-                                  this.setState({
-                                    departTime: date.getTime
-                                      ? date.getTime()
-                                      : null
-                                  });
-                                }}
-                              />
-                            </Col>
-                            <Col className="no-padding" xs={12} sm={6}>
-                              <DateTimePicker
-                                className="date-input-overview"
-                                hintText="Arrives"
-                                fullWidth={true}
-                                DatePicker={DatePickerDialog}
-                                TimePicker={TimePickerDialog}
-                                clearIcon={null}
-                                onChange={date => {
-                                  this.setState({
-                                    arrivalTime: date.getTime
-                                      ? date.getTime()
-                                      : null
-                                  });
-                                }}
-                              />
-                            </Col>
-                          </Row>
-                        </Grid>
-                      </Dialog>
-
-                      {/* Edit Departing Flight Dialog */}
-                      <Dialog
-                        title="Departing Flight"
-                        actions={editDepartDialogActions}
-                        open={this.state.editDepartDialogOpen}
+                        actions={this.state.editDepartDialogOpen ? editDepartDialogActions : departDialogActions}
+                        open={this.state.departDialogOpen || this.state.editDepartDialogOpen}
                         onRequestClose={this.handleDialogClose}
                         autoScrollBodyContent={true}
                       >
@@ -625,8 +545,8 @@ class Overview extends Component {
                                 DatePicker={DatePickerDialog}
                                 TimePicker={TimePickerDialog}
                                 value={new Date(
-                                  this.state.departTime
-                                ).toLocaleString()}
+                                    this.state.departTime
+                                  ).toLocaleString()}
                                 clearIcon={null}
                                 onChange={date => {
                                   this.setState({
@@ -645,8 +565,8 @@ class Overview extends Component {
                                 DatePicker={DatePickerDialog}
                                 TimePicker={TimePickerDialog}
                                 value={new Date(
-                                  this.state.arrivalTime
-                                ).toLocaleString()}
+                                    this.state.arrivalTime
+                                  ).toLocaleString()}
                                 clearIcon={null}
                                 onChange={date => {
                                   this.setState({
@@ -706,91 +626,11 @@ class Overview extends Component {
                         )}
                       </Col>
 
-                      {/* New Returning Flight Dialog */}
+                      {/* Returning Flight Dialog */}
                       <Dialog
                         title="Returning Flight"
-                        actions={arriveDialogActions}
-                        open={this.state.arriveDialogOpen}
-                        onRequestClose={this.handleDialogClose}
-                        autoScrollBodyContent={true}
-                      >
-                        <p className="highlight">{this.state.errorMessage}</p>
-
-                        <Grid className="neg-margin">
-                          <Row>
-                            <TextField
-                              className="auth-input"
-                              name="airlineName"
-                              hintText="Airline name?"
-                              floatingLabelText="Airline"
-                              type="text"
-                              fullWidth={true}
-                              onChange={event => {
-                                this.setState({
-                                  airlineName: event.target.value
-                                });
-                              }}
-                            />
-                          </Row>
-                          <Row>
-                            <TextField
-                              className="auth-input"
-                              name="confirmation"
-                              hintText="Flight confirmation code?"
-                              floatingLabelText="Confirmation Code"
-                              type="text"
-                              fullWidth={true}
-                              onChange={event => {
-                                this.setState({
-                                  confirmation: event.target.value
-                                });
-                              }}
-                            />
-                          </Row>
-                          <Row>
-                            <Col className="no-padding" xs={12} sm={6}>
-                              <DateTimePicker
-                                className="date-input-overview"
-                                hintText="Departing"
-                                fullWidth={true}
-                                DatePicker={DatePickerDialog}
-                                TimePicker={TimePickerDialog}
-                                clearIcon={null}
-                                onChange={date => {
-                                  this.setState({
-                                    departTime: date.getTime
-                                      ? date.getTime()
-                                      : null
-                                  });
-                                }}
-                              />
-                            </Col>
-                            <Col className="no-padding" xs={12} sm={6}>
-                              <DateTimePicker
-                                className="date-input-overview"
-                                hintText="Arrives"
-                                fullWidth={true}
-                                DatePicker={DatePickerDialog}
-                                TimePicker={TimePickerDialog}
-                                clearIcon={null}
-                                onChange={date => {
-                                  this.setState({
-                                    arrivalTime: date.getTime
-                                      ? date.getTime()
-                                      : null
-                                  });
-                                }}
-                              />
-                            </Col>
-                          </Row>
-                        </Grid>
-                      </Dialog>
-
-                      {/* Edit Returning Flights Dialog */}
-                      <Dialog
-                        title="Returning Flight"
-                        actions={editArriveDialogActions}
-                        open={this.state.editArriveDialogOpen}
+                        actions={this.state.editArriveDialogOpen ? editArriveDialogActions : arriveDialogActions}
+                        open={this.state.arriveDialogOpen || this.state.editArriveDialogOpen}
                         onRequestClose={this.handleDialogClose}
                         autoScrollBodyContent={true}
                       >
@@ -915,40 +755,11 @@ class Overview extends Component {
                         )}
                       </Col>
 
-                      {/* New Travelers Dialog */}
+                      {/* Travelers Dialog */}
                       <Dialog
                         title="Travelers"
-                        actions={travelersDialogActions}
-                        open={this.state.travelersDialogOpen}
-                        onRequestClose={this.handleDialogClose}
-                        autoScrollBodyContent={true}
-                      >
-                        <p className="highlight">{this.state.errorMessage}</p>
-
-                        <Grid className="neg-margin">
-                          <Row>
-                            <TextField
-                              className="auth-input"
-                              name="travelers"
-                              hintText="Traveler 1, Traveler 2, Tra..."
-                              floatingLabelText="Traveler Name"
-                              type="text"
-                              fullWidth={true}
-                              onChange={event => {
-                                this.setState({
-                                  travelers: event.target.value
-                                });
-                              }}
-                            />
-                          </Row>
-                        </Grid>
-                      </Dialog>
-
-                      {/* Editing Travelers Dialog */}
-                      <Dialog
-                        title="Travelers"
-                        actions={editTravelersDialogActions}
-                        open={this.state.editTravelersDialogOpen}
+                        actions={this.state.editTravelersDialogOpen ? editTravelersDialogActions : travelersDialogActions}
+                        open={this.state.travelersDialogOpen || this.state.editTravelersDialogOpen}
                         onRequestClose={this.handleDialogClose}
                         autoScrollBodyContent={true}
                       >
@@ -998,40 +809,11 @@ class Overview extends Component {
                         </p>
                       </Col>
 
-                      {/* New Notes Dialog */}
+                      {/* Notes Dialog */}
                       <Dialog
                         title="Trip Notes"
-                        actions={notesDialogActions}
-                        open={this.state.notesDialogOpen}
-                        onRequestClose={this.handleDialogClose}
-                        autoScrollBodyContent={true}
-                      >
-                        <p className="highlight">{this.state.errorMessage}</p>
-
-                        <Grid className="neg-margin">
-                          <Row>
-                            <TextField
-                              className="auth-input"
-                              name="notes"
-                              hintText="Include any trip notes or details..."
-                              floatingLabelText="Notes"
-                              type="text"
-                              fullWidth={true}
-                              multiLine={true}
-                              rowsMax={5}
-                              onChange={event => {
-                                this.setState({ notes: event.target.value });
-                              }}
-                            />
-                          </Row>
-                        </Grid>
-                      </Dialog>
-
-                      {/* Edit Notes Dialog */}
-                      <Dialog
-                        title="Trip Notes"
-                        actions={editNotesDialogActions}
-                        open={this.state.editNotesDialogOpen}
+                        actions={this.state.editNotesDialogOpen ? editNotesDialogActions : notesDialogActions}
+                        open={this.state.notesDialogOpen || this.state.editNotesDialogOpen}
                         onRequestClose={this.handleDialogClose}
                         autoScrollBodyContent={true}
                       >
