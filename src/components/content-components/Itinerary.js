@@ -404,7 +404,7 @@ class Itinerary extends Component {
                                                 value={new Date(this.state.eventStart).toLocaleString()}
                                                 clearIcon={null}
                                                 onChange={date => {
-                                                    this.setState({ eventStart: date.getTime() });
+                                                    this.setState({ eventStart: date.getTime ? date.getTime() : null });
                                                 }}
                                             />
                                         </Col>
@@ -418,7 +418,7 @@ class Itinerary extends Component {
                                                 value={new Date(this.state.eventEnd).toLocaleString()}
                                                 clearIcon={null}
                                                 onChange={date => {
-                                                    this.setState({ eventEnd: date.getTime() });
+                                                    this.setState({ eventEnd: date.getTime ? date.getTime() : null });
                                                 }}
                                             />
                                         </Col>
@@ -437,6 +437,9 @@ class Itinerary extends Component {
                                             }}
                                         />
                                     </Row>
+                                    <Row>
+                                        <p className="optional-fields">Optional budget {"&"} reservation information:</p>
+                                        </Row>
                                     <Row>
                                         <Col className="no-padding" xs={12} sm={4}>
                                             <TextField
@@ -569,7 +572,7 @@ class Itinerary extends Component {
                                                 value={new Date(this.state.eventStart).toLocaleString()}
                                                 clearIcon={null}
                                                 onChange={date => {
-                                                    this.setState({ eventStart: date.getTime() });
+                                                    this.setState({ eventStart: date.getTime ? date.getTime() : null });
                                                 }}
                                             />
                                         </Col>
@@ -583,7 +586,7 @@ class Itinerary extends Component {
                                                 value={new Date(this.state.eventEnd).toLocaleString()}
                                                 clearIcon={null}
                                                 onChange={date => {
-                                                    this.setState({ eventEnd: date.getTime() });
+                                                    this.setState({ eventEnd: date.getTime ? date.getTime() : null });
                                                 }}
                                             />
                                         </Col>
