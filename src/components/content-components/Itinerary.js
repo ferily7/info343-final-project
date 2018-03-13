@@ -459,19 +459,7 @@ class Itinerary extends Component {
                                             </SelectField>
                                         </Col>
                                     </Row>
-                                    <Row>
-                                        <TextField
-                                            className="auth-input"
-                                            name="description"
-                                            hintText="Include any notes or details."
-                                            floatingLabelText="Event Description"
-                                            type="text"
-                                            fullWidth={true}
-                                            onChange={event => {
-                                                this.setState({ description: event.target.value });
-                                            }}
-                                        />
-                                    </Row>
+                                    
                                     <Row className="extra-margin">
                                         <Col className="no-padding" xs={12} sm={6}>
                                             <Checkbox
@@ -520,6 +508,21 @@ class Itinerary extends Component {
                                                 )}
                                             </Row>
                                         </Col>
+                                    </Row>
+                                    <Row>
+                                    {this.state.reservation && (
+                                        <TextField
+                                            className="auth-input"
+                                            name="description"
+                                            hintText="Include any notes or details."
+                                            floatingLabelText="Event Description"
+                                            type="text"
+                                            fullWidth={true}
+                                            onChange={event => {
+                                                this.setState({ description: event.target.value });
+                                            }}
+                                        />
+                                        )}
                                     </Row>
                                 </Grid>
                             </Dialog>
