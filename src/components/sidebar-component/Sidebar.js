@@ -126,11 +126,8 @@ class Sidebar extends Component {
                                             onClick={() => this.props.changeSelectedTrip(d)}
                                         />
                                     );
-                                })}
-                            {/* <ListItem className="trip-list-item" primaryText="Trip 1" />
-                        <ListItem className="trip-list-item" primaryText="Trip 2" />
-                        <ListItem className="trip-list-item" primaryText="Trip 3" />
-                        <ListItem className="trip-list-item" primaryText="Trip 4" /> */}
+                                })
+                            }
                             <ListItem
                                 id="new-trip"
                                 className="trip-list-item unselectable"
