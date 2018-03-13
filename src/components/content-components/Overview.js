@@ -241,7 +241,6 @@ class Overview extends Component {
       });
 
       this.dataRef.child("travelers").set(travelersObj);
-      console.log(travelersObj);
       this.setState({
         travelersDialogOpen: false,
         editTravelersDialogOpen: false,
