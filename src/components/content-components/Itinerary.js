@@ -424,19 +424,7 @@ class Itinerary extends Component {
                                         </Col>
                                     </Row>
 
-                                    <Row>
-                                        <TextField
-                                            className="auth-input"
-                                            name="description"
-                                            hintText="Include any notes or details."
-                                            floatingLabelText="Description"
-                                            type="text"
-                                            fullWidth={true}
-                                            onChange={event => {
-                                                this.setState({ description: event.target.value });
-                                            }}
-                                        />
-                                    </Row>
+                                    
                                     <Row>
                                         <p className="optional-fields">Optional budget {"&"} reservation information:</p>
                                         </Row>
@@ -457,7 +445,7 @@ class Itinerary extends Component {
                                         <Col className="no-padding" xs={12} sm={8}>
                                             <SelectField
                                                 className="auth-input"
-                                                floatingLabelText="Event Category"
+                                                floatingLabelText="Spending Category"
                                                 value={this.state.type}
                                                 onChange={event => {
                                                     this.setState({ type: event.target.textContent });
@@ -470,6 +458,19 @@ class Itinerary extends Component {
                                                 })}
                                             </SelectField>
                                         </Col>
+                                    </Row>
+                                    <Row>
+                                        <TextField
+                                            className="auth-input"
+                                            name="description"
+                                            hintText="Include any notes or details."
+                                            floatingLabelText="Event Description"
+                                            type="text"
+                                            fullWidth={true}
+                                            onChange={event => {
+                                                this.setState({ description: event.target.value });
+                                            }}
+                                        />
                                     </Row>
                                     <Row className="extra-margin">
                                         <Col className="no-padding" xs={12} sm={6}>
@@ -499,6 +500,7 @@ class Itinerary extends Component {
                                                     </RaisedButton>
                                                 )}
                                             </Row>
+                                            
                                             <Row>
                                                 {this.state.image && this.state.reservation && (
                                                     <div>
