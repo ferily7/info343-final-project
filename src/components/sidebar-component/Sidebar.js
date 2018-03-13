@@ -21,7 +21,6 @@ class Sidebar extends Component {
             destination: '',
             dateStart: 0,
             dateEnd: 0,
-            travelerCount: 0,
             budget: 0
         };
     }
@@ -44,8 +43,6 @@ class Sidebar extends Component {
             this.setState({ errorMessage: "Destination cannot be empty" });
         } else if (this.state.dateStart === 0 || this.state.dateEnd === 0 || this.state.dateStart > this.state.dateEnd) {
             this.setState({ errorMessage: "Invalid dates chosen" });
-        } else if (this.state.travelerCount === 0) {
-            this.setState({ errorMessage: "Invalid number of travelers" });
         } else if (this.state.budget <= 0) {
             this.setState({ errorMessage: "Invalid maximum budget" })
         } else {
@@ -54,7 +51,6 @@ class Sidebar extends Component {
                 dateStart: this.state.dateStart,
                 startLocation: this.state.origin,
                 endLocation: this.state.destination,
-                numTravelers: this.state.travelerCount,
                 budget: this.state.budget,
                 tripName: this.state.tripName,
                 categories: ["Dining", "Services", "Experiences", "Shopping", "Uncategorized"]
@@ -67,7 +63,6 @@ class Sidebar extends Component {
                 destination: '',
                 dateStart: 0,
                 dateEnd: 0,
-                travelerCount: 0,
                 budget: 0
             });
         }
@@ -205,17 +200,6 @@ class Sidebar extends Component {
                                             onChange={(n, date) => { this.setState({ dateEnd: date.getTime() }) }}
                                         />
                                     </Col>
-                                </Row>
-                                <Row>
-                                    <TextField
-                                        className="auth-input"
-                                        name="travelerCount"
-                                        hintText="How many travelers?"
-                                        floatingLabelText="Travelers"
-                                        type="number"
-                                        fullWidth={true}
-                                        onChange={(event) => { this.setState({ travelerCount: Number(event.target.value) }) }}
-                                    />
                                 </Row>
                                 <Row>
                                     <TextField
