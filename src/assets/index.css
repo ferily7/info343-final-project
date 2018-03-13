@@ -404,6 +404,34 @@ h3 {
 .add-item {
   margin-bottom: 20px;
 }
+.contain-categories .col-md,
+.contain-categories .col-md-1,
+.contain-categories .col-md-2,
+.contain-categories .col-md-3,
+.contain-categories .col-md-4,
+.contain-categories .col-md-5,
+.contain-categories .col-md-6,
+.contain-categories .col-md-7,
+.contain-categories .col-md-8,
+.contain-categories .col-md-9,
+.contain-categories .col-md-10,
+.contain-categories .col-md-11,
+.contain-categories .col-md-12,
+.contain-categories .col-md-offset-0,
+.contain-categories .col-md-offset-1,
+.contain-categories .col-md-offset-2,
+.contain-categories .col-md-offset-3,
+.contain-categories .col-md-offset-4,
+.contain-categories .col-md-offset-5,
+.contain-categories .col-md-offset-6,
+.contain-categories .col-md-offset-7,
+.contain-categories .col-md-offset-8,
+.contain-categories .col-md-offset-9,
+.contain-categories .col-md-offset-10,
+.contain-categories .col-md-offset-11,
+.contain-categories .col-md-offset-12 {
+  padding: 0px !important;
+}
 .header-table {
   width: 100%;
   table-layout: fixed;
@@ -624,6 +652,7 @@ td {
   .start-end {
     font-size: 1rem;
   }
+
 }
 
 @media (min-width: 768px) {
@@ -678,6 +707,35 @@ td {
   }
   .start-end {
     font-size: 1.2rem;
+  }
+  .contain-categories .col-md,
+  .contain-categories .col-md-1,
+  .contain-categories .col-md-2,
+  .contain-categories .col-md-3,
+  .contain-categories .col-md-4,
+  .contain-categories .col-md-5,
+  .contain-categories .col-md-6,
+  .contain-categories .col-md-7,
+  .contain-categories .col-md-8,
+  .contain-categories .col-md-9,
+  .contain-categories .col-md-10,
+  .contain-categories .col-md-11,
+  .contain-categories .col-md-12,
+  .contain-categories .col-md-offset-0,
+  .contain-categories .col-md-offset-1,
+  .contain-categories .col-md-offset-2,
+  .contain-categories .col-md-offset-3,
+  .contain-categories .col-md-offset-4,
+  .contain-categories .col-md-offset-5,
+  .contain-categories .col-md-offset-6,
+  .contain-categories .col-md-offset-7,
+  .contain-categories .col-md-offset-8,
+  .contain-categories .col-md-offset-9,
+  .contain-categories .col-md-offset-10,
+  .contain-categories .col-md-offset-11,
+  .contain-categories .col-md-offset-12 {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
   }
 }
 
