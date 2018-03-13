@@ -25,9 +25,10 @@ class Overview extends Component {
             errorMessage: "",
             airlineName: "",
             departTime: 0,
-            returnTime: 0,
+            arrivalTime: 0,
             confirmation: "",
-            notes: ""
+            notes: "",
+            travelers: ""
         };
     }
 
@@ -45,11 +46,14 @@ class Overview extends Component {
             editArriveDialogOpen: false,
             notesDialogOpen: false,
             editNotesDialogOpen: false,
+            travelersDialogOpen: false,
+            editTravelersDialogOpen: false,
             errorMessage: null,
             airlineName: "",
             departTime: 0,
-            returnTime: 0,
-            confirmation: ""
+            arrivalTime: 0,
+            confirmation: "",
+            travelers: ""
         });
     };
 
@@ -59,7 +63,7 @@ class Overview extends Component {
             editDepartDialogOpen: true,
             airlineName: this.state.dataRef.departing.airlineName,
             departTime: this.state.dataRef.departing.departTime,
-            returnTime: this.state.dataRef.departing.returnTime,
+            arrivalTime: this.state.dataRef.departing.arrivalTime,
             confirmation: this.state.dataRef.departing.confirmation
         });
     };
@@ -71,14 +75,14 @@ class Overview extends Component {
         }
         else if (this.state.confirmation === '') {
             this.setState({ errorMessage: "Confirmation code cannot be empty" });
-        } else if (this.state.departTime === 0 || this.state.returnTime === 0 || this.state.departTime > this.state.returnTime) {
+        } else if (this.state.departTime === 0 || this.state.arrivalTime === 0 || this.state.departTime > this.state.arrivalTime) {
             this.setState({ errorMessage: "Invalid dates chosen" });
         } else if (this.state.dataRef.departing == null) {
             let pushObj = {
                 airlineName: this.state.airlineName,
                 confirmation: this.state.confirmation,
                 departTime: this.state.departTime,
-                returnTime: this.state.returnTime
+                arrivalTime: this.state.arrivalTime
             }
             this.dataRef.child("departing").set(pushObj);
             this.setState({
@@ -87,14 +91,14 @@ class Overview extends Component {
                 airlineName: '',
                 confirmation: '',
                 departTime: 0,
-                returnTime: 0
+                arrivalTime: 0
             });
         } else {
             let pushObj = {
                 airlineName: this.state.airlineName,
                 confirmation: this.state.confirmation,
                 departTime: this.state.departTime,
-                returnTime: this.state.returnTime
+                arrivalTime: this.state.arrivalTime
             }
             this.dataRef.child("departing").update(pushObj);
             this.setState({
@@ -103,7 +107,7 @@ class Overview extends Component {
                 airlineName: '',
                 confirmation: '',
                 departTime: 0,
-                returnTime: 0
+                arrivalTime: 0
             });
         }
     };
@@ -119,7 +123,7 @@ class Overview extends Component {
             editArriveDialogOpen: true,
             airlineName: this.state.dataRef.returning.airlineName,
             departTime: this.state.dataRef.returning.departTime,
-            returnTime: this.state.dataRef.returning.returnTime,
+            arrivalTime: this.state.dataRef.returning.arrivalTime,
             confirmation: this.state.dataRef.returning.confirmation
         });
     };
@@ -131,14 +135,14 @@ class Overview extends Component {
         }
         else if (this.state.confirmation === '') {
             this.setState({ errorMessage: "Confirmation code cannot be empty" });
-        } else if (this.state.departTime === 0 || this.state.returnTime === 0 || this.state.departTime > this.state.returnTime) {
+        } else if (this.state.departTime === 0 || this.state.arrivalTime === 0 || this.state.departTime > this.state.arrivalTime) {
             this.setState({ errorMessage: "Invalid dates chosen" });
         } else if (this.state.dataRef.departing == null) {
             let pushObj = {
                 airlineName: this.state.airlineName,
                 confirmation: this.state.confirmation,
                 departTime: this.state.departTime,
-                returnTime: this.state.returnTime
+                arrivalTime: this.state.arrivalTime
             }
             this.dataRef.child("returning").set(pushObj);
             this.setState({
@@ -147,14 +151,14 @@ class Overview extends Component {
                 airlineName: '',
                 confirmation: '',
                 departTime: 0,
-                returnTime: 0
+                arrivalTime: 0
             });
         } else {
             let pushObj = {
                 airlineName: this.state.airlineName,
                 confirmation: this.state.confirmation,
                 departTime: this.state.departTime,
-                returnTime: this.state.returnTime
+                arrivalTime: this.state.arrivalTime
             }
             this.dataRef.child("returning").update(pushObj);
             this.setState({
@@ -163,11 +167,10 @@ class Overview extends Component {
                 airlineName: '',
                 confirmation: '',
                 departTime: 0,
-                returnTime: 0
+                arrivalTime: 0
             });
         }
     };
-
 
     // Opens the notes dialog
     handleNotesDialogOpen = () => {
@@ -198,6 +201,50 @@ class Overview extends Component {
         }
     };
 
+    // Opens the travelers dialog
+    handleTravelersDialogOpen = () => {
+        this.setState({ travelersDialogOpen: true });
+    };
+
+    // Opens dialog to edit travelers' names
+    handleEditTravelersDialogOpen = () => {
+        this.setState({ 
+            editTravelersDialogOpen: true,
+            travelers: this.state.dataRef.travelers
+        });
+    };
+
+    // Sets and updates the data to the firebase
+    handleTravelersDialogSubmit = () => {
+        if (this.state.travelers === '') {
+            this.setState({ errorMessage: "Traveler names cannot be empty" });
+        } else {
+            let travelersName = this.state.travelers.split(',').map((d, i) => {
+                return(d.trim());
+            });
+            
+            let travelersObj = {};
+            travelersName.forEach((d, i) => {
+                if (d != "") {
+                    travelersObj[i] = d
+                }
+            });
+
+            this.dataRef.child("travelers").set(travelersObj);
+            console.log(travelersObj)
+            this.setState({
+                travelersDialogOpen: false,
+                editTravelersDialogOpen: false,
+                travelers: ''
+            });
+        }
+    };
+
+    handleDeleteTrip = () => {
+        this.dataRef.remove();
+        this.props.changeSelectedTrip("");
+    };
+
     // Component will receive the correct selected trip, update the reference to the trip when this is done
     componentWillReceiveProps(inProp) {
         if (inProp.firebaseUser) {
@@ -210,7 +257,7 @@ class Overview extends Component {
                 }
             });
         }
-    }
+    };
 
     // Grab what it can when component mounts, need this for when switching between tabs.
     componentDidMount() {
@@ -229,12 +276,12 @@ class Overview extends Component {
                 }
             });
         }
-    }
+    };
 
     // Set unmount state so doesn't update when not mounted anymore
     componentWillUnmount() {
         this.mounted = false;
-    }
+    };
 
     render() {
         const departDialogActions = [
@@ -317,6 +364,33 @@ class Overview extends Component {
                 onClick={this.handleNotesDialogSubmit}
             />
         ];
+
+        const travelersDialogActions = [
+            <RaisedButton
+                className="cancel-button"
+                label="Cancel"
+                secondary={true}
+                onClick={this.handleDialogClose}
+            />,
+            <RaisedButton
+                label="Create"
+                primary={true}
+                onClick={this.handleTravelersDialogSubmit}
+            />
+        ];
+        const editTravelersDialogActions = [
+            <RaisedButton
+                className="cancel-button"
+                label="Cancel"
+                secondary={true}
+                onClick={this.handleDialogClose}
+            />,
+            <RaisedButton
+                label="Update"
+                primary={true}
+                onClick={this.handleTravelersDialogSubmit}
+            />
+        ];
         return (
             <div>
                 {this.props.selectedTrip === "" && <NoTrips />}
@@ -367,7 +441,7 @@ class Overview extends Component {
                                                         new Date(this.state.dataRef.departing.departTime).toLocaleString() : '[DATE, TIME]'}
                                                     </li>
                                                     <li className="overview-li">Arrives: {this.state.dataRef.departing != null ?
-                                                        new Date(this.state.dataRef.departing.returnTime).toLocaleString() :'[DATE, TIME]'}
+                                                        new Date(this.state.dataRef.departing.arrivalTime).toLocaleString() :'[DATE, TIME]'}
                                                     </li>
                                                 </ul>
                                             </Col>
@@ -432,7 +506,7 @@ class Overview extends Component {
                                                                 TimePicker={TimePickerDialog}
                                                                 clearIcon={null}
                                                                 onChange={date => {
-                                                                    this.setState({ returnTime: date.getTime() });
+                                                                    this.setState({ arrivalTime: date.getTime() });
                                                                 }}
                                                             />
                                                         </Col>
@@ -501,10 +575,10 @@ class Overview extends Component {
                                                                 fullWidth={true}
                                                                 DatePicker={DatePickerDialog}
                                                                 TimePicker={TimePickerDialog}
-                                                                value={new Date(this.state.returnTime).toLocaleString()}
+                                                                value={new Date(this.state.arrivalTime).toLocaleString()}
                                                                 clearIcon={null}
                                                                 onChange={date => {
-                                                                    this.setState({ returnTime: date.getTime() });
+                                                                    this.setState({ arrivalTime: date.getTime() });
                                                                 }}
                                                             />
                                                         </Col>
@@ -532,7 +606,7 @@ class Overview extends Component {
                                                         new Date(this.state.dataRef.returning.departTime).toLocaleString() : '[DATE, TIME]'}
                                                     </li>
                                                     <li className="overview-li">Arrives: {this.state.dataRef.returning != null ?
-                                                        new Date(this.state.dataRef.returning.returnTime).toLocaleString() :'[DATE, TIME]'}
+                                                        new Date(this.state.dataRef.returning.arrivalTime).toLocaleString() :'[DATE, TIME]'}
                                                     </li>
                                                 </ul>
                                             </Col>
@@ -597,7 +671,7 @@ class Overview extends Component {
                                                                 TimePicker={TimePickerDialog}
                                                                 clearIcon={null}
                                                                 onChange={date => {
-                                                                    this.setState({ returnTime: date.getTime() });
+                                                                    this.setState({ arrivalTime: date.getTime() });
                                                                 }}
                                                             />
                                                         </Col>
@@ -666,10 +740,10 @@ class Overview extends Component {
                                                                 fullWidth={true}
                                                                 DatePicker={DatePickerDialog}
                                                                 TimePicker={TimePickerDialog}
-                                                                value={new Date(this.state.returnTime).toLocaleString()}
+                                                                value={new Date(this.state.arrivalTime).toLocaleString()}
                                                                 clearIcon={null}
                                                                 onChange={date => {
-                                                                    this.setState({ returnTime: date.getTime() });
+                                                                    this.setState({ arrivalTime: date.getTime() });
                                                                 }}
                                                             />
                                                         </Col>
@@ -681,21 +755,29 @@ class Overview extends Component {
                                             <Col xs={12} md={6} xl={4}>
                                                 <h2 className="content-subheader header-border">Travelers <span
                                                     className="overview-button"
-                                                    onClick={console.log("edit travelers button")}
+                                                    onClick={() => {
+                                                        this.state.dataRef.travelers == null ? this.handleTravelersDialogOpen()
+                                                        : this.handleEditTravelersDialogOpen()
+                                                    }}
                                                 ><FontAwesomeIcon className="fa-spacer" icon={faPencilAlt} />Edit</span></h2>
                                                 <ul className="overview-list">
-                                                    <li className="overview-li">Travelers: {this.state.dataRef.numTravelers}</li>
-                                                    <li className="overview-li">[TRAVELER 1 NAME]</li>
-                                                    <li className="overview-li">[TRAVELER 2 NAME]</li>
+                                                    {this.state.dataRef.travelers != null ? 
+                                                        Object.keys(this.state.dataRef.travelers).map((d, i) => {
+                                                            return (
+                                                                <li className="overview-li">{'Traveler ' + (i+1) + ': ' + this.state.dataRef.travelers[d]}</li>
+                                                            );
+                                                        }) 
+                                                        : '[TRAVELERS]'
+                                                    }
                                                 </ul>
                                             </Col>
 
                                             {/* New Travelers Dialog */}
-                                            {/* <Dialog
-                                                title="Editing Returning Flight"
-                                                actions={arriveDialogActions}
-                                                open={this.state.dialogOpen}
-                                                onRequestClose={this.handleArriveDialogClose}
+                                            <Dialog
+                                                title="Edit Traveler's Name"
+                                                actions={travelersDialogActions}
+                                                open={this.state.travelersDialogOpen}
+                                                onRequestClose={this.handleDialogClose}
                                                 autoScrollBodyContent={true}
                                             >
                                                 <p className="highlight">{this.state.errorMessage}</p>
@@ -705,17 +787,45 @@ class Overview extends Component {
                                                         <TextField
                                                             className="auth-input"
                                                             name="travelers"
-                                                            hintText="Name of travelers..."
+                                                            hintText="Comma separated: Traveler 1, Traveler 2, etc..."
                                                             floatingLabelText="Traveler Name"
                                                             type="text"
                                                             fullWidth={true}
                                                             onChange={event => {
-                                                                this.setState({ arriveAirlineName: event.target.value });
+                                                                this.setState({ travelers: event.target.value });
                                                             }}
                                                         />
                                                     </Row>
                                                 </Grid>
-                                            </Dialog> */}
+                                            </Dialog>
+
+                                            {/* Editing Travelers Dialog */}
+                                            <Dialog
+                                                title="Traveler's Name"
+                                                actions={editTravelersDialogActions}
+                                                open={this.state.editTravelersDialogOpen}
+                                                onRequestClose={this.handleDialogClose}
+                                                autoScrollBodyContent={true}
+                                            >
+                                                <p className="highlight">{this.state.errorMessage}</p>
+                                                    
+                                                <Grid className="neg-margin">
+                                                    <Row>
+                                                        <TextField
+                                                            className="auth-input"
+                                                            name="travelers"
+                                                            hintText="Comma separated: Traveler 1, Traveler 2, etc..."
+                                                            floatingLabelText="Traveler Name"
+                                                            type="text"
+                                                            fullWidth={true}
+                                                            value={this.state.travelers}
+                                                            onChange={event => {
+                                                                this.setState({ travelers: event.target.value });
+                                                            }}
+                                                        />
+                                                    </Row>
+                                                </Grid>
+                                            </Dialog>
 
                                             <Col xs={12} md={6} xl={12}>
                                                 <h2 className="content-subheader header-border">Notes <span
@@ -725,7 +835,8 @@ class Overview extends Component {
                                                         : this.handleEditNotesDialogOpen()
                                                     }}
                                                 ><FontAwesomeIcon className="fa-spacer" icon={faPencilAlt} />Edit</span></h2>
-                                                <p>{this.state.dataRef.notes}</p>
+                                                <p>{this.state.dataRef.notes != null ? this.state.dataRef.notes 
+                                                    : 'Add any trip notes or details here.'}</p>
                                             </Col>
 
                                             {/* New Notes Dialog */}
@@ -790,7 +901,9 @@ class Overview extends Component {
                                                 label="Delete this Trip"
                                                 fullWidth={true}
                                                 secondary={true}
-                                                onClick={console.log("delete trip button")}
+                                                onClick={() => {
+                                                    this.handleDeleteTrip()
+                                                }}
                                             />
                                             </Col>
                                         </Row>
