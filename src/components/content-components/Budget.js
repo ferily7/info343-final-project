@@ -446,7 +446,7 @@ class Budget extends Component {
                     </Grid>
                   </Dialog>
                 </Row>
-                <Row>
+                <Row className="add-item">
                   <Col className="no-padding" xs={12} sm={8} md={5}>
                     <TextField
                       className="auth-input"
@@ -499,7 +499,7 @@ class Budget extends Component {
                     />
                   </Col>
                 </Row>
-                <Row>
+                <Row className="contain-categories">
                   {categoryBoxes}
                   {/*Add new category*/}
                   {this.state.dataRef.categories.length < 8 && (
