@@ -149,7 +149,6 @@ class Sidebar extends Component {
                         <Dialog
                             title="Plan a New Trip"
                             actions={dialogActions}
-                            modal={true}
                             open={this.state.dialogOpen}
                             onRequestClose={this.handleDialogClose}
                             autoScrollBodyContent={true}
