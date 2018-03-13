@@ -35,7 +35,7 @@ a {
   margin-top: -10px;
 }
 
-/**** APP BAR STYLES ****/
+/* APP BAR STYLES */
 .appbar {
   background-color: #131830 !important;
 }
@@ -56,7 +56,7 @@ a {
   font-weight: 300;
 }
 
-/**** LANDING PAGE STYLES ****/
+/* LANDING PAGE STYLES */
 .contain {
   background-color: #131830;
 }
@@ -142,7 +142,7 @@ a {
   margin-right: 8px;
 }
 
-/**** TAB STYLES ****/
+/* TAB STYLES */
 .tabs-row {
   position: relative;
   z-index: 10;
@@ -200,6 +200,15 @@ a {
   border-color: #e3e3e3 #e3e3e3 #e3e3e3;
 }
 
+/* ABOUT PAGE STYLES */
+.about-header {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-top: 20px;
+  color: #1c1c1c;
+  letter-spacing: -1px;
+}
+
 /* SIDEBAR STYLES */
 .sidebar {
   border-right: 1px solid #7c7c7c;
@@ -250,7 +259,6 @@ h3 {
 }
 
 /* DASHBOARD CONTENT STYLES */
-
 .dashboard-content {
   padding: 16px;
   font-size: 0.9rem;
@@ -285,7 +293,7 @@ h3 {
   color: #7c7c7c;
   margin: .6rem 0;
 }
-/* Overview tab */
+/* OVERVIEW TAB STYLES */
 .origin-destination {
   margin: 0;
   font-size: 1.5rem;
@@ -323,7 +331,7 @@ float: right;
   margin-top: 50px;
 }
 
-/* Itinterary tab */
+/* ITINERARY TAB STYLES */
 .image-uploaded {
   margin: 0;
   padding-top: 4px;
@@ -336,7 +344,7 @@ float: right;
   margin-top: 10px;
 }
 
-/* Reservation tab */
+/* RESERVATION TAB STYLES */
 .reservation-card {
   border: 1px solid #7c7c7c;
   margin-bottom: 16px;
@@ -352,7 +360,7 @@ float: right;
   text-align: center;
   width: 100%;
 }
-/* Budget Tab */
+/* BUDGET TAB STYLES */
 .addexpense-button {
   margin-top: 18px;
   padding-left: 8px;
