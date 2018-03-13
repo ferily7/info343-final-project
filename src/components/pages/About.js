@@ -27,8 +27,17 @@ class About extends Component {
                   Itinerary, Budget, and Reservations. This allows users to keep
                   their trip organized and well-planned.
                 </p>
+                
+                <h2 className="about-subheader">Dashboard</h2>
+                <p>
+                  By logging into Trip Planner, the user is taken to their own dashboard that contains the 
+                  Overview tab, Itinerary tab, Budget tab, and Reservations tab. Furthermore, on the left 
+                  side of the dashboard is a sidebar that contains all of the user's planned trips. The user 
+                  is able to easily navigate between their trips and click on the New button to create a new 
+                  trip.
+                </p>
 
-                <h2 className="about-subheader">Itinerary</h2>
+                <h2 className="about-subheader">Overview</h2>
                 <p>
                   The Overview tab shows general trip information, including the trip name,
                   location of origin, destination, and trip dates. Users may manually add departing/returning
