@@ -34,7 +34,7 @@ class UserHome extends Component {
                         <UserHomeContent
                             firebaseUser={this.props.firebaseUser}
                             selectedTrip={this.props.selectedTrip}
-
+                            changeSelectedTrip={this.props.changeSelectedTrip}
                         />
                     </Col>
                 </Row>
