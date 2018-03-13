@@ -829,6 +829,8 @@ class Overview extends Component {
                               type="text"
                               fullWidth={true}
                               value={this.state.notes}
+                              multiLine={true}
+                              rowsMax={6}
                               onChange={event => {
                                 this.setState({ notes: event.target.value });
                               }}
