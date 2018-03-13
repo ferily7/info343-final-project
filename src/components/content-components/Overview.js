@@ -495,7 +495,7 @@ class Overview extends Component {
 
                       {/* New Departing Flight Dialog */}
                       <Dialog
-                        title="New Departing Flight"
+                        title="Departing Flight"
                         actions={departDialogActions}
                         open={this.state.departDialogOpen}
                         onRequestClose={this.handleDialogClose}
@@ -508,8 +508,8 @@ class Overview extends Component {
                             <TextField
                               className="auth-input"
                               name="airlineName"
-                              hintText="Name of your airline..."
-                              floatingLabelText="Airline Name"
+                              hintText="Airline name?"
+                              floatingLabelText="Airline"
                               type="text"
                               fullWidth={true}
                               onChange={event => {
@@ -523,7 +523,7 @@ class Overview extends Component {
                             <TextField
                               className="auth-input"
                               name="confirmation"
-                              hintText="Confirmation Code"
+                              hintText="Flight confirmation code?"
                               floatingLabelText="Confirmation Code"
                               type="text"
                               fullWidth={true}
@@ -575,7 +575,7 @@ class Overview extends Component {
 
                       {/* Edit Departing Flight Dialog */}
                       <Dialog
-                        title="Edit Departing Flight"
+                        title="Departing Flight"
                         actions={editDepartDialogActions}
                         open={this.state.editDepartDialogOpen}
                         onRequestClose={this.handleDialogClose}
@@ -588,8 +588,8 @@ class Overview extends Component {
                             <TextField
                               className="auth-input"
                               name="airlineName"
-                              hintText="Name of your airline..."
-                              floatingLabelText="Airline Name"
+                              hintText="Airline name?"
+                              floatingLabelText="Airline"
                               type="text"
                               fullWidth={true}
                               value={this.state.airlineName}
@@ -604,7 +604,7 @@ class Overview extends Component {
                             <TextField
                               className="auth-input"
                               name="confirmation"
-                              hintText="Confirmation Code"
+                              hintText="Flight confirmation code?"
                               floatingLabelText="Confirmation Code"
                               type="text"
                               fullWidth={true}
@@ -708,7 +708,7 @@ class Overview extends Component {
 
                       {/* New Returning Flight Dialog */}
                       <Dialog
-                        title="New Returning Flight"
+                        title="Returning Flight"
                         actions={arriveDialogActions}
                         open={this.state.arriveDialogOpen}
                         onRequestClose={this.handleDialogClose}
@@ -721,8 +721,8 @@ class Overview extends Component {
                             <TextField
                               className="auth-input"
                               name="airlineName"
-                              hintText="Name of your airline..."
-                              floatingLabelText="Airline Name"
+                              hintText="Airline name?"
+                              floatingLabelText="Airline"
                               type="text"
                               fullWidth={true}
                               onChange={event => {
@@ -736,7 +736,7 @@ class Overview extends Component {
                             <TextField
                               className="auth-input"
                               name="confirmation"
-                              hintText="Confirmation Code"
+                              hintText="Flight confirmation code?"
                               floatingLabelText="Confirmation Code"
                               type="text"
                               fullWidth={true}
@@ -788,7 +788,7 @@ class Overview extends Component {
 
                       {/* Edit Returning Flights Dialog */}
                       <Dialog
-                        title="Edit Returning Flight"
+                        title="Returning Flight"
                         actions={editArriveDialogActions}
                         open={this.state.editArriveDialogOpen}
                         onRequestClose={this.handleDialogClose}
@@ -801,8 +801,8 @@ class Overview extends Component {
                             <TextField
                               className="auth-input"
                               name="airlineName"
-                              hintText="Name of your airline..."
-                              floatingLabelText="Airline Name"
+                              hintText="Airline name?"
+                              floatingLabelText="Airline"
                               type="text"
                               fullWidth={true}
                               value={this.state.airlineName}
@@ -817,7 +817,7 @@ class Overview extends Component {
                             <TextField
                               className="auth-input"
                               name="confirmation"
-                              hintText="Confirmation Code"
+                              hintText="Flight confirmation code?"
                               floatingLabelText="Confirmation Code"
                               type="text"
                               fullWidth={true}
@@ -900,9 +900,9 @@ class Overview extends Component {
                                     key={`traveler-${i}`}
                                     className="overview-li"
                                   >
-                                    {"Traveler " +
+                                    {"(" +
                                       (i + 1) +
-                                      ": " +
+                                      ") " +
                                       this.state.dataRef.travelers[d]}
                                   </li>
                                 );
@@ -917,7 +917,7 @@ class Overview extends Component {
 
                       {/* New Travelers Dialog */}
                       <Dialog
-                        title="Edit Traveler's Name"
+                        title="Travelers"
                         actions={travelersDialogActions}
                         open={this.state.travelersDialogOpen}
                         onRequestClose={this.handleDialogClose}
@@ -930,7 +930,7 @@ class Overview extends Component {
                             <TextField
                               className="auth-input"
                               name="travelers"
-                              hintText="Comma separated: Traveler 1, Traveler 2, etc..."
+                              hintText="Traveler 1, Traveler 2, Tra..."
                               floatingLabelText="Traveler Name"
                               type="text"
                               fullWidth={true}
@@ -946,7 +946,7 @@ class Overview extends Component {
 
                       {/* Editing Travelers Dialog */}
                       <Dialog
-                        title="Traveler's Name"
+                        title="Travelers"
                         actions={editTravelersDialogActions}
                         open={this.state.editTravelersDialogOpen}
                         onRequestClose={this.handleDialogClose}
@@ -959,7 +959,7 @@ class Overview extends Component {
                             <TextField
                               className="auth-input"
                               name="travelers"
-                              hintText="Comma separated: Traveler 1, Traveler 2, etc..."
+                              hintText="Traveler 1, Traveler 2, Tra..."
                               floatingLabelText="Traveler Name"
                               type="text"
                               fullWidth={true}
@@ -1000,7 +1000,7 @@ class Overview extends Component {
 
                       {/* New Notes Dialog */}
                       <Dialog
-                        title="New Trip Notes"
+                        title="Trip Notes"
                         actions={notesDialogActions}
                         open={this.state.notesDialogOpen}
                         onRequestClose={this.handleDialogClose}
@@ -1013,7 +1013,7 @@ class Overview extends Component {
                             <TextField
                               className="auth-input"
                               name="notes"
-                              hintText="New Notes..."
+                              hintText="Include any trip notes or details..."
                               floatingLabelText="Notes"
                               type="text"
                               fullWidth={true}
@@ -1029,7 +1029,7 @@ class Overview extends Component {
 
                       {/* Edit Notes Dialog */}
                       <Dialog
-                        title="Edit Trip Notes"
+                        title="Trip Notes"
                         actions={editNotesDialogActions}
                         open={this.state.editNotesDialogOpen}
                         onRequestClose={this.handleDialogClose}
