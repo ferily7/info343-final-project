@@ -6,9 +6,9 @@ import { Progress } from "reactstrap";
 import "react-sweet-progress/lib/style.css";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import {
-    faTrashAlt,
-    faTimesCircle,
-    faPencilAlt
+  faTrashAlt,
+  faTimesCircle,
+  faPencilAlt
 } from "@fortawesome/fontawesome-free-solid";
 // material ui components
 import TextField from "material-ui/TextField";
@@ -16,11 +16,11 @@ import RaisedButton from "material-ui/RaisedButton";
 import SelectField from "material-ui/SelectField";
 import MenuItem from "material-ui/MenuItem";
 import {
-    Table,
-    TableBody,
-    TableRow,
-    TableRowColumn,
-    TableFooter
+  Table,
+  TableBody,
+  TableRow,
+  TableRowColumn,
+  TableFooter
 } from "material-ui/Table";
 
 import Dialog from "material-ui/Dialog";
@@ -33,6 +33,7 @@ class Budget extends Component {
       value: "",
       dialogOpen: false,
       budgetDialogOpen: false,
+      deleteDialogOpen: false,
       categoryToAdd: "",
       errorMessage: "",
       buyItem: "",
@@ -65,20 +66,20 @@ class Budget extends Component {
       categories.push(this.state.categoryToAdd);
       this.dataRef.child("categories").set(categories);
       this.setState({
-          dialogOpen: false,
-          categoryToAdd: ""
+        dialogOpen: false,
+        categoryToAdd: ""
       });
     } else {
       this.setState({ errorMessage: "Invalid category name" });
     }
   };
 
-    // Open change budget maximum menu
+  // Open change budget maximum menu
   handleBudgetDialogOpen = () => {
     this.setState({ budgetDialogOpen: true, errorMessage: "" });
   };
 
-    // Close change budget maximum menu
+  // Close change budget maximum menu
   handleBudgetDialogClose = () => {
     this.setState({
       budgetDialogOpen: false,
@@ -99,6 +100,17 @@ class Budget extends Component {
     } else {
       this.setState({ errorMessage: "Invalid budget provided" });
     }
+  };
+
+  handleDeleteDialogOpen = () => {
+    this.setState({ deleteDialogOpen: true });
+  };
+
+  handleDeleteDialogClose = () => {
+    this.setState({
+      deleteDialogOpen: false,
+      errorMessage: null
+    });
   };
 
   // Handle deleting categories
@@ -168,9 +180,9 @@ class Budget extends Component {
       this.dataRef.on("value", snapshot => {
         if (this.mounted && this.props.selectedTrip !== "") {
           this.setState({
-          dataRef: snapshot.val()[this.props.selectedTrip]
-            ? snapshot.val()[this.props.selectedTrip]
-            : snapshot.val()
+            dataRef: snapshot.val()[this.props.selectedTrip]
+              ? snapshot.val()[this.props.selectedTrip]
+              : snapshot.val()
           });
         }
       });
@@ -182,7 +194,6 @@ class Budget extends Component {
     this.mounted = false;
   }
   handleChange = (event, index, value) => this.setState({ value });
-    
   render() {
     const dialogActions = [
       <RaisedButton
@@ -210,7 +221,19 @@ class Budget extends Component {
         onClick={this.handleBudgetDialogSubmit}
       />
     ];
-
+    const deleteDialogActions = [
+      <RaisedButton
+        className="cancel-button"
+        label="Cancel"
+        secondary={true}
+        onClick={this.handleDeleteDialogClose}
+      />,
+      <RaisedButton
+        label="Delete"
+        primary={true}
+        onClick={this.handleDeleteCategory}
+      />
+    ];
     let combinedObj = {};
     let combinedArr = [];
     let totalBudget = {};
@@ -256,7 +279,7 @@ class Budget extends Component {
       }
     });
 
-    // categoryBoxes can be moved to its own class, but I think I can do calculations here for thprogress bar.
+    // categoryBoxes can be moved to its own class, but I think I can do calculations here for the progress bar.
     let categoryBoxes = Object.keys(totalBudget).map((d, i) => {
       return (
         <Col key={d} className="table-margin" xs={12} md={6} xl={4}>
@@ -265,21 +288,38 @@ class Budget extends Component {
               <tr>
                 <td>
                   <h2 className="content-subheader category-name">
-                    <span className={`dot category-${i + 1}`} />{" "}{d}
-                  </h2></td><td>
+                    <span className={`dot category-${i + 1}`} /> {d}
+                  </h2>
+                </td>
+                <td>
                   {d !== "Uncategorized" && (
                     <span
                       className="content-subheader category-delete unselectable"
-                      onClick={() => this.handleDeleteCategory(d)}
+                      onClick={() => this.handleDeleteDialogOpen()}
                     >
-                      <FontAwesomeIcon className="fa-spacer" icon={faTrashAlt} />Delete
+                      <FontAwesomeIcon
+                        className="fa-spacer"
+                        icon={faTrashAlt}
+                      />Delete
+                      <Dialog
+                        actions={deleteDialogActions}
+                        modal={false}
+                        open={this.state.deleteDialogOpen}
+                        onRequestClose={this.handleDeleteDialogClose}
+                      >
+                        Are you sure you want to delete the{" "}
+                        <span className="extra-bold">"{d}"</span> category? This
+                        will move all items in this category to{" "}
+                        <span className="extra-bold">"Uncategorized"</span>.
+                      </Dialog>
                     </span>
                   )}
                 </td>
               </tr>
             </tbody>
           </table>
-          {/* add delete category button that    onClick={() => this.handleDeleteCategory(d)<-- whatever thing this is put on will work 100%, tested */}
+
+          {/* add delete category button that    onClick={() => this.handleDeleteCategory(d)}    <-- whatever thing this is put on will work 100%, tested */}
           <div className="category-table">
             <Table selectable={false} fixedFooter={true} height="200px">
               <TableBody showRowHover={true} displayRowCheckbox={false}>
@@ -358,8 +398,10 @@ class Budget extends Component {
                   <div className="contain-progress">
                     <div
                       className={`text-center ${
-                        maxCost > this.state.dataRef.budget ? "highlight extra-bold" : ""
-                        }`}
+                        maxCost > this.state.dataRef.budget
+                          ? "highlight extra-bold"
+                          : ""
+                      }`}
                     >
                       {`$${maxCost.toFixed(2)}`} of{" "}
                       {`$${this.state.dataRef.budget.toFixed(2)}`} spent
@@ -367,10 +409,10 @@ class Budget extends Component {
                         className="edit-budget unselectable"
                         onClick={() => this.handleBudgetDialogOpen()}
                       >
-                      <FontAwesomeIcon
-                        className="fa-spacer"
-                        icon={faPencilAlt}
-                      />Edit
+                        <FontAwesomeIcon
+                          className="fa-spacer"
+                          icon={faPencilAlt}
+                        />Edit
                       </span>
                     </div>
                     <Progress multi>{categoryProgressBar}</Progress>
@@ -434,7 +476,7 @@ class Budget extends Component {
                     />
                   </Col>
                   <Col className="no-padding" xs={5} sm={7} md={3}>
-                      <SelectField
+                    <SelectField
                       className="auth-input"
                       floatingLabelText="Category"
                       value={this.state.value}
@@ -504,8 +546,7 @@ class Budget extends Component {
                 </Grid>
               </Dialog>
             </div>
-          )
-        }
+          )}
       </div>
     );
   }

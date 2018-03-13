@@ -2,69 +2,83 @@ import React, { Component } from "react";
 import { Grid, Row, Col } from "react-flexbox-grid";
 
 class About extends Component {
+  render() {
+    return (
+      <div>
+        <Grid fluid>
+          <Row>
+            <Col smOffset={1} xs={12} sm={10}>
+              <div className="contain-sm">
+              <div className="about-content">
+                <h1 className="about-header">About Trip Planner</h1>
+                <p>
+                  Trip Planner is an application that allows the user to
+                  interactively create a travel itinerary, see data about their
+                  budget, and mark their reservations. The application can be
+                  used by anyone who wants to plan and organize their trip.
+                  Alternatively, users can use the application just for its
+                  budgeting and calendar features.
+                </p>
 
-    render() {
-        return (
-            <div>
-                <Grid fluid>
-                    <Row>
-                        <Col smOffset={1} xs={12} sm={10}>
-                        <div className="contain-sm">
-                            <h1 className="about-header">About</h1>
-                            <p>
-                                Trip Planner is an application that allows the user to interactively create a 
-                                travel itinerary, see data about their budget, and mark their reservations. The 
-                                application can be used by tourists who want to plan a schedule for their trip or 
-                                vacation, keeping it structured and organized. The users can also use the application 
-                                solely for budgeting their money or a structured calendar.
-                            </p>
-                                
-                            <p>
-                                The application shares information about what the user has planned already, what 
-                                their current estimated cost is versus their max budget. Users are able to 
-                                interactively create their itinerary, adding events at any specific time. Users have a 
-                                dashboard with four different tabs: a Overview tab, a Itinerary tab, a Budget tab, and a
-                                Reservations tab. With the dashboard, the users are able to stay organized with their trip. 
-                                The applicaton is a great way to keep your trip organized, neat and planned out
-                            </p>
-                            
-                            <h2>Itinerary</h2>
-                            <p>
-                                The itinerary is a calendar that serves as a great tool to plan out your schedule in 
-                                details by creating events. The users are able to customize their calendar by adding events 
-                                they plan to do on a specific day and time. When users creates an event, they have to provide 
-                                a few details: name, location description, estimated cost, and if a reservation was made. 
-                                If the user says that a reservation was made, the event will also appear on the Reservation 
-                                tab. Also the given estimated cost will appear on the Budgeting tab so that the user is aware of 
-                                how much money he or she is spending on a specific event. It is convenient using the Itinerary tab 
-                                since you are able to see all of the events you created throughout the trip.
-                            </p>
-                                
-                            <h2>Budgeting</h2>
-                            <p>With the Budget tab, the user is able to set a maximum budget for the whole trip, but also 
-                                having the ability to update their budget whenever they like. Users are able to categorize 
-                                the items they bought during the trip and see how much money they spent in a specific category. 
-                                Some of the differeny categories are dining, services, experiences, shopping and uncategorized. 
-                                However, the user is not limited to the given categories and have the option to add or delete any 
-                                categories. On the top of Budget tab is a progress bar where the user can see how much money has been 
-                                used so far out of the maximum budget and see the amount of money the user spent in each category.
-                            </p>
+                <p>
+                  Users interactively create their itinerary, adding events and
+                  optionally integrating them with the budget and/or reservation
+                  features. The dashboard features four tabs: Overview,
+                  Itinerary, Budget, and Reservations. This allows users to keep
+                  their trip organized and well-planned.
+                </p>
 
-                            <h2>Reservations</h2>
-                            <p>Finally in the Reservations tab, the user is able to see all of their reservations made for events. Under 
-                                each reservation says when and where the reservation is and gives details about it. With the Reservations, 
-                                the user is able to see how many reservations were made and the exact time of when it is. The 
-                                Reservations tab is a great way for the user to be reminded when their reservation is and to not forget 
-                                about it.
-                            </p>
+                <h2 className="about-subheader">Itinerary</h2>
+                <p>
+                  The Overview tab shows general trip information, including the trip name,
+                  location of origin, destination, and trip dates. Users may manually add departing/returning
+                  flight information, traveler information, and additional notes.
+                </p>
 
-                        </div>
-                        </Col>
-                    </Row>
-                </Grid>
-            </div>
-        );
-    }
+                <h2 className="about-subheader">Itinerary</h2>
+                <p>
+                  The Itinerary tab features a calendar that serves as a great
+                  tool to plan out a schedule. Users can customize their
+                  calendar by adding events. Events require a name and date/time
+                  range. Optionally, they can add an estimated cost and a
+                  category, which will appear in the Budget tab. If the users
+                  indicate that a reservation has been made, they can add
+                  additional details, including a location, description, and
+                  picture. These details will render in the Reservations tab.
+                  Once created, the event will appear on the calendar.
+                </p>
+
+                <h2 className="about-subheader">Budgeting</h2>
+                <p>
+                  In the Budget tab, users can set a trip budget, which they can
+                  update at any time. Users can then categorize the items they
+                  bought during the trip and see how much money they spent
+                  within each category. By default, there are four categories:
+                  Dining, Services, Experiences, and Shopping. However, users
+                  may add or delete categories, up to a maximum of 7 categories
+                  (not including "Uncategorized" items). The progress bar shows
+                  how much of the budget has been spent, broken down by
+                  category.
+                </p>
+
+                <h2 className="about-subheader">Reservations</h2>
+                <p>
+                  In the Reservations tab, users can see all of their
+                  reservations. Reservations are added by indicating them as
+                  "Reservation made" when creating itinerary events. Each
+                  reservation includes when and where the reservation is. If
+                  added by the user, it may also include a picture and a
+                  description. The Reservations tab is a great way for users to
+                  keep track of all of their important engagements.
+                </p>
+              </div>
+              </div>
+            </Col>
+          </Row>
+        </Grid>
+      </div>
+    );
+  }
 }
 
 export default About;
