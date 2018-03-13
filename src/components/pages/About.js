@@ -9,7 +9,8 @@ class About extends Component {
           <Row>
             <Col smOffset={1} xs={12} sm={10}>
               <div className="contain-sm">
-                <h1 className="about-header">About</h1>
+              <div className="about-content">
+                <h1 className="about-header">About Trip Planner</h1>
                 <p>
                   Trip Planner is an application that allows the user to
                   interactively create a travel itinerary, see data about their
@@ -27,14 +28,14 @@ class About extends Component {
                   their trip organized and well-planned.
                 </p>
 
-                <h2>Itinerary</h2>
+                <h2 className="about-subheader">Itinerary</h2>
                 <p>
                   The Overview tab shows general trip information, including the trip name,
                   location of origin, destination, and trip dates. Users may manually add departing/returning
                   flight information, traveler information, and additional notes.
                 </p>
 
-                <h2>Itinerary</h2>
+                <h2 className="about-subheader">Itinerary</h2>
                 <p>
                   The Itinerary tab features a calendar that serves as a great
                   tool to plan out a schedule. Users can customize their
@@ -47,7 +48,7 @@ class About extends Component {
                   Once created, the event will appear on the calendar.
                 </p>
 
-                <h2>Budgeting</h2>
+                <h2 className="about-subheader">Budgeting</h2>
                 <p>
                   In the Budget tab, users can set a trip budget, which they can
                   update at any time. Users can then categorize the items they
@@ -60,7 +61,7 @@ class About extends Component {
                   category.
                 </p>
 
-                <h2>Reservations</h2>
+                <h2 className="about-subheader">Reservations</h2>
                 <p>
                   In the Reservations tab, users can see all of their
                   reservations. Reservations are added by indicating them as
@@ -70,6 +71,7 @@ class About extends Component {
                   description. The Reservations tab is a great way for users to
                   keep track of all of their important engagements.
                 </p>
+              </div>
               </div>
             </Col>
           </Row>

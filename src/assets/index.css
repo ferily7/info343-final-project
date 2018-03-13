@@ -201,12 +201,23 @@ a {
 }
 
 /* ABOUT PAGE STYLES */
+.about-content {
+  margin-bottom: 30px;
+}
+.about-content p {
+  margin: 0 0 10px 0;
+}
 .about-header {
   font-size: 2.5rem;
   font-weight: 500;
-  margin-top: 20px;
+  margin: 20px 0 10px 0;
   color: #1c1c1c;
   letter-spacing: -1px;
+}
+.about-subheader {
+  font-weight: 500;
+  letter-spacing: -1px;
+  margin-bottom: 5px;
 }
 
 /* SIDEBAR STYLES */
