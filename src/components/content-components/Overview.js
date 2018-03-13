@@ -198,25 +198,6 @@ class Overview extends Component {
         }
     };
 
-
-
-
-
-
-
-
-    handleDeleteTrip = () => {
-        this.dataRef.child(`trips/${this.state.dataRef.tripName}`).remove();
-        this.setState = {
-            dialogOpen: false,
-            errorMessage: "",
-            departAirlineName: "",
-            confirmation: "",
-            departStart: 0,
-            departEnd: 0
-        };
-    }
-
     // Component will receive the correct selected trip, update the reference to the trip when this is done
     componentWillReceiveProps(inProp) {
         if (inProp.firebaseUser) {
@@ -708,6 +689,33 @@ class Overview extends Component {
                                                     <li className="overview-li">[TRAVELER 2 NAME]</li>
                                                 </ul>
                                             </Col>
+
+                                            {/* New Travelers Dialog */}
+                                            {/* <Dialog
+                                                title="Editing Returning Flight"
+                                                actions={arriveDialogActions}
+                                                open={this.state.dialogOpen}
+                                                onRequestClose={this.handleArriveDialogClose}
+                                                autoScrollBodyContent={true}
+                                            >
+                                                <p className="highlight">{this.state.errorMessage}</p>
+                                                    
+                                                <Grid className="neg-margin">
+                                                    <Row>
+                                                        <TextField
+                                                            className="auth-input"
+                                                            name="travelers"
+                                                            hintText="Name of travelers..."
+                                                            floatingLabelText="Traveler Name"
+                                                            type="text"
+                                                            fullWidth={true}
+                                                            onChange={event => {
+                                                                this.setState({ arriveAirlineName: event.target.value });
+                                                            }}
+                                                        />
+                                                    </Row>
+                                                </Grid>
+                                            </Dialog> */}
 
                                             <Col xs={12} md={6} xl={12}>
                                                 <h2 className="content-subheader header-border">Notes <span
