@@ -31,10 +31,9 @@ class About extends Component {
                 <h2 className="about-subheader">Dashboard</h2>
                 <p>
                   By logging into Trip Planner, the user is taken to their own dashboard that contains the 
-                  Overview tab, Itinerary tab, Budget tab, and Reservations tab. Furthermore, on the left 
-                  side of the dashboard is a sidebar that contains all of the user's planned trips. The user 
-                  is able to easily navigate between their trips and click on the New button to create a new 
-                  trip.
+                  Overview tab, Itinerary tab, Budget tab, and Reservations tab. On the left side of the 
+                  dashboard is a sidebar that contains all of the user's planned trips. The user is able to 
+                  easily navigate between their trips and click on the New button to create a new trip.
                 </p>
 
                 <h2 className="about-subheader">Overview</h2>
