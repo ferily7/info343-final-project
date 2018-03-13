@@ -20,6 +20,8 @@ class Overview extends Component {
             arriveDialogOpen: false,
             editDepartDialogOpen: false,
             editArriveDialogOpen: false,
+            travelersDialogOpen: false,
+            editTravelersDialogOpen: false,
             notesDialogOpen: false,
             editNotesDialogOpen: false,
             errorMessage: "",
@@ -59,7 +61,7 @@ class Overview extends Component {
 
     // Opens dialog to edit departing flight
     handleEditDepartDialogOpen = () => {
-        this.setState({ 
+        this.setState({
             editDepartDialogOpen: true,
             airlineName: this.state.dataRef.departing.airlineName,
             departTime: this.state.dataRef.departing.departTime,
@@ -119,7 +121,7 @@ class Overview extends Component {
 
     // Opens dialog to edit returning flight
     handleEditArriveDialogOpen = () => {
-        this.setState({ 
+        this.setState({
             editArriveDialogOpen: true,
             airlineName: this.state.dataRef.returning.airlineName,
             departTime: this.state.dataRef.returning.departTime,
@@ -179,7 +181,7 @@ class Overview extends Component {
 
     // Opens dialog to edit notes
     handleEditNotesDialogOpen = () => {
-        this.setState({ 
+        this.setState({
             editNotesDialogOpen: true,
             notes: this.state.dataRef.notes
         });
@@ -208,7 +210,7 @@ class Overview extends Component {
 
     // Opens dialog to edit travelers' names
     handleEditTravelersDialogOpen = () => {
-        this.setState({ 
+        this.setState({
             editTravelersDialogOpen: true,
             travelers: this.state.dataRef.travelers
         });
@@ -220,12 +222,12 @@ class Overview extends Component {
             this.setState({ errorMessage: "Traveler names cannot be empty" });
         } else {
             let travelersName = this.state.travelers.split(',').map((d, i) => {
-                return(d.trim());
+                return (d.trim());
             });
-            
+
             let travelersObj = {};
             travelersName.forEach((d, i) => {
-                if (d != "") {
+                if (d !== "") {
                     travelersObj[i] = d
                 }
             });
@@ -241,8 +243,8 @@ class Overview extends Component {
     };
 
     handleDeleteTrip = () => {
-        this.dataRef.remove();
         this.props.changeSelectedTrip("");
+        this.dataRef.remove();
     };
 
     // Component will receive the correct selected trip, update the reference to the trip when this is done
@@ -267,7 +269,7 @@ class Overview extends Component {
                 .database()
                 .ref(`${this.props.firebaseUser.uid}/trips/${this.props.selectedTrip}`);
             this.dataRef.on("value", snapshot => {
-                if (this.mounted && this.props.selectedTrip !== "") {
+                if (this.mounted && this.props.selectedTrip !== "" && snapshot.val()) {
                     this.setState({
                         dataRef: snapshot.val()[this.props.selectedTrip]
                             ? snapshot.val()[this.props.selectedTrip]
@@ -427,25 +429,26 @@ class Overview extends Component {
                                                     className="overview-button"
                                                     onClick={() => {
                                                         this.state.dataRef.departing == null ? this.handleDepartDialogOpen()
-                                                        : this.handleEditDepartDialogOpen()
+                                                            : this.handleEditDepartDialogOpen()
                                                     }}
                                                 ><FontAwesomeIcon className="fa-spacer" icon={faPencilAlt} />Edit</span></h2>
-                                                <ul className="overview-list">
-                                                    <li className="overview-li">Name: {this.state.dataRef.departing != null ? 
-                                                        this.state.dataRef.departing.airlineName : '[AIRLINE]'}
-                                                    </li>
-                                                    <li className="overview-li">Confirmation Code: {this.state.dataRef.departing != null ? 
-                                                        this.state.dataRef.departing.confirmation : '[CONFIRMATION CODE]'}
-                                                    </li>
-                                                    <li className="overview-li">Departs: {this.state.dataRef.departing != null ?
-                                                        new Date(this.state.dataRef.departing.departTime).toLocaleString() : '[DATE, TIME]'}
-                                                    </li>
-                                                    <li className="overview-li">Arrives: {this.state.dataRef.departing != null ?
-                                                        new Date(this.state.dataRef.departing.arrivalTime).toLocaleString() :'[DATE, TIME]'}
-                                                    </li>
-                                                </ul>
+                                                {this.state.dataRef.departing &&
+                                                    <ul className="overview-list">
+                                                        <li className="overview-li">Name: {this.state.dataRef.departing.airlineName}
+                                                        </li>
+                                                        <li className="overview-li">Confirmation Code: {this.state.dataRef.departing.confirmation}
+                                                        </li>
+                                                        <li className="overview-li">Departs: {new Date(this.state.dataRef.departing.departTime).toLocaleString()}
+                                                        </li>
+                                                        <li className="overview-li">Arrives: {new Date(this.state.dataRef.departing.arrivalTime).toLocaleString()}
+                                                        </li>
+                                                    </ul>
+                                                }
+                                                {!this.state.dataRef.departing &&
+                                                    <p>Click edit to add your information</p>
+                                                }
                                             </Col>
-                                            
+
                                             {/* New Departing Flight Dialog */}
                                             <Dialog
                                                 title="New Departing Flight"
@@ -455,7 +458,7 @@ class Overview extends Component {
                                                 autoScrollBodyContent={true}
                                             >
                                                 <p className="highlight">{this.state.errorMessage}</p>
-                                                    
+
                                                 <Grid className="neg-margin">
                                                     <Row>
                                                         <TextField
@@ -493,7 +496,7 @@ class Overview extends Component {
                                                                 TimePicker={TimePickerDialog}
                                                                 clearIcon={null}
                                                                 onChange={date => {
-                                                                    this.setState({ departTime: date.getTime() });
+                                                                    this.setState({ departTime: date.getTime ? date.getTime() : null });
                                                                 }}
                                                             />
                                                         </Col>
@@ -506,7 +509,7 @@ class Overview extends Component {
                                                                 TimePicker={TimePickerDialog}
                                                                 clearIcon={null}
                                                                 onChange={date => {
-                                                                    this.setState({ arrivalTime: date.getTime() });
+                                                                    this.setState({ arrivalTime: date.getTime ? date.getTime() : null });
                                                                 }}
                                                             />
                                                         </Col>
@@ -523,7 +526,7 @@ class Overview extends Component {
                                                 autoScrollBodyContent={true}
                                             >
                                                 <p className="highlight">{this.state.errorMessage}</p>
-                                                    
+
                                                 <Grid className="neg-margin">
                                                     <Row>
                                                         <TextField
@@ -564,7 +567,7 @@ class Overview extends Component {
                                                                 value={new Date(this.state.departTime).toLocaleString()}
                                                                 clearIcon={null}
                                                                 onChange={date => {
-                                                                    this.setState({ departTime: date.getTime() });
+                                                                    this.setState({ departTime: date.getTime ? date.getTime() : null });
                                                                 }}
                                                             />
                                                         </Col>
@@ -578,7 +581,7 @@ class Overview extends Component {
                                                                 value={new Date(this.state.arrivalTime).toLocaleString()}
                                                                 clearIcon={null}
                                                                 onChange={date => {
-                                                                    this.setState({ arrivalTime: date.getTime() });
+                                                                    this.setState({ arrivalTime: date.getTime ? date.getTime() : null });
                                                                 }}
                                                             />
                                                         </Col>
@@ -592,23 +595,24 @@ class Overview extends Component {
                                                     className="overview-button"
                                                     onClick={() => {
                                                         this.state.dataRef.returning == null ? this.handleArriveDialogOpen()
-                                                        : this.handleEditArriveDialogOpen()
+                                                            : this.handleEditArriveDialogOpen()
                                                     }}
                                                 ><FontAwesomeIcon className="fa-spacer" icon={faPencilAlt} />Edit</span></h2>
-                                                <ul className="overview-list">
-                                                    <li className="overview-li">Name: {this.state.dataRef.returning != null ? 
-                                                        this.state.dataRef.returning.airlineName : '[AIRLINE]'}
-                                                    </li>
-                                                    <li className="overview-li">Confirmation Code: {this.state.dataRef.returning != null ? 
-                                                        this.state.dataRef.returning.confirmation : '[CONFIRMATION CODE]'}
-                                                    </li>
-                                                    <li className="overview-li">Departs: {this.state.dataRef.returning != null ?
-                                                        new Date(this.state.dataRef.returning.departTime).toLocaleString() : '[DATE, TIME]'}
-                                                    </li>
-                                                    <li className="overview-li">Arrives: {this.state.dataRef.returning != null ?
-                                                        new Date(this.state.dataRef.returning.arrivalTime).toLocaleString() :'[DATE, TIME]'}
-                                                    </li>
-                                                </ul>
+                                                {this.state.dataRef.returning &&
+                                                    <ul className="overview-list">
+                                                        <li className="overview-li">Name: {this.state.dataRef.returning.airlineName}
+                                                        </li>
+                                                        <li className="overview-li">Confirmation Code: {this.state.dataRef.returning.confirmation}
+                                                        </li>
+                                                        <li className="overview-li">Departs: {new Date(this.state.dataRef.returning.departTime).toLocaleString()}
+                                                        </li>
+                                                        <li className="overview-li">Arrives: {new Date(this.state.dataRef.returning.arrivalTime).toLocaleString()}
+                                                        </li>
+                                                    </ul>
+                                                }
+                                                {!this.state.dataRef.returning &&
+                                                    <p>Click edit to add your information</p>
+                                                }
                                             </Col>
 
                                             {/* New Returning Flight Dialog */}
@@ -620,7 +624,7 @@ class Overview extends Component {
                                                 autoScrollBodyContent={true}
                                             >
                                                 <p className="highlight">{this.state.errorMessage}</p>
-                                                    
+
                                                 <Grid className="neg-margin">
                                                     <Row>
                                                         <TextField
@@ -658,7 +662,7 @@ class Overview extends Component {
                                                                 TimePicker={TimePickerDialog}
                                                                 clearIcon={null}
                                                                 onChange={date => {
-                                                                    this.setState({ departTime: date.getTime() });
+                                                                    this.setState({ departTime: date.getTime ? date.getTime() : null });
                                                                 }}
                                                             />
                                                         </Col>
@@ -671,7 +675,7 @@ class Overview extends Component {
                                                                 TimePicker={TimePickerDialog}
                                                                 clearIcon={null}
                                                                 onChange={date => {
-                                                                    this.setState({ arrivalTime: date.getTime() });
+                                                                    this.setState({ arrivalTime: date.getTime ? date.getTime() : null });
                                                                 }}
                                                             />
                                                         </Col>
@@ -688,7 +692,7 @@ class Overview extends Component {
                                                 autoScrollBodyContent={true}
                                             >
                                                 <p className="highlight">{this.state.errorMessage}</p>
-                                                    
+
                                                 <Grid className="neg-margin">
                                                     <Row>
                                                         <TextField
@@ -729,7 +733,7 @@ class Overview extends Component {
                                                                 value={new Date(this.state.departTime).toLocaleString()}
                                                                 clearIcon={null}
                                                                 onChange={date => {
-                                                                    this.setState({ departTime: date.getTime() });
+                                                                    this.setState({ departTime: date.getTime ? date.getTime() : null });
                                                                 }}
                                                             />
                                                         </Col>
@@ -743,7 +747,7 @@ class Overview extends Component {
                                                                 value={new Date(this.state.arrivalTime).toLocaleString()}
                                                                 clearIcon={null}
                                                                 onChange={date => {
-                                                                    this.setState({ arrivalTime: date.getTime() });
+                                                                    this.setState({ arrivalTime: date.getTime ? date.getTime() : null });
                                                                 }}
                                                             />
                                                         </Col>
@@ -757,19 +761,22 @@ class Overview extends Component {
                                                     className="overview-button"
                                                     onClick={() => {
                                                         this.state.dataRef.travelers == null ? this.handleTravelersDialogOpen()
-                                                        : this.handleEditTravelersDialogOpen()
+                                                            : this.handleEditTravelersDialogOpen()
                                                     }}
                                                 ><FontAwesomeIcon className="fa-spacer" icon={faPencilAlt} />Edit</span></h2>
-                                                <ul className="overview-list">
-                                                    {this.state.dataRef.travelers != null ? 
-                                                        Object.keys(this.state.dataRef.travelers).map((d, i) => {
+                                                {this.state.dataRef.travelers &&
+                                                    <ul className="overview-list">
+                                                        {Object.keys(this.state.dataRef.travelers).map((d, i) => {
                                                             return (
-                                                                <li className="overview-li">{'Traveler ' + (i+1) + ': ' + this.state.dataRef.travelers[d]}</li>
+                                                                <li key={`traveler-${i}`} className="overview-li">{'Traveler ' + (i + 1) + ': ' + this.state.dataRef.travelers[d]}</li>
                                                             );
-                                                        }) 
-                                                        : '[TRAVELERS]'
-                                                    }
-                                                </ul>
+                                                        })
+                                                        }
+                                                    </ul>
+                                                }
+                                                {!this.state.dataRef.travelers &&
+                                                    <p>Click edit to add your information</p>
+                                                }
                                             </Col>
 
                                             {/* New Travelers Dialog */}
@@ -781,7 +788,7 @@ class Overview extends Component {
                                                 autoScrollBodyContent={true}
                                             >
                                                 <p className="highlight">{this.state.errorMessage}</p>
-                                                    
+
                                                 <Grid className="neg-margin">
                                                     <Row>
                                                         <TextField
@@ -808,7 +815,7 @@ class Overview extends Component {
                                                 autoScrollBodyContent={true}
                                             >
                                                 <p className="highlight">{this.state.errorMessage}</p>
-                                                    
+
                                                 <Grid className="neg-margin">
                                                     <Row>
                                                         <TextField
@@ -832,10 +839,10 @@ class Overview extends Component {
                                                     className="overview-button"
                                                     onClick={() => {
                                                         this.state.dataRef.notes == null ? this.handleNotesDialogOpen()
-                                                        : this.handleEditNotesDialogOpen()
+                                                            : this.handleEditNotesDialogOpen()
                                                     }}
                                                 ><FontAwesomeIcon className="fa-spacer" icon={faPencilAlt} />Edit</span></h2>
-                                                <p>{this.state.dataRef.notes != null ? this.state.dataRef.notes 
+                                                <p>{this.state.dataRef.notes != null ? this.state.dataRef.notes
                                                     : 'Add any trip notes or details here.'}</p>
                                             </Col>
 
@@ -848,7 +855,7 @@ class Overview extends Component {
                                                 autoScrollBodyContent={true}
                                             >
                                                 <p className="highlight">{this.state.errorMessage}</p>
-                                                    
+
                                                 <Grid className="neg-margin">
                                                     <Row>
                                                         <TextField
@@ -859,7 +866,7 @@ class Overview extends Component {
                                                             type="text"
                                                             fullWidth={true}
                                                             multiLine={true}
-      rowsMax={5}
+                                                            rowsMax={5}
                                                             onChange={event => {
                                                                 this.setState({ notes: event.target.value });
                                                             }}
@@ -877,7 +884,7 @@ class Overview extends Component {
                                                 autoScrollBodyContent={true}
                                             >
                                                 <p className="highlight">{this.state.errorMessage}</p>
-                                                    
+
                                                 <Grid className="neg-margin">
                                                     <Row>
                                                         <TextField
@@ -898,15 +905,15 @@ class Overview extends Component {
                                         </Row>
                                         <Row>
                                             <Col lgOffset={2} xlOffset={3} xs={12} lg={8} xl={6}>
-                                            <RaisedButton
-                                                className="delete-trip-button"
-                                                label="Delete this Trip"
-                                                fullWidth={true}
-                                                secondary={true}
-                                                onClick={() => {
-                                                    this.handleDeleteTrip()
-                                                }}
-                                            />
+                                                <RaisedButton
+                                                    className="delete-trip-button"
+                                                    label="Delete this Trip"
+                                                    fullWidth={true}
+                                                    secondary={true}
+                                                    onClick={() => {
+                                                        this.handleDeleteTrip()
+                                                    }}
+                                                />
                                             </Col>
                                         </Row>
                                     </Grid>

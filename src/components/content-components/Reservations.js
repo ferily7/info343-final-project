@@ -84,11 +84,6 @@ class Reservations extends Component {
                                             </div>
                                         </div>
                                     }
-                                    {/* <Col className="table-margin" xs={12} md={6} xl={4}>
-                                        <div className="new-category" onClick={this.addReservation}>
-                                            <p className="unselectable new-category-text">+ Add Reservation</p>
-                                        </div>
-                                    </Col> */}
                                 </Row>
                             </Grid>
                         </div>

@@ -65,6 +65,7 @@ Other trip planners have a lot of established architecture for place suggestions
           {{EVENT}}
         notes: string
         tripName: string
+        travelers: array of strings
       {{TRIP}}
       {{TRIP}}
   {{USER}}
