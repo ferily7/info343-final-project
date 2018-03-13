@@ -202,8 +202,6 @@ a {
 
 /* SIDEBAR STYLES */
 .sidebar {
-  border-right: 1px solid #7c7c7c;
-
   background-color: #e3e3e3;
 }
 .no-padding {
@@ -226,8 +224,10 @@ a {
   margin-bottom: 30px;
 }
 .trip-list {
-  padding: 0px !important;
   border-top: 1px solid #7c7c7c !important;
+}
+.trip-list > div {
+  padding: 0 !important;
 }
 .trip-list-item {
   border-bottom: 1px solid #7c7c7c !important;
@@ -550,6 +550,7 @@ font-size: 1.5rem;
     height: 100vh;
     margin-top: -92.2px;
     overflow: auto;
+    border-right: 1px solid #7c7c7c;
   }
   .sidebar-content {
     position: relative;
