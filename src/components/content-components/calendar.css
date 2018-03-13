@@ -105,6 +105,8 @@
             flex-grow: 1;
     padding: 0 10px;
     text-align: center;
+    font-size: .9rem;
+    text-transform: uppercase;
   }
   .rbc-toolbar button {
     color: #373a3c;
@@ -440,6 +442,14 @@
   }
   .rbc-label {
     padding: 0 5px;
+  }
+  .rbc-label:hover {
+    background-color: transparent !important;
+    cursor: auto !important;
+  }
+  .rbc-label + .rbc-time-slot:hover {
+    background-color: transparent !important;
+    cursor: auto !important;
   }
   .rbc-day-slot {
     position: relative;

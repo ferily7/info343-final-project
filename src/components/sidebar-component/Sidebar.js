@@ -6,6 +6,7 @@ import { Grid, Row, Col } from "react-flexbox-grid";
 // material ui components
 import PropTypes from "prop-types";
 import RaisedButton from "material-ui/RaisedButton";
+import FlatButton from "material-ui/FlatButton";
 import { List, ListItem, makeSelectable } from "material-ui/List";
 import Dialog from "material-ui/Dialog";
 import DatePicker from "material-ui/DatePicker";
@@ -34,7 +35,9 @@ function wrapState(ComposedComponent) {
 
     render() {
       const selectedItemStyle = {
-        backgroundColor: "#ffffff"
+        backgroundColor: "#f75830",
+        color: '#ffffff',
+        margin: '-1px'
       };
       return (
         <ComposedComponent
@@ -189,10 +192,11 @@ class Sidebar extends Component {
                 />
               </SelectableList>
             </div>
-            <RaisedButton
+            <FlatButton
+                        backgroundColor='#c4c4c4'
+                        hoverColor="#f75830"
               className="signout-button"
               label="Sign Out"
-              primary={true}
               onClick={() => this.handleSignOut()}
             />
 

@@ -19,7 +19,7 @@ a {
   letter-spacing: 0 !important;
 }
 .highlight {
-  color: #D50000 !important;
+  color: #f75830 !important;
   font-weight: 400;
   margin-bottom: 0;
 }
@@ -212,6 +212,7 @@ a {
 /* SIDEBAR STYLES */
 .sidebar {
   background-color: #e3e3e3;
+  overflow-x: hidden;
 }
 .no-padding {
   padding: 0 !important;
@@ -227,10 +228,10 @@ a {
   padding: 16px 16px 4px 16px;
 }
 .signout-button {
-  width: 70%;
-  margin-left: 15%;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  width: 70% !important;
+  margin-left: 15% !important;
+  margin-top: 30px !important;
+  margin-bottom: 30px !important;
 }
 .trip-list {
   border-top: 1px solid #7c7c7c !important;
@@ -328,7 +329,10 @@ float: right;
   padding-bottom: 5px;
 }
 .delete-trip-button {
-  margin-top: 50px;
+  margin-top: 50px !important;
+}
+.date-input-overview {
+  margin-top: 8px;
 }
 
 /* ITINERARY TAB STYLES */
@@ -342,6 +346,14 @@ float: right;
 }
 .extra-margin {
   margin-top: 10px;
+}
+.optional-fields {
+  text-transform: uppercase;
+  color: #000000;
+  font-size: .9rem;
+  font-weight: 500;
+  margin-bottom: 0;
+  margin-top: 32px;
 }
 
 /* RESERVATION TAB STYLES */
@@ -557,8 +569,8 @@ font-size: 1.5rem;
   .sidebar {
     height: 100vh;
     margin-top: -92.2px;
-    overflow: auto;
-    border-right: 1px solid #7c7c7c;
+    overflow-y: auto;
+    border-right: 2px solid #f75830;
   }
   .sidebar-content {
     position: relative;
@@ -691,6 +703,6 @@ font-size: 1.5rem;
     font-size: 1.5rem;
   }
   .delete-trip-button {
-    margin-top: 100px;
+    margin-top: 100px !important;
   }
 }

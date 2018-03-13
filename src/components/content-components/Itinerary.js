@@ -438,6 +438,9 @@ class Itinerary extends Component {
                                         />
                                     </Row>
                                     <Row>
+                                        <p className="optional-fields">Optional budget {"&"} reservation information:</p>
+                                        </Row>
+                                    <Row>
                                         <Col className="no-padding" xs={12} sm={4}>
                                             <TextField
                                                 className="auth-input"

@@ -5,6 +5,7 @@ import NoTrips from "./NoTrips";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import { faPencilAlt } from "@fortawesome/fontawesome-free-solid";
 import RaisedButton from "material-ui/RaisedButton";
+import FlatButton from "material-ui/FlatButton";
 import Dialog from "material-ui/Dialog";
 import DateTimePicker from "material-ui-datetimepicker";
 import DatePickerDialog from "material-ui/DatePicker/DatePickerDialog";
@@ -468,7 +469,7 @@ class Overview extends Component {
                         {this.state.dataRef.departing && (
                           <ul className="overview-list">
                             <li className="overview-li">
-                              Name: {this.state.dataRef.departing.airlineName}
+                              Airline: {this.state.dataRef.departing.airlineName}
                             </li>
                             <li className="overview-li">
                               Confirmation Code:{" "}
@@ -489,7 +490,7 @@ class Overview extends Component {
                           </ul>
                         )}
                         {!this.state.dataRef.departing && (
-                          <p>Click edit to add your information</p>
+                          <p>Click edit to add your flight information.</p>
                         )}
                       </Col>
 
@@ -537,7 +538,7 @@ class Overview extends Component {
                           <Row>
                             <Col className="no-padding" xs={12} sm={6}>
                               <DateTimePicker
-                                className="date-input"
+                                className="date-input-overview"
                                 hintText="Departs"
                                 fullWidth={true}
                                 DatePicker={DatePickerDialog}
@@ -554,7 +555,7 @@ class Overview extends Component {
                             </Col>
                             <Col className="no-padding" xs={12} sm={6}>
                               <DateTimePicker
-                                className="date-input"
+                                className="date-input-overview"
                                 hintText="Arrives"
                                 fullWidth={true}
                                 DatePicker={DatePickerDialog}
@@ -619,7 +620,7 @@ class Overview extends Component {
                           <Row>
                             <Col className="no-padding" xs={12} sm={6}>
                               <DateTimePicker
-                                className="date-input"
+                                className="date-input-overview"
                                 hintText="Departs"
                                 fullWidth={true}
                                 DatePicker={DatePickerDialog}
@@ -639,7 +640,7 @@ class Overview extends Component {
                             </Col>
                             <Col className="no-padding" xs={12} sm={6}>
                               <DateTimePicker
-                                className="date-input"
+                                className="date-input-overview"
                                 hintText="Arrives"
                                 fullWidth={true}
                                 DatePicker={DatePickerDialog}
@@ -681,7 +682,7 @@ class Overview extends Component {
                         {this.state.dataRef.returning && (
                           <ul className="overview-list">
                             <li className="overview-li">
-                              Name: {this.state.dataRef.returning.airlineName}
+                              Airline: {this.state.dataRef.returning.airlineName}
                             </li>
                             <li className="overview-li">
                               Confirmation Code:{" "}
@@ -702,7 +703,7 @@ class Overview extends Component {
                           </ul>
                         )}
                         {!this.state.dataRef.returning && (
-                          <p>Click edit to add your information</p>
+                          <p>Click edit to add your flight information.</p>
                         )}
                       </Col>
 
@@ -750,7 +751,7 @@ class Overview extends Component {
                           <Row>
                             <Col className="no-padding" xs={12} sm={6}>
                               <DateTimePicker
-                                className="date-input"
+                                className="date-input-overview"
                                 hintText="Departing"
                                 fullWidth={true}
                                 DatePicker={DatePickerDialog}
@@ -767,7 +768,7 @@ class Overview extends Component {
                             </Col>
                             <Col className="no-padding" xs={12} sm={6}>
                               <DateTimePicker
-                                className="date-input"
+                                className="date-input-overview"
                                 hintText="Arrives"
                                 fullWidth={true}
                                 DatePicker={DatePickerDialog}
@@ -832,7 +833,7 @@ class Overview extends Component {
                           <Row>
                             <Col className="no-padding" xs={12} sm={6}>
                               <DateTimePicker
-                                className="date-input"
+                                className="date-input-overview"
                                 hintText="Departing"
                                 fullWidth={true}
                                 DatePicker={DatePickerDialog}
@@ -852,7 +853,7 @@ class Overview extends Component {
                             </Col>
                             <Col className="no-padding" xs={12} sm={6}>
                               <DateTimePicker
-                                className="date-input"
+                                className="date-input-overview"
                                 hintText="Arrives"
                                 fullWidth={true}
                                 DatePicker={DatePickerDialog}
@@ -911,7 +912,7 @@ class Overview extends Component {
                           </ul>
                         )}
                         {!this.state.dataRef.travelers && (
-                          <p>Click edit to add your information</p>
+                          <p>Click edit to add traveler information.</p>
                         )}
                       </Col>
 
@@ -1057,11 +1058,12 @@ class Overview extends Component {
                     </Row>
                     <Row>
                       <Col lgOffset={2} xlOffset={3} xs={12} lg={8} xl={6}>
-                        <RaisedButton
+                        <FlatButton
+                        backgroundColor='#c4c4c4'
+                        hoverColor="#f75830"
                           className="delete-trip-button"
                           label="Delete this Trip"
                           fullWidth={true}
-                          secondary={true}
                           onClick={() => {
                             this.handleDeleteTripDialogOpen();
                           }}
