@@ -225,7 +225,7 @@ class Overview extends Component {
             
             let travelersObj = {};
             travelersName.forEach((d, i) => {
-                if (d != "") {
+                if (d !== "") {
                     travelersObj[i] = d
                 }
             });
