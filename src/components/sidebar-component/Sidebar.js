@@ -2,12 +2,52 @@ import React, { Component } from "react";
 import firebase from "firebase";
 import { Redirect } from "react-router-dom";
 import { Grid, Row, Col } from "react-flexbox-grid";
+
 // material ui components
+import PropTypes from 'prop-types';
 import RaisedButton from "material-ui/RaisedButton";
-import { List, ListItem } from "material-ui/List";
+import { List, ListItem, makeSelectable } from "material-ui/List";
 import Dialog from "material-ui/Dialog";
 import DatePicker from "material-ui/DatePicker";
 import TextField from "material-ui/TextField";
+
+let SelectableList = makeSelectable(List);
+
+function wrapState(ComposedComponent) {
+    return class SelectableList extends Component {
+      static propTypes = {
+        children: PropTypes.node.isRequired
+      };
+  
+      componentWillMount() {
+        this.setState({
+          selectedIndex: null,
+        });
+      }
+  
+      handleRequestChange = (event, index) => {
+        this.setState({
+          selectedIndex: index,
+        });
+      };
+  
+      render() {
+        const selectedItemStyle = {
+            backgroundColor: '#ffffff',
+           }
+        return (
+          <ComposedComponent
+            value={this.state.selectedIndex}
+            onChange={this.handleRequestChange}
+            selectedItemStyle={selectedItemStyle}
+          >
+            {this.props.children}
+          </ComposedComponent>
+        );
+      }
+    };
+  }
+  SelectableList = wrapState(SelectableList);
 
 class Sidebar extends Component {
     constructor(props) {
@@ -91,6 +131,8 @@ class Sidebar extends Component {
         }
     }
     render() {
+        
+
         const dialogActions = [
             <RaisedButton
                 className="cancel-button"
@@ -110,13 +152,15 @@ class Sidebar extends Component {
                 <div className="sidebar">
                     <div className="sidebar-content">
                         <h2 className="trips-header">Your Trips</h2>
-                        <List className="trip-list">
+                        <div className="trip-list">
+                        <SelectableList>
                             {this.state.dataRef &&
                                 Object.keys(this.state.dataRef).map((d, i) => {
                                     return (
                                         <ListItem
                                             className="trip-list-item unselectable"
                                             key={d}
+                                            value={i}
                                             primaryText={this.state.dataRef[d].tripName}
                                             onClick={() => this.props.changeSelectedTrip(d)}
                                         />
@@ -129,8 +173,8 @@ class Sidebar extends Component {
                                 primaryText="+ New"
                                 onClick={this.handleDialogOpen}
                             />
-                        </List>
-
+                        </SelectableList>
+</div>
                         <RaisedButton
                             className="signout-button"
                             label="Sign Out"
