@@ -423,7 +423,7 @@ class Overview extends Component {
                                         </Row>
                                         <Row>
                                             <Col xs={12} md={6} xl={4}>
-                                                <h2 className="content-subheader header-border">Departing <span
+                                                <h2 className="content-subheader header-border">Leaving <span
                                                     className="overview-button"
                                                     onClick={() => {
                                                         this.state.dataRef.departing == null ? this.handleDepartDialogOpen()
@@ -487,7 +487,7 @@ class Overview extends Component {
                                                         <Col className="no-padding" xs={12} sm={6}>
                                                             <DateTimePicker
                                                                 className="date-input"
-                                                                hintText="Departing"
+                                                                hintText="Departs"
                                                                 fullWidth={true}
                                                                 DatePicker={DatePickerDialog}
                                                                 TimePicker={TimePickerDialog}
@@ -557,7 +557,7 @@ class Overview extends Component {
                                                         <Col className="no-padding" xs={12} sm={6}>
                                                             <DateTimePicker
                                                                 className="date-input"
-                                                                hintText="Departing"
+                                                                hintText="Departs"
                                                                 fullWidth={true}
                                                                 DatePicker={DatePickerDialog}
                                                                 TimePicker={TimePickerDialog}
@@ -858,6 +858,8 @@ class Overview extends Component {
                                                             floatingLabelText="Notes"
                                                             type="text"
                                                             fullWidth={true}
+                                                            multiLine={true}
+      rowsMax={5}
                                                             onChange={event => {
                                                                 this.setState({ notes: event.target.value });
                                                             }}
