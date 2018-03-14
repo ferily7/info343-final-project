@@ -641,7 +641,7 @@
     position: absolute;
     left: 0;
     height: 1px;
-    background-color: #74ad31;
+    background-color: #f75830;
     pointer-events: none;
   }
   .rbc-current-time-indicator::before {
@@ -650,7 +650,7 @@
     left: -3px;
     top: -3px;
     content: ' ';
-    background-color: #74ad31;
+    background-color: #f75830;
     border-radius: 50%;
     width: 8px;
     height: 8px;
