@@ -28,6 +28,10 @@ class About extends Component {
                                         their trip organized and well-planned.
                 </p>
 
+                                    <p>
+                                        Created by Laura Freeman, Farrah Lee, Sangchul Hwang, and William Kwok for INFO 343 A Winter 2018
+                </p>
+
                                     <h2 className="about-subheader">Dashboard</h2>
                                     <p>
                                         By logging into Trip Planner, the user is taken to their own dashboard that contains the
@@ -79,6 +83,8 @@ class About extends Component {
                                         description. The Reservations tab is a great way for users to
                                         keep track of all of their important engagements.
                 </p>
+
+
                                 </div>
                             </div>
                         </Col>

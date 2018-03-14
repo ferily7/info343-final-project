@@ -72,6 +72,7 @@ class Sidebar extends Component {
         };
     }
     handleDialogOpen = () => {
+        this.props.changeSelectedTrip("");
         this.setState({ dialogOpen: true });
     };
 
@@ -112,8 +113,7 @@ class Sidebar extends Component {
                     "Uncategorized"
                 ]
             };
-            let selectedTrip = this.dataRef.push(pushObj).key;
-            this.props.changeSelectedTrip(selectedTrip);
+            this.dataRef.push(pushObj);
             this.setState({
                 dialogOpen: false,
                 tripName: "",
