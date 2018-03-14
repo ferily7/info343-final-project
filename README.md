@@ -24,16 +24,16 @@ Other trip planners have a lot of established architecture for place suggestions
 * [moment](https://www.npmjs.com/package/moment) used for localization with the Big Calendar on the Itinerary page.
 * [react](https://www.npmjs.com/package/react) for providing a framework for us to organize the state of our application that allows fluid user interaction.
 * [react-big-calendar](https://www.npmjs.com/package/react-big-calendar) used for a calendar interface with the Itinerary page.
+* [react-flexbox-grid](https://www.npmjs.com/package/react-flexbox-grid) to create a nice seamless desktop and mobile friendly interface.
+* [react-fontawesome](https://www.npmjs.com/package/react-fontawesome) for nice icons.
 * [react-router-dom](https://www.npmjs.com/package/react-router-dom) to create a seamless web application where the user can see details without lag.
-* [react-sweet-progress](https://www.npmjs.com/package/react-sweet-progress) for a sleek looking progress bar that we use on the Budget page.
-* [reactstrap](https://www.npmjs.com/package/reactstrap) for the `tabContent` that our application revolves around.
-
+* [reactstrap](https://www.npmjs.com/package/reactstrap) for the `tabContent` that our application revolves around and a sleek looking progress bar that we use on the Budget page.
 
 ## Database structure
 ```
 {{ROOT}}
   {{USER}} // key that corresponds to user's UID in firebase
-    Trips
+    trips
       {{TRIP}} // key that corresponds to a trip
         budget: integer
         categories: array of strings, with one element ALWAYS being "Uncategorized"
@@ -44,13 +44,7 @@ Other trip planners have a lot of established architecture for place suggestions
           confirmation: string
           departTime: integer corresponding to Unix Epoch Milliseconds
           arrivalTime: integer corresponding to Unix Epoch Milliseconds
-        returning
-          airlineName: string
-          confirmation: string
-          departTime: integer corresponding to Unix Epoch Milliseconds
-          arrivalTime: integer corresponding to Unix Epoch Milliseconds
         endLocation: string
-        startLocation: string
         events
           {{EVENT}} // key that corresponds to an event
             cost: integer
@@ -64,6 +58,19 @@ Other trip planners have a lot of established architecture for place suggestions
           {{EVENT}}
           {{EVENT}}
         notes: string
+        purchases
+          {{PURCHASE}} // key that corresponds to a purchase
+            cost: integer
+            eventName: string of item bought (named eventName for easier coding)
+            type: string
+          {{PURCHASE}}
+          {{PURCHASE}}
+        returning
+          airlineName: string
+          confirmation: string
+          departTime: integer corresponding to Unix Epoch Milliseconds
+          arrivalTime: integer corresponding to Unix Epoch Milliseconds
+        startLocation: string
         tripName: string
         travelers: array of strings
       {{TRIP}}
@@ -74,9 +81,11 @@ Other trip planners have a lot of established architecture for place suggestions
 ```
 
 ## Problems, bugs, and future plans
-* Switching between trips on the itinerary page doesn't update the calendar to the correct week if the starting weeks are different. This was fixed before by using functions that `react-big-calendar` provided, but then mysteriously stopped working a couple days later. Perhaps an external change affected how it was working.
+* Switching between trips on the itinerary page doesn't update the calendar to the correct week if the starting weeks are different. This was fixed before by using functions that `react-big-calendar`. provided, but then mysteriously stopped working a couple days later. Perhaps an external change affected how it was working.
 * When logging in for the first time, the top right "Welcome, \_\_\_\_\_\_\_" message didn't get the current user's `displayName` correctly, so we used a workaround where if it couldn't find it, we had it only appear as "Welcome."
 * Integration with external APIs such as Expedia's reservation API or trip suggestions API from Google, based on our user's data of remaining budget, total budget, location, etc.
 * Map paths and display events using [react-leaflet](https://www.npmjs.com/package/react-leaflet)
-* D3 to display budget statistics, and other possible statistics.
-* Budgeting on a per-traveler basis
+* [D3](https://www.npmjs.com/package/d3) to display budget statistics, and other possible statistics.
+* Budgeting on a per-traveler basis.
+* Code optimization at points (Dialog popups for example reused a lot of code).
+* Sidebar not highlighting current trip when making a new trip.

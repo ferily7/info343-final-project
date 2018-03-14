@@ -1,7 +1,7 @@
 {
 	"name": "info343-final-project",
 	"version": "0.1.0",
-	"homepage":"http://students.washington.edu/wkwok16/info343-final-project",
+	"homepage": "http://students.washington.edu/wkwok16/info343-final-project",
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
