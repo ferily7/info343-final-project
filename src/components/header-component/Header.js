@@ -13,7 +13,7 @@ class Header extends Component {
                 className="appbar"
                 title={
                     <Link className="nav-title" to="/">
-                        Trip Planner
+                        Planet
           </Link>
                 }
                 showMenuIconButton={false}

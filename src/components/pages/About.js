@@ -10,9 +10,9 @@ class About extends Component {
                         <Col smOffset={1} xs={12} sm={10}>
                             <div className="contain-sm">
                                 <div className="about-content">
-                                    <h1 className="about-header">About Trip Planner</h1>
+                                    <h1 className="about-header">About Planet</h1>
                                     <p>
-                                        Trip Planner is an application that allows the user to
+                                        Planet is an application that allows the user to
                                         interactively create a travel itinerary, see data about their
                                         budget, and mark their reservations. The application can be
                                         used by anyone who wants to plan and organize their trip.
@@ -34,7 +34,7 @@ class About extends Component {
 
                                     <h2 className="about-subheader">Dashboard</h2>
                                     <p>
-                                        
+
                                         Once signed in, users are taken to their dashboard, which that contains the
                                         Overview, Itinerary, Budget, and Reservations tabs. The sidebar that contains
                                         users' trips. Users can
