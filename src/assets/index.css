@@ -206,6 +206,7 @@ a {
 }
 .about-content p {
   margin: 0 0 10px 0;
+  font-weight: 300 !important;
 }
 .about-header {
   font-size: 2.5rem;
