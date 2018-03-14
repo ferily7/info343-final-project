@@ -80,7 +80,7 @@ Other trip planners have a lot of established architecture for place suggestions
   {{USER}}
 ```
 
-## Problems, bugs, and future plans
+## Problems, bugs, and future fixing plans
 * Switching between trips on the itinerary page doesn't update the calendar to the correct week if the starting weeks are different. This was fixed before by using functions that `react-big-calendar`. provided, but then mysteriously stopped working a couple days later. Perhaps an external change affected how it was working.
 * When logging in for the first time, the top right "Welcome, \_\_\_\_\_\_\_" message didn't get the current user's `displayName` correctly, so we used a workaround where if it couldn't find it, we had it only appear as "Welcome."
 * Integration with external APIs such as Expedia's reservation API or trip suggestions API from Google, based on our user's data of remaining budget, total budget, location, etc.
@@ -89,3 +89,6 @@ Other trip planners have a lot of established architecture for place suggestions
 * Budgeting on a per-traveler basis.
 * Code optimization at points (Dialog popups for example reused a lot of code).
 * Sidebar not highlighting current trip when making a new trip.
+* Date on calendar not in mm/dd format, but in dd/mm format
+* Week box going from Sunday to Saturday instead of Monday to Sunday
+* Cost appearing as 0 (and being unable to delete it) on Itinerary edit box if no cost was specified
