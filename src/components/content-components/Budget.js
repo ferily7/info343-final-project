@@ -387,7 +387,7 @@ class Budget extends Component {
                     </Progress>
                 );
             } else {
-                return <div key={d} />;
+                return <Progress bar key={d} value={0} max={1} />
             }
         });
 
