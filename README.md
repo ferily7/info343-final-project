@@ -89,6 +89,7 @@ Other trip planners have a lot of established architecture for place suggestions
 * Budgeting on a per-traveler basis.
 * Code optimization at points (Dialog popups for example reused a lot of code).
 * Sidebar not highlighting current trip when making a new trip.
-* Date on calendar not in mm/dd format, but in dd/mm format
-* Week box going from Sunday to Saturday instead of Monday to Sunday
-* Cost appearing as 0 (and being unable to delete it) on Itinerary edit box if no cost was specified
+* Date on calendar not in mm/dd format, but in dd/mm format.
+* Week box going from Sunday to Saturday instead of Monday to Sunday.
+* Cost appearing as 0 (and being unable to delete it) on Itinerary edit box if no cost was specified.
+* Error message appearing in wrong areas, potentially.
