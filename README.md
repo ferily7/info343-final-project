@@ -41,9 +41,9 @@ Other trip planners have a lot of established architecture for place suggestions
         dateStart: integer corresponding to Unix Epoch Milliseconds
         departing
           airlineName: string
+          arrivalTime: integer corresponding to Unix Epoch Milliseconds
           confirmation: string
           departTime: integer corresponding to Unix Epoch Milliseconds
-          arrivalTime: integer corresponding to Unix Epoch Milliseconds
         endLocation: string
         events
           {{EVENT}} // key that corresponds to an event
@@ -67,9 +67,9 @@ Other trip planners have a lot of established architecture for place suggestions
           {{PURCHASE}}
         returning
           airlineName: string
+          arrivalTime: integer corresponding to Unix Epoch Milliseconds
           confirmation: string
           departTime: integer corresponding to Unix Epoch Milliseconds
-          arrivalTime: integer corresponding to Unix Epoch Milliseconds
         startLocation: string
         tripName: string
         travelers: array of strings
