@@ -1,5 +1,5 @@
 # Trip Planner
-Created by Laura Freeman, Farrah Lee, Sangchul Hwang, and William Kwok for INFO 343 A Winter 2018
+Created by Laura Freeman, Farrah Lee, Sangchul Hwang, and William Kwok for INFO 343 A Winter 2018. [Link to the website](http://students.washington.edu/ferily/INFO343/info343-final-project/)
 
 ## About our project
 We have created an application that allows the user to interactively create a travel itinerary, see data about their budget, and mark their reservations. The clients of our web application will be tourists who want to plan a complex schedule for their trip, or just using the budgeting feature. Our application is focused towards end users that like to have control of every aspect of their schedule and have an interactive interface for planning.
