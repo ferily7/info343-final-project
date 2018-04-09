@@ -2,7 +2,7 @@
 Created by Laura Freeman, Farrah Lee, Sangchul Hwang, and William Kwok for INFO 343 A Winter 2018. [Link to the website](http://students.washington.edu/ferily/INFO343/info343-final-project/)
 
 ## About our project
-We have created an application that allows the user to interactively create a travel itinerary, see data about their budget, and mark their reservations. The clients of our web application will be tourists who want to plan a complex schedule for their trip, or just using the budgeting feature. Our application is focused towards end users that like to have control of every aspect of their schedule and have an interactive interface for planning.
+We have created an application that allows the user to interactively create a travel itinerary, see data about their budget, and mark their reservations. The clients of our web application will be tourists who want to plan a complex schedule for their trip, or just using the budgeting feature. Our application is focused towards end users that like to have control of every aspect of their schedule and have an interactive interface for planning. Learn more about how to use it on our about page.
 
 Our application shares information about what the user has planned already, what their current estimated cost is versus their max budget (segmented by category). Users are able to interactively create their itinerary, similar to Google Calendar.
 
@@ -41,9 +41,9 @@ Other trip planners have a lot of established architecture for place suggestions
         dateStart: integer corresponding to Unix Epoch Milliseconds
         departing
           airlineName: string
+          arrivalTime: integer corresponding to Unix Epoch Milliseconds
           confirmation: string
           departTime: integer corresponding to Unix Epoch Milliseconds
-          arrivalTime: integer corresponding to Unix Epoch Milliseconds
         endLocation: string
         events
           {{EVENT}} // key that corresponds to an event
@@ -67,9 +67,9 @@ Other trip planners have a lot of established architecture for place suggestions
           {{PURCHASE}}
         returning
           airlineName: string
+          arrivalTime: integer corresponding to Unix Epoch Milliseconds
           confirmation: string
           departTime: integer corresponding to Unix Epoch Milliseconds
-          arrivalTime: integer corresponding to Unix Epoch Milliseconds
         startLocation: string
         tripName: string
         travelers: array of strings
